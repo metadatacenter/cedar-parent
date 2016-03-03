@@ -1,2 +1,2 @@
 # cedar-parent
-Parent project specifying common setup
+Parent project specifying common setup: versions, plugins, repos
