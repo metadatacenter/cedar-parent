@@ -37,6 +37,7 @@
     <logback.version>1.1.6</logback.version>
 
     <keycloak.version>1.9.0.Final</keycloak.version>
+    <jboss.logging>3.3.0.Final</jboss.logging>
 
     <scala.maven.plugin.version>3.1.6</scala.maven.plugin.version>
     <play2.maven.plugin.version>1.0.0-beta1</play2.maven.plugin.version>
@@ -245,6 +246,12 @@
         <artifactId>junit</artifactId>
         <version>${junit.version}</version>
         <scope>test</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.jboss.logging</groupId>
+        <artifactId>jboss-logging</artifactId>
+        <version>${jboss.logging}</version>
       </dependency>
 
 
