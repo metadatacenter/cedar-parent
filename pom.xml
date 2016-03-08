@@ -16,22 +16,27 @@
 
     <scala.version>2.11.5</scala.version>
     <scala.dependencies.version>2.11</scala.dependencies.version>
+    <scala.lang.modules.version>1.0.5</scala.lang.modules.version>
     <play2.version>2.3.8</play2.version>
     <play2.scala.version>2.11</play2.scala.version>
     <play-java-ws.version>2.3.8</play-java-ws.version>
+    <play2.twirl.api.version>1.1.1</play2.twirl.api.version>
+    <com.typesafe.config.version>1.2.1</com.typesafe.config.version>
 
-    <apache.httpclient.version>4.5.1</apache.httpclient.version>
-    <mongodb.version>3.0.0</mongodb.version>
-    <jackson.core.version>2.5.0</jackson.core.version>
-    <checker.framework.version>1.7.5</checker.framework.version>
+    <apache.httpcomponents.httpclient.version>4.5.2</apache.httpcomponents.httpclient.version>
+    <apache.httpclient.fluent-hc.version>4.5.2</apache.httpclient.fluent-hc.version>
+    <apache.httpcomponents.httpcore.version>4.4.4</apache.httpcomponents.httpcore.version>
+    <mongodb.version>3.2.2</mongodb.version>
+    <jackson.core.version>2.7.2</jackson.core.version>
+    <checker.framework.version>1.9.12</checker.framework.version>
 
     <junit.version>4.12</junit.version>
-    <fge.version>2.2.6</fge.version>
-    <slf4j.version>1.7.14</slf4j.version>
-    <logback.version>1.1.3</logback.version>
+    <fge.json.schema.validator.version>2.2.6</fge.json.schema.validator.version>
+    <fge.json.schema.core.version>1.2.5</fge.json.schema.core.version>
+    <slf4j.version>1.7.18</slf4j.version>
+    <logback.version>1.1.6</logback.version>
 
-    <keycloak.version>1.8.0.Final</keycloak.version>
-
+    <keycloak.version>1.9.0.Final</keycloak.version>
 
     <scala.maven.plugin.version>3.1.6</scala.maven.plugin.version>
     <play2.maven.plugin.version>1.0.0-beta1</play2.maven.plugin.version>
@@ -43,10 +48,263 @@
     <org.metadatacenter.cedar.template.operations.version>0.1.0</org.metadatacenter.cedar.template.operations.version>
     <org.metadatacenter.cedar.auth.operations.version>0.1.0</org.metadatacenter.cedar.auth.operations.version>
     <org.metadatacenter.cedar.user.operations.version>0.1.0</org.metadatacenter.cedar.user.operations.version>
+    <org.metadatacenter.cedar.auth.operations.keycloak.version>0.1.0
+    </org.metadatacenter.cedar.auth.operations.keycloak.version>
+    <org.metadatacenter.cedar.auth.operations.noauth.version>0.1.0
+    </org.metadatacenter.cedar.auth.operations.noauth.version>
+    <org.metadatacenter.cedar.server.utils.play.version>0.1.0</org.metadatacenter.cedar.server.utils.play.version>
+    <org.metadatacenter.cedar.template.operations.version>0.1.0</org.metadatacenter.cedar.template.operations.version>
+    <org.metadatacenter.cedar.schema.server.core.version>0.1.0</org.metadatacenter.cedar.schema.server.core.version>
+    <org.metadatacenter.cedar.template.server.core.version>0.1.0</org.metadatacenter.cedar.template.server.core.version>
 
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
   </properties>
+
+
+  <dependencyManagement>
+    <dependencies>
+
+      <dependency>
+        <groupId>org.scala-lang</groupId>
+        <artifactId>scala-library</artifactId>
+        <version>${scala.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.scala-lang.modules</groupId>
+        <artifactId>scala-xml_${play2.scala.version}</artifactId>
+        <version>${scala.lang.modules.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.typesafe</groupId>
+        <artifactId>config</artifactId>
+        <version>${com.typesafe.config.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.typesafe.play</groupId>
+        <artifactId>play_${play2.scala.version}</artifactId>
+        <version>${play2.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.typesafe.play</groupId>
+        <artifactId>play-json_${play2.scala.version}</artifactId>
+        <version>${play2.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.typesafe.play</groupId>
+        <artifactId>twirl-api_${play2.scala.version}</artifactId>
+        <version>${play2.twirl.api.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.typesafe.play</groupId>
+        <artifactId>build-link</artifactId>
+        <version>${play2.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.typesafe.play</groupId>
+        <artifactId>play-test_${play2.scala.version}</artifactId>
+        <version>${play2.version}</version>
+        <scope>test</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>com.typesafe.play</groupId>
+        <artifactId>play-java-ws_${play2.scala.version}</artifactId>
+        <version>${play-java-ws.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>${slf4j.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>jcl-over-slf4j</artifactId>
+        <version>${slf4j.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-core</artifactId>
+        <version>${logback.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-classic</artifactId>
+        <version>${logback.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-core</artifactId>
+        <version>${jackson.core.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <version>${jackson.core.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-annotations</artifactId>
+        <version>${jackson.core.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.checkerframework</groupId>
+        <artifactId>checker</artifactId>
+        <version>${checker.framework.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.checkerframework</groupId>
+        <artifactId>checker-qual</artifactId>
+        <version>${checker.framework.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.checkerframework</groupId>
+        <artifactId>jdk8</artifactId>
+        <version>${checker.framework.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpclient</artifactId>
+        <version>${apache.httpcomponents.httpclient.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpcore</artifactId>
+        <version>${apache.httpcomponents.httpcore.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>fluent-hc</artifactId>
+        <version>${apache.httpclient.fluent-hc.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>commons-io</groupId>
+        <artifactId>commons-io</artifactId>
+        <version>2.4</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.github.fge</groupId>
+        <artifactId>json-schema-validator</artifactId>
+        <version>${fge.json.schema.validator.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.github.fge</groupId>
+        <artifactId>json-schema-core</artifactId>
+        <version>${fge.json.schema.core.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.mongodb</groupId>
+        <artifactId>mongo-java-driver</artifactId>
+        <version>${mongodb.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.keycloak</groupId>
+        <artifactId>keycloak-common</artifactId>
+        <version>${keycloak.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.keycloak</groupId>
+        <artifactId>keycloak-core</artifactId>
+        <version>${keycloak.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.keycloak</groupId>
+        <artifactId>keycloak-adapter-core</artifactId>
+        <version>${keycloak.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>${junit.version}</version>
+        <scope>test</scope>
+      </dependency>
+
+
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-server-utils-core</artifactId>
+        <version>${org.metadatacenter.cedar.server.utils.core.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-auth-operations</artifactId>
+        <version>${org.metadatacenter.cedar.auth.operations.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-server-utils-play</artifactId>
+        <version>${org.metadatacenter.cedar.server.utils.play.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-auth-operations-noauth</artifactId>
+        <version>${org.metadatacenter.cedar.auth.operations.noauth.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-auth-operations-keycloak</artifactId>
+        <version>${org.metadatacenter.cedar.auth.operations.keycloak.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-template-operations</artifactId>
+        <version>${org.metadatacenter.cedar.template.operations.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-user-operations</artifactId>
+        <version>${org.metadatacenter.cedar.user.operations.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-schema-server-core</artifactId>
+        <version>${org.metadatacenter.cedar.schema.server.core.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-template-server-core</artifactId>
+        <version>${org.metadatacenter.cedar.template.server.core.version}</version>
+      </dependency>
+
+
+    </dependencies>
+  </dependencyManagement>
 
   <repositories>
 
