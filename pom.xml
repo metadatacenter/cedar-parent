@@ -73,6 +73,12 @@
       </dependency>
 
       <dependency>
+        <groupId>org.scala-lang</groupId>
+        <artifactId>scala-compiler</artifactId>
+        <version>${scala.version}</version>
+      </dependency>
+
+      <dependency>
         <groupId>org.scala-lang.modules</groupId>
         <artifactId>scala-xml_${play2.scala.version}</artifactId>
         <version>${scala.lang.modules.version}</version>
