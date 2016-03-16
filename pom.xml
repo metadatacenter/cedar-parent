@@ -44,19 +44,9 @@
     <maven.surefire.plugin.version>2.16</maven.surefire.plugin.version>
     <maven.compiler.plugin.version>3.1</maven.compiler.plugin.version>
 
-    <org.metadatacenter.cedar.server.utils.version>0.1.0</org.metadatacenter.cedar.server.utils.version>
-    <org.metadatacenter.cedar.server.utils.core.version>0.1.0</org.metadatacenter.cedar.server.utils.core.version>
-    <org.metadatacenter.cedar.template.operations.version>0.1.0</org.metadatacenter.cedar.template.operations.version>
-    <org.metadatacenter.cedar.auth.operations.version>0.1.0</org.metadatacenter.cedar.auth.operations.version>
-    <org.metadatacenter.cedar.user.operations.version>0.1.0</org.metadatacenter.cedar.user.operations.version>
-    <org.metadatacenter.cedar.auth.operations.keycloak.version>0.1.0
-    </org.metadatacenter.cedar.auth.operations.keycloak.version>
-    <org.metadatacenter.cedar.auth.operations.noauth.version>0.1.0
-    </org.metadatacenter.cedar.auth.operations.noauth.version>
-    <org.metadatacenter.cedar.server.utils.play.version>0.1.0</org.metadatacenter.cedar.server.utils.play.version>
-    <org.metadatacenter.cedar.template.operations.version>0.1.0</org.metadatacenter.cedar.template.operations.version>
-    <org.metadatacenter.cedar.schema.server.core.version>0.1.0</org.metadatacenter.cedar.schema.server.core.version>
-    <org.metadatacenter.cedar.template.server.core.version>0.1.0</org.metadatacenter.cedar.template.server.core.version>
+    <versions.maven.plugin.version>2.2</versions.maven.plugin.version>
+
+    <cedar.version>0.1.0</cedar.version>
 
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -264,55 +254,55 @@
       <dependency>
         <groupId>org.metadatacenter</groupId>
         <artifactId>cedar-server-utils-core</artifactId>
-        <version>${org.metadatacenter.cedar.server.utils.core.version}</version>
+        <version>${cedar.version}</version>
       </dependency>
 
       <dependency>
         <groupId>org.metadatacenter</groupId>
         <artifactId>cedar-auth-operations</artifactId>
-        <version>${org.metadatacenter.cedar.auth.operations.version}</version>
+        <version>${cedar.version}</version>
       </dependency>
 
       <dependency>
         <groupId>org.metadatacenter</groupId>
         <artifactId>cedar-server-utils-play</artifactId>
-        <version>${org.metadatacenter.cedar.server.utils.play.version}</version>
+        <version>${cedar.version}</version>
       </dependency>
 
       <dependency>
         <groupId>org.metadatacenter</groupId>
         <artifactId>cedar-auth-operations-noauth</artifactId>
-        <version>${org.metadatacenter.cedar.auth.operations.noauth.version}</version>
+        <version>${cedar.version}</version>
       </dependency>
 
       <dependency>
         <groupId>org.metadatacenter</groupId>
         <artifactId>cedar-auth-operations-keycloak</artifactId>
-        <version>${org.metadatacenter.cedar.auth.operations.keycloak.version}</version>
+        <version>${cedar.version}</version>
       </dependency>
 
       <dependency>
         <groupId>org.metadatacenter</groupId>
         <artifactId>cedar-template-operations</artifactId>
-        <version>${org.metadatacenter.cedar.template.operations.version}</version>
+        <version>${cedar.version}</version>
       </dependency>
 
       <dependency>
         <groupId>org.metadatacenter</groupId>
         <artifactId>cedar-user-operations</artifactId>
-        <version>${org.metadatacenter.cedar.user.operations.version}</version>
+        <version>${cedar.version}</version>
       </dependency>
 
       <dependency>
         <groupId>org.metadatacenter</groupId>
         <artifactId>cedar-schema-server-core</artifactId>
-        <version>${org.metadatacenter.cedar.schema.server.core.version}</version>
+        <version>${cedar.version}</version>
       </dependency>
 
       <dependency>
         <groupId>org.metadatacenter</groupId>
         <artifactId>cedar-template-server-core</artifactId>
-        <version>${org.metadatacenter.cedar.template.server.core.version}</version>
+        <version>${cedar.version}</version>
       </dependency>
 
 
@@ -405,6 +395,12 @@
               <include>**/*Test.java</include>
             </includes>
           </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>versions-maven-plugin</artifactId>
+          <version>${versions.maven.plugin.version}</version>
         </plugin>
 
       </plugins>
