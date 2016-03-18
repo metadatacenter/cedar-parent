@@ -305,6 +305,11 @@
         <version>${cedar.version}</version>
       </dependency>
 
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-resource-server-core</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
 
     </dependencies>
   </dependencyManagement>
