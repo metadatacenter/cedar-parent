@@ -5,12 +5,12 @@
 
   <servers>
     <server>
-      <id>sonatype-nexus-snapshots</id>
+      <id>bmir-nexus-snapshots</id>
       <username>${env.BMIR_NEXUS_USERNAME}</username>
       <password>${env.BMIR_NEXUS_PASSWORD}</password>
     </server>
     <server>
-      <id>ossrh</id>
+      <id>bmir-nexus-releases</id>
       <username>${env.BMIR_NEXUS_USERNAME}</username>
       <password>${env.BMIR_NEXUS_PASSWORD}</password>
     </server>
