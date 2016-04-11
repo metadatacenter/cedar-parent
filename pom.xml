@@ -61,6 +61,32 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
   </properties>
 
+  <distributionManagement>
+
+    <snapshotRepository>
+      <id>bmir-nexus-snapshots</id>
+      <url>https://nexus.bmir.stanford.edu/content/repositories/snapshots</url>
+    </snapshotRepository>
+
+    <repository>
+      <id>bmir-nexus-releases</id>
+      <url>https://nexus.bmir.stanford.edu/content/repositories/releases</url>
+    </repository>
+
+  </distributionManagement>
+
+  <scm>
+    <connection>scm:git:git@github.com:metadatacenter/cedar-parent.git</connection>
+    <developerConnection>scm:git:git@github.com:metadatacenter/cedar-parent.git</developerConnection>
+    <url>https://github.com/metadatacenter/cedar-parent</url>
+  </scm>
+
+  <issueManagement>
+    <system>GitHub</system>
+    <url>https://waffle.io/metadatacenter/cedar-project</url>
+  </issueManagement>
+
+  
   <dependencyManagement>
     <dependencies>
 
