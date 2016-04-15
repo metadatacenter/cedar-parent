@@ -1,2 +1,3 @@
 # cedar-parent
-Parent project specifying common setup: versions, plugins, repos
+
+Parent project for all CEDAR Java-based components
