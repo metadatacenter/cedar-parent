@@ -43,6 +43,11 @@
     <logback.version>1.1.6</logback.version>
     <jboss.logging>3.3.0.Final</jboss.logging>
 
+    <elasticsearch.version>2.1.2</elasticsearch.version>
+    <codehaus.groovy.version>2.4.5</codehaus.groovy.version>
+    <apache.lucene.version>5.3.1</apache.lucene.version>
+    <java.dev.jna.version>4.2.1</java.dev.jna.version>
+
     <scala.maven.plugin.version>3.1.6</scala.maven.plugin.version>
     <play2.maven.plugin.version>1.0.0-beta1</play2.maven.plugin.version>
     <maven.surefire.plugin.version>2.16</maven.surefire.plugin.version>
@@ -296,6 +301,30 @@
         <version>${jboss.logging}</version>
       </dependency>
 
+      <dependency>
+        <groupId>org.elasticsearch</groupId>
+        <artifactId>elasticsearch</artifactId>
+        <version>${elasticsearch.version}</version>
+      </dependency>
+
+      <!-- Required by ElasticSearch -->
+      <dependency>
+        <groupId>org.codehaus.groovy</groupId>
+        <artifactId>groovy-all</artifactId>
+        <version>${codehaus.groovy.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.lucene</groupId>
+        <artifactId>lucene-expressions</artifactId>
+        <version>${apache.lucene.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>net.java.dev.jna</groupId>
+        <artifactId>jna</artifactId>
+        <version>${java.dev.jna.version}</version>
+      </dependency>
 
       <dependency>
         <groupId>org.metadatacenter</groupId>
