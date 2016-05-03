@@ -47,6 +47,7 @@
     <codehaus.groovy.version>2.4.5</codehaus.groovy.version>
     <apache.lucene.version>5.3.1</apache.lucene.version>
     <java.dev.jna.version>4.2.1</java.dev.jna.version>
+    <swagger-play2.version>1.3.12</swagger-play2.version>
 
     <scala.maven.plugin.version>3.1.6</scala.maven.plugin.version>
     <play2.maven.plugin.version>1.0.0-beta1</play2.maven.plugin.version>
@@ -324,6 +325,13 @@
         <groupId>net.java.dev.jna</groupId>
         <artifactId>jna</artifactId>
         <version>${java.dev.jna.version}</version>
+      </dependency>
+
+      <!-- Swagger-Play2 -->
+      <dependency>
+        <groupId>com.wordnik</groupId>
+        <artifactId>swagger-play2_${play2.scala.version}</artifactId>
+        <version>${swagger-play2.version}</version>
       </dependency>
 
       <dependency>
