@@ -26,7 +26,7 @@
     <apache.httpclient.fluent-hc.version>4.5.2</apache.httpclient.fluent-hc.version>
     <apache.httpcomponents.httpcore.version>4.4.4</apache.httpcomponents.httpcore.version>
     <mongodb.version>3.2.2</mongodb.version>
-    <jackson.core.version>2.7.3</jackson.core.version>
+    <jackson.core.version>2.7.4</jackson.core.version>
     <commons.io.version>2.4</commons.io.version>
     <commons.lang.version>2.4</commons.lang.version>
     <keycloak.version>1.9.4.Final</keycloak.version>
@@ -197,6 +197,12 @@
       <dependency>
         <groupId>com.fasterxml.jackson.core</groupId>
         <artifactId>jackson-databind</artifactId>
+        <version>${jackson.core.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.fasterxml.jackson.datatype</groupId>
+        <artifactId>jackson-datatype-jsr310</artifactId>
         <version>${jackson.core.version}</version>
       </dependency>
 
