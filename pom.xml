@@ -355,13 +355,19 @@
 
       <dependency>
         <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-auth-operations</artifactId>
+        <artifactId>cedar-server-globals</artifactId>
         <version>${cedar.version}</version>
       </dependency>
 
       <dependency>
         <groupId>org.metadatacenter</groupId>
         <artifactId>cedar-server-utils-play</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-auth-operations</artifactId>
         <version>${cedar.version}</version>
       </dependency>
 
