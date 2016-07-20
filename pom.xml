@@ -67,7 +67,7 @@
     <maven.assembly.plugin.version>2.6</maven.assembly.plugin.version>
 
     <maven.install.plugin.version>2.5.2</maven.install.plugin.version>
-    <maven.release.plugin.version>2.5.3</maven.release.plugin.version>
+    <maven.release.plugin.version>2.5.2</maven.release.plugin.version>
     <maven.source.plugin.version>3.0.0</maven.source.plugin.version>
     <maven.javadoc.plugin.version>2.10.3</maven.javadoc.plugin.version>
     <maven.failsafe.plugin.version>2.19.1</maven.failsafe.plugin.version>
