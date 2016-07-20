@@ -85,7 +85,7 @@
     <connection>scm:git:git@github.com:metadatacenter/cedar-parent.git</connection>
     <developerConnection>scm:git:git@github.com:metadatacenter/cedar-parent.git</developerConnection>
     <url>https://github.com/metadatacenter/cedar-parent</url>
-    <tag>HEAD</tag>
+    <tag>release-0.5.0</tag>
   </scm>
 
   <issueManagement>
