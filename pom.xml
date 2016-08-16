@@ -4,7 +4,7 @@
 
   <groupId>org.metadatacenter</groupId>
   <artifactId>cedar-parent</artifactId>
-  <version>0.5.${parsedVersion.nextIncrementalVersion}-SNAPSHOT</version>
+  <version>0.5.7</version>
   <packaging>pom</packaging>
 
   <name>CEDAR Parent</name>
