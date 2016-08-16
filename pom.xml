@@ -4,7 +4,7 @@
 
   <groupId>org.metadatacenter</groupId>
   <artifactId>cedar-parent</artifactId>
-  <version>0.5.5</version>
+  <version>0.5.6</version>
   <packaging>pom</packaging>
 
   <name>CEDAR Parent</name>
@@ -29,25 +29,26 @@
     <commons.io.version>2.4</commons.io.version>
     <commons.lang.version>2.4</commons.lang.version>
     <keycloak.version>1.9.4.Final</keycloak.version>
-
     <checker.framework.version>1.9.12</checker.framework.version>
     <annotatedJdk>${org.checkerframework:jdk8:jar}</annotatedJdk>
     <junit.version>4.12</junit.version>
     <org.hamcrest.core.version>1.3</org.hamcrest.core.version>
     <slf4j.version>1.7.14</slf4j.version>
     <junit.version>4.12</junit.version>
+    <junitparams.version>1.0.5</junitparams.version>
     <fge.json.schema.validator.version>2.2.6</fge.json.schema.validator.version>
     <fge.json.schema.core.version>1.2.5</fge.json.schema.core.version>
     <slf4j.version>1.7.18</slf4j.version>
     <logback.version>1.1.6</logback.version>
     <jboss.logging>3.3.0.Final</jboss.logging>
     <resteasy.version>3.0.16.Final</resteasy.version>
-
     <elasticsearch.version>2.3.2</elasticsearch.version>
     <codehaus.groovy.version>2.4.5</codehaus.groovy.version>
     <apache.lucene.version>5.3.1</apache.lucene.version>
     <java.dev.jna.version>4.2.1</java.dev.jna.version>
     <swagger-play2.version>1.3.12</swagger-play2.version>
+    <swagger-annotations.version>1.5.3-M1</swagger-annotations.version>
+    <google-guava.version>19.0</google-guava.version>
 
     <scala.maven.plugin.version>3.1.6</scala.maven.plugin.version>
     <play2.maven.plugin.version>1.0.0-beta1</play2.maven.plugin.version>
@@ -59,7 +60,6 @@
     <maven.dependency.plugin.version>2.10</maven.dependency.plugin.version>
     <maven.exec.plugin.version>1.2.1</maven.exec.plugin.version>
     <maven.assembly.plugin.version>2.6</maven.assembly.plugin.version>
-
     <maven.install.plugin.version>2.5.2</maven.install.plugin.version>
     <maven.release.plugin.version>2.5.3</maven.release.plugin.version>
     <maven.source.plugin.version>3.0.0</maven.source.plugin.version>
@@ -74,6 +74,7 @@
 
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    
   </properties>
 
   <distributionManagement>
@@ -94,14 +95,13 @@
     <connection>scm:git:git@github.com:metadatacenter/cedar-parent.git</connection>
     <developerConnection>scm:git:git@github.com:metadatacenter/cedar-parent.git</developerConnection>
     <url>https://github.com/metadatacenter/cedar-parent</url>
-    <tag>release-0.5.5</tag>
+    <tag>release-0.5.6</tag>
   </scm>
 
   <issueManagement>
     <system>GitHub</system>
     <url>https://waffle.io/metadatacenter/cedar-project</url>
   </issueManagement>
-
   
   <dependencyManagement>
     <dependencies>
@@ -319,6 +319,13 @@
       </dependency>
 
       <dependency>
+        <groupId>pl.pragmatists</groupId>
+        <artifactId>JUnitParams</artifactId>
+        <version>${junitparams.version}</version>
+        <scope>test</scope>
+      </dependency>
+
+      <dependency>
         <groupId>org.jboss.logging</groupId>
         <artifactId>jboss-logging</artifactId>
         <version>${jboss.logging}</version>
@@ -354,6 +361,19 @@
         <groupId>com.wordnik</groupId>
         <artifactId>swagger-play2_${play2.scala.version}</artifactId>
         <version>${swagger-play2.version}</version>
+      </dependency>
+
+      <!-- Swagger Annotations. Used by Swagger to generate the service documentation -->
+      <dependency>
+        <groupId>com.wordnik</groupId>
+        <artifactId>swagger-annotations</artifactId>
+        <version>${swagger-annotations.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.google.guava</groupId>
+        <artifactId>guava</artifactId>
+        <version>${google-guava.version}</version>
       </dependency>
 
       <dependency>
