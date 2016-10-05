@@ -1,5 +1,7 @@
 # cedar-parent
 
+[![Build Status](https://travis-ci.org/metadatacenter/cedar-parent.svg?branch=master)](https://travis-ci.org/metadatacenter/cedar-parent)
+
 Parent project for all CEDAR Java-based components
 
 #### Questions
