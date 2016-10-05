@@ -102,6 +102,31 @@
     <system>GitHub</system>
     <url>https://waffle.io/metadatacenter/cedar-project</url>
   </issueManagement>
+
+  <repositories>
+
+    <repository>
+      <id>typesafe-releases</id>
+      <url>http://repo.typesafe.com/typesafe/releases/</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+
+  </repositories>
+
+  <pluginRepositories>
+
+    <pluginRepository>
+      <id>typesafe-releases-plugins</id>
+      <url>http://repo.typesafe.com/typesafe/releases/</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </pluginRepository>
+
+  </pluginRepositories>
+
   
   <dependencyManagement>
     <dependencies>
@@ -480,31 +505,6 @@
 
     </dependencies>
   </dependencyManagement>
-
-  <repositories>
-
-    <repository>
-      <id>typesafe-releases</id>
-      <url>http://repo.typesafe.com/typesafe/releases/</url>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-    </repository>
-
-  </repositories>
-
-  <pluginRepositories>
-
-    <pluginRepository>
-      <id>typesafe-releases-plugins</id>
-      <url>http://repo.typesafe.com/typesafe/releases/</url>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-    </pluginRepository>
-
-  </pluginRepositories>
-
 
   <build>
     <sourceDirectory>src/main/java</sourceDirectory>
