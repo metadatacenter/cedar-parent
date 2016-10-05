@@ -10,7 +10,7 @@ branches:
 notifications:
   email:
     recipients:
-    - martin.oconnor@stanford.edu
+    - cedar-core-developers@lists.stanford.edu
     on_success: never
     on_failure: always
 
