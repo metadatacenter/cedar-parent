@@ -4,7 +4,7 @@
 
 Parent project for all CEDAR Java-based components
 
-#### Building and Running
+#### Building and Installing
 
 To build this library you must have the following items installed:
 
@@ -23,11 +23,6 @@ Change into the cedar-parent directory:
 Then build it with Maven:
 
     mvn clean install
-
-To run:
-
-    mvn exec:java
-
 
 #### Questions
 
