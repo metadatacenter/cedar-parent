@@ -456,7 +456,7 @@
 
       <dependency>
         <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-permission-server-core</artifactId>
+        <artifactId>cedar-group-server-core</artifactId>
         <version>${cedar.version}</version>
       </dependency>
 
