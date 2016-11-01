@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.metadatacenter</groupId>
@@ -12,7 +13,7 @@
 
   <properties>
     <cedar.version>${project.version}</cedar.version>
-    
+
     <scala.version>2.11.5</scala.version>
     <scala.dependencies.version>2.11</scala.dependencies.version>
     <scala.lang.modules.version>1.0.5</scala.lang.modules.version>
@@ -74,7 +75,7 @@
 
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    
+
   </properties>
 
   <distributionManagement>
@@ -127,7 +128,7 @@
 
   </pluginRepositories>
 
-  
+
   <dependencyManagement>
     <dependencies>
 
@@ -487,7 +488,19 @@
 
       <dependency>
         <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-repo-server-core</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
         <artifactId>cedar-project-config</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-server-rest</artifactId>
         <version>${cedar.version}</version>
       </dependency>
 
@@ -544,7 +557,7 @@
             <dependency>
               <groupId>org.apache.maven.scm</groupId>
               <artifactId>maven-scm-provider-gitexe</artifactId>
-	      <version>${maven.scm.gitexe.version}</version>
+              <version>${maven.scm.gitexe.version}</version>
             </dependency>
           </dependencies>
         </plugin>
@@ -588,7 +601,7 @@
 
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
-	  <artifactId>maven-assembly-plugin</artifactId>
+          <artifactId>maven-assembly-plugin</artifactId>
           <version>${maven.assembly.plugin.version}</version>
         </plugin>
 
@@ -610,7 +623,7 @@
           <version>${jaxb2.maven.plugin.version}</version>
         </plugin>
 
-        <plugin> 
+        <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>build-helper-maven-plugin</artifactId>
           <version>${maven.build-helper.plugin.version}</version>
