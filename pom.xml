@@ -29,7 +29,7 @@
     <jackson.core.version>2.7.4</jackson.core.version>
     <commons.io.version>2.4</commons.io.version>
     <commons.lang.version>2.4</commons.lang.version>
-    <keycloak.version>1.9.4.Final</keycloak.version>
+    <keycloak.version>2.3.0.Final</keycloak.version>
     <checker.framework.version>1.9.12</checker.framework.version>
     <annotatedJdk>${org.checkerframework:jdk8:jar}</annotatedJdk>
     <junit.version>4.12</junit.version>
@@ -334,6 +334,12 @@
       <dependency>
         <groupId>org.keycloak</groupId>
         <artifactId>keycloak-admin-client</artifactId>
+        <version>${keycloak.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.keycloak</groupId>
+        <artifactId>keycloak-server-spi</artifactId>
         <version>${keycloak.version}</version>
       </dependency>
 
