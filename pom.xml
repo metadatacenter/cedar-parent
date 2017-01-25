@@ -4,23 +4,15 @@
 
   <groupId>org.metadatacenter</groupId>
   <artifactId>cedar-parent</artifactId>
-  <version>0.8.6</version>
+  <version>0.9.0</version>
   <packaging>pom</packaging>
 
   <name>CEDAR Parent</name>
   <description>Parent project for all Java-based CEDAR components</description>
 
   <properties>
-    <cedar.version>0.8.6</cedar.version>
+    <cedar.version>0.8.7-SNAPSHOT</cedar.version>
 
-    <scala.version>2.11.5</scala.version>
-    <scala.dependencies.version>2.11</scala.dependencies.version>
-    <scala.lang.modules.version>1.0.5</scala.lang.modules.version>
-    <play2.version>2.3.8</play2.version>
-    <play2.scala.version>2.11</play2.scala.version>
-    <play-java-ws.version>2.3.8</play-java-ws.version>
-    <play2.twirl.api.version>1.1.1</play2.twirl.api.version>
-    <com.typesafe.config.version>1.2.1</com.typesafe.config.version>
     <apache.httpcomponents.httpclient.version>4.5.2</apache.httpcomponents.httpclient.version>
     <apache.httpclient.fluent-hc.version>4.5.2</apache.httpclient.fluent-hc.version>
     <apache.httpcomponents.httpcore.version>4.4.4</apache.httpcomponents.httpcore.version>
@@ -28,6 +20,7 @@
     <jackson.core.version>2.7.4</jackson.core.version>
     <commons.io.version>2.4</commons.io.version>
     <commons.lang.version>2.4</commons.lang.version>
+    <commons.codec.version>1.10</commons.codec.version>
     <keycloak.version>2.3.0.Final</keycloak.version>
     <checker.framework.version>1.9.12</checker.framework.version>
     <junit.version>4.12</junit.version>
@@ -45,12 +38,15 @@
     <codehaus.groovy.version>2.4.5</codehaus.groovy.version>
     <apache.lucene.version>5.3.1</apache.lucene.version>
     <java.dev.jna.version>4.2.1</java.dev.jna.version>
-    <swagger-play2.version>1.3.12</swagger-play2.version>
-    <swagger-annotations.version>1.5.3-M1</swagger-annotations.version>
     <google-guava.version>19.0</google-guava.version>
 
-    <scala.maven.plugin.version>3.1.6</scala.maven.plugin.version>
-    <play2.maven.plugin.version>1.0.0-beta1</play2.maven.plugin.version>
+    <dropwizard.version>1.0.5</dropwizard.version>
+    <dropwizard.metrics.version>3.1.2</dropwizard.metrics.version>
+    <swagger.version>1.5.10</swagger.version>
+    <javax.ws.rs.version>2.0.1</javax.ws.rs.version>
+    <javax.servlet.version>3.1.0</javax.servlet.version>
+    <org.eclipse.jetty.version>9.3.14.v20161028</org.eclipse.jetty.version>
+
     <maven.surefire.plugin.version>2.16</maven.surefire.plugin.version>
     <maven.compiler.plugin.version>3.1</maven.compiler.plugin.version>
     <maven.jar.plugin.version>3.0.2</maven.jar.plugin.version>
@@ -95,7 +91,7 @@
     <connection>scm:git:git@github.com:metadatacenter/cedar-parent.git</connection>
     <developerConnection>scm:git:git@github.com:metadatacenter/cedar-parent.git</developerConnection>
     <url>https://github.com/metadatacenter/cedar-parent</url>
-    <tag>HEAD</tag>
+    <tag>release-0.9.0</tag>
   </scm>
 
   <issueManagement>
@@ -103,94 +99,8 @@
     <url>https://waffle.io/metadatacenter/cedar-project</url>
   </issueManagement>
 
-  <repositories>
-
-    <repository>
-      <id>typesafe-releases</id>
-      <url>http://repo.typesafe.com/typesafe/releases/</url>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-    </repository>
-
-  </repositories>
-
-  <pluginRepositories>
-
-    <pluginRepository>
-      <id>typesafe-releases-plugins</id>
-      <url>http://repo.typesafe.com/typesafe/releases/</url>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-    </pluginRepository>
-
-  </pluginRepositories>
-
-
   <dependencyManagement>
     <dependencies>
-
-      <dependency>
-        <groupId>org.scala-lang</groupId>
-        <artifactId>scala-library</artifactId>
-        <version>${scala.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.scala-lang</groupId>
-        <artifactId>scala-compiler</artifactId>
-        <version>${scala.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.scala-lang.modules</groupId>
-        <artifactId>scala-xml_${play2.scala.version}</artifactId>
-        <version>${scala.lang.modules.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>com.typesafe</groupId>
-        <artifactId>config</artifactId>
-        <version>${com.typesafe.config.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>com.typesafe.play</groupId>
-        <artifactId>play_${play2.scala.version}</artifactId>
-        <version>${play2.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>com.typesafe.play</groupId>
-        <artifactId>play-json_${play2.scala.version}</artifactId>
-        <version>${play2.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>com.typesafe.play</groupId>
-        <artifactId>twirl-api_${play2.scala.version}</artifactId>
-        <version>${play2.twirl.api.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>com.typesafe.play</groupId>
-        <artifactId>build-link</artifactId>
-        <version>${play2.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>com.typesafe.play</groupId>
-        <artifactId>play-test_${play2.scala.version}</artifactId>
-        <version>${play2.version}</version>
-        <scope>test</scope>
-      </dependency>
-
-      <dependency>
-        <groupId>com.typesafe.play</groupId>
-        <artifactId>play-java-ws_${play2.scala.version}</artifactId>
-        <version>${play-java-ws.version}</version>
-      </dependency>
 
       <dependency>
         <groupId>org.slf4j</groupId>
@@ -295,6 +205,12 @@
       </dependency>
 
       <dependency>
+        <groupId>commons-codec</groupId>
+        <artifactId>commons-codec</artifactId>
+        <version>${commons.codec.version}</version>
+      </dependency>
+
+      <dependency>
         <groupId>com.github.fge</groupId>
         <artifactId>json-schema-validator</artifactId>
         <version>${fge.json.schema.validator.version}</version>
@@ -387,20 +303,6 @@
         <version>${java.dev.jna.version}</version>
       </dependency>
 
-      <!-- Swagger-Play2 -->
-      <dependency>
-        <groupId>com.wordnik</groupId>
-        <artifactId>swagger-play2_${play2.scala.version}</artifactId>
-        <version>${swagger-play2.version}</version>
-      </dependency>
-
-      <!-- Swagger Annotations. Used by Swagger to generate the service documentation -->
-      <dependency>
-        <groupId>com.wordnik</groupId>
-        <artifactId>swagger-annotations</artifactId>
-        <version>${swagger-annotations.version}</version>
-      </dependency>
-
       <dependency>
         <groupId>com.google.guava</groupId>
         <artifactId>guava</artifactId>
@@ -421,7 +323,7 @@
 
       <dependency>
         <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-server-utils-play</artifactId>
+        <artifactId>cedar-server-utils-dropwizard</artifactId>
         <version>${cedar.version}</version>
       </dependency>
 
@@ -460,6 +362,8 @@
         <artifactId>cedar-folder-operations</artifactId>
         <version>${cedar.version}</version>
       </dependency>
+
+      <!-- TODO: Move these code dependency declarations to the corresponding applications -->
 
       <dependency>
         <groupId>org.metadatacenter</groupId>
@@ -516,6 +420,12 @@
       </dependency>
 
       <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-search-operations</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+
+      <dependency>
         <groupId>org.jboss.resteasy</groupId>
         <artifactId>resteasy-client</artifactId>
         <version>${resteasy.version}</version>
@@ -531,6 +441,79 @@
         <groupId>net.jmob</groupId>
         <artifactId>guice.conf</artifactId>
         <version>1.2.0</version>
+      </dependency>
+
+      <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>javax.servlet-api</artifactId>
+        <version>${javax.servlet.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>javax.ws.rs</groupId>
+        <artifactId>javax.ws.rs-api</artifactId>
+        <version>${javax.ws.rs.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.dropwizard</groupId>
+        <artifactId>dropwizard-core</artifactId>
+        <version>${dropwizard.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.dropwizard</groupId>
+        <artifactId>dropwizard-jersey</artifactId>
+        <version>${dropwizard.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.dropwizard</groupId>
+        <artifactId>dropwizard-jetty</artifactId>
+        <version>${dropwizard.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.dropwizard.metrics</groupId>
+        <artifactId>metrics-annotation</artifactId>
+        <version>${dropwizard.metrics.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.dropwizard.metrics</groupId>
+        <artifactId>metrics-healthchecks</artifactId>
+        <version>${dropwizard.metrics.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.dropwizard</groupId>
+        <artifactId>dropwizard-client</artifactId>
+        <version>${dropwizard.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.dropwizard</groupId>
+        <artifactId>dropwizard-testing</artifactId>
+        <version>${dropwizard.version}</version>
+        <scope>test</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>io.swagger</groupId>
+        <artifactId>swagger-annotations</artifactId>
+        <version>${swagger.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.swagger</groupId>
+        <artifactId>swagger-jersey2-jaxrs</artifactId>
+        <version>${swagger.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-servlets</artifactId>
+        <version>${org.eclipse.jetty.version}</version>
       </dependency>
 
     </dependencies>
@@ -553,12 +536,6 @@
           </configuration>
         </plugin>
 
-        <plugin>
-          <groupId>com.google.code.play2-maven-plugin</groupId>
-          <artifactId>play2-maven-plugin</artifactId>
-          <version>${play2.maven.plugin.version}</version>
-          <extensions>true</extensions>
-        </plugin>
 
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -571,25 +548,6 @@
               <version>${maven.scm.gitexe.version}</version>
             </dependency>
           </dependencies>
-        </plugin>
-
-        <plugin>
-          <groupId>net.alchim31.maven</groupId>
-          <artifactId>scala-maven-plugin</artifactId>
-          <version>${scala.maven.plugin.version}</version>
-          <configuration>
-            <source>${java.version}</source>
-            <target>${java.version}</target>
-            <checkMultipleScalaVersions>false</checkMultipleScalaVersions>
-          </configuration>
-          <executions>
-            <execution>
-              <goals>
-                <goal>compile</goal>
-                <goal>testCompile</goal>
-              </goals>
-            </execution>
-          </executions>
         </plugin>
 
         <plugin>
