@@ -415,13 +415,13 @@
 
       <dependency>
         <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-valurecommender-server-core</artifactId>
+        <artifactId>cedar-valuerecommender-server-core</artifactId>
         <version>${cedar.version}</version>
       </dependency>
 
       <dependency>
         <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-valurecommender-server-application</artifactId>
+        <artifactId>cedar-valuerecommender-server-application</artifactId>
         <version>${cedar.version}</version>
       </dependency>
 
