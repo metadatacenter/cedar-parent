@@ -363,8 +363,6 @@
         <version>${cedar.version}</version>
       </dependency>
 
-      <!-- TODO: Move these code dependency declarations to the corresponding applications -->
-
       <dependency>
         <groupId>org.metadatacenter</groupId>
         <artifactId>cedar-schema-server-core</artifactId>
@@ -440,6 +438,12 @@
       <dependency>
         <groupId>org.metadatacenter</groupId>
         <artifactId>cedar-search-operations</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-cache-operations</artifactId>
         <version>${cedar.version}</version>
       </dependency>
 
