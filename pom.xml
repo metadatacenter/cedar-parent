@@ -46,6 +46,7 @@
     <javax.ws.rs.version>2.0.1</javax.ws.rs.version>
     <javax.servlet.version>3.1.0</javax.servlet.version>
     <org.eclipse.jetty.version>9.3.14.v20161028</org.eclipse.jetty.version>
+    <redis.clients.jedis.version>2.9.0</redis.clients.jedis.version>
 
     <maven.surefire.plugin.version>2.16</maven.surefire.plugin.version>
     <maven.compiler.plugin.version>3.1</maven.compiler.plugin.version>
@@ -425,6 +426,18 @@
 
       <dependency>
         <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-worker-server-core</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-worker-server-application</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
         <artifactId>cedar-project-config</artifactId>
         <version>${cedar.version}</version>
       </dependency>
@@ -536,6 +549,12 @@
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-servlets</artifactId>
         <version>${org.eclipse.jetty.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>redis.clients</groupId>
+        <artifactId>jedis</artifactId>
+        <version>${redis.clients.jedis.version}</version>
       </dependency>
 
     </dependencies>
