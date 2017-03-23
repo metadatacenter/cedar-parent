@@ -8,11 +8,6 @@ branches:
   - develop
   - master
 notifications:
-  email:
-    recipients:
-    - cedar-core-developers@lists.stanford.edu
-    on_success: never
-    on_failure: always
   slack:
     on_success: change
     on_failure: always
