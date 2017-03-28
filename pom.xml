@@ -4,14 +4,14 @@
 
   <groupId>org.metadatacenter</groupId>
   <artifactId>cedar-parent</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.3</version>
   <packaging>pom</packaging>
 
   <name>CEDAR Parent</name>
   <description>Parent project for all Java-based CEDAR components</description>
 
   <properties>
-    <cedar.version>1.0.0</cedar.version>
+    <cedar.version>1.0.3</cedar.version>
 
     <apache.httpcomponents.httpclient.version>4.5.2</apache.httpcomponents.httpclient.version>
     <apache.httpclient.fluent-hc.version>4.5.2</apache.httpclient.fluent-hc.version>
@@ -94,7 +94,7 @@
     <connection>scm:git:git@github.com:metadatacenter/cedar-parent.git</connection>
     <developerConnection>scm:git:git@github.com:metadatacenter/cedar-parent.git</developerConnection>
     <url>https://github.com/metadatacenter/cedar-parent</url>
-    <tag>release-1.0.0</tag>
+    <tag>release-1.0.3</tag>
   </scm>
 
   <issueManagement>
@@ -294,6 +294,13 @@
       </dependency>
 
       <dependency>
+        <groupId>org.hamcrest</groupId>
+        <artifactId>hamcrest-all</artifactId>
+        <version>${org.hamcrest.core.version}</version>
+        <scope>test</scope>
+      </dependency>
+
+      <dependency>
         <groupId>org.jboss.logging</groupId>
         <artifactId>jboss-logging</artifactId>
         <version>${jboss.logging}</version>
@@ -489,6 +496,12 @@
       <dependency>
         <groupId>org.metadatacenter</groupId>
         <artifactId>cedar-cache-operations</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-model-validation-library</artifactId>
         <version>${cedar.version}</version>
       </dependency>
 
