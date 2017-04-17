@@ -34,7 +34,7 @@
     <slf4j.version>1.7.25</slf4j.version>
     <logback.version>1.2.3</logback.version>
     <jboss.logging>3.3.0.Final</jboss.logging>
-    <resteasy.version>3.1.1.Final</resteasy.version>
+    <resteasy.version>3.1.2.Final</resteasy.version>
     <elasticsearch.version>2.3.2</elasticsearch.version>
     <codehaus.groovy.version>2.4.5</codehaus.groovy.version>
     <apache.lucene.version>5.3.1</apache.lucene.version>
@@ -525,7 +525,7 @@
 
       <dependency>
         <groupId>org.jboss.resteasy</groupId>
-        <artifactId>resteasy-jackson-provider</artifactId>
+        <artifactId>resteasy-jackson2-provider</artifactId>
         <version>${resteasy.version}</version>
       </dependency>
 
