@@ -399,7 +399,7 @@
 
       <dependency>
         <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-folder-operations</artifactId>
+        <artifactId>cedar-workspace-operations</artifactId>
         <version>${cedar.version}</version>
       </dependency>
 
@@ -423,7 +423,7 @@
 
       <dependency>
         <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-folder-server-core</artifactId>
+        <artifactId>cedar-workspace-server-core</artifactId>
         <version>${cedar.version}</version>
       </dependency>
 
@@ -472,6 +472,18 @@
       <dependency>
         <groupId>org.metadatacenter</groupId>
         <artifactId>cedar-worker-server-application</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-messaging-server-core</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-messaging-server-application</artifactId>
         <version>${cedar.version}</version>
       </dependency>
 
