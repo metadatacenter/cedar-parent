@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.metadatacenter</groupId>
@@ -48,6 +49,7 @@
     <javax.servlet.version>3.1.0</javax.servlet.version>
     <org.eclipse.jetty.version>9.4.3.v20170317</org.eclipse.jetty.version>
     <redis.clients.jedis.version>2.9.0</redis.clients.jedis.version>
+    <mysql.connector.java.version>6.0.6</mysql.connector.java.version>
 
     <maven.surefire.plugin.version>2.16</maven.surefire.plugin.version>
     <maven.compiler.plugin.version>3.1</maven.compiler.plugin.version>
@@ -630,6 +632,18 @@
         <groupId>redis.clients</groupId>
         <artifactId>jedis</artifactId>
         <version>${redis.clients.jedis.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.dropwizard</groupId>
+        <artifactId>dropwizard-hibernate</artifactId>
+        <version>${dropwizard.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>${mysql.connector.java.version}</version>
       </dependency>
 
     </dependencies>
