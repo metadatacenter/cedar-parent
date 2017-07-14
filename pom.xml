@@ -4,14 +4,14 @@
 
   <groupId>org.metadatacenter</groupId>
   <artifactId>cedar-parent</artifactId>
-  <version>1.3.1</version>
+  <version>1.3.2</version>
   <packaging>pom</packaging>
 
   <name>CEDAR Parent</name>
   <description>Parent project for all Java-based CEDAR components</description>
 
   <properties>
-    <cedar.version>1.3.1</cedar.version>
+    <cedar.version>1.3.2</cedar.version>
 
     <apache.httpcomponents.httpclient.version>4.5.2</apache.httpcomponents.httpclient.version>
     <apache.httpclient.fluent-hc.version>4.5.2</apache.httpclient.fluent-hc.version>
@@ -48,6 +48,7 @@
     <javax.servlet.version>3.1.0</javax.servlet.version>
     <org.eclipse.jetty.version>9.4.3.v20170317</org.eclipse.jetty.version>
     <redis.clients.jedis.version>2.9.0</redis.clients.jedis.version>
+    <mysql.connector.java.version>6.0.6</mysql.connector.java.version>
 
     <maven.surefire.plugin.version>2.16</maven.surefire.plugin.version>
     <maven.compiler.plugin.version>3.1</maven.compiler.plugin.version>
@@ -94,7 +95,7 @@
     <connection>scm:git:git@github.com:metadatacenter/cedar-parent.git</connection>
     <developerConnection>scm:git:git@github.com:metadatacenter/cedar-parent.git</developerConnection>
     <url>https://github.com/metadatacenter/cedar-parent</url>
-    <tag>release-1.3.1</tag>
+    <tag>release-1.3.2</tag>
   </scm>
 
   <issueManagement>
@@ -630,6 +631,18 @@
         <groupId>redis.clients</groupId>
         <artifactId>jedis</artifactId>
         <version>${redis.clients.jedis.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.dropwizard</groupId>
+        <artifactId>dropwizard-hibernate</artifactId>
+        <version>${dropwizard.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>${mysql.connector.java.version}</version>
       </dependency>
 
     </dependencies>
