@@ -49,7 +49,7 @@
     <javax.servlet.version>3.1.0</javax.servlet.version>
     <org.eclipse.jetty.version>9.4.6.v20170531</org.eclipse.jetty.version>
     <redis.clients.jedis.version>2.9.0</redis.clients.jedis.version>
-    <mysql.connector.java.version>6.0.6</mysql.connector.java.version>
+    <mysql.connector.java.version>5.1.43</mysql.connector.java.version>
 
     <maven.surefire.plugin.version>2.16</maven.surefire.plugin.version>
     <maven.compiler.plugin.version>3.1</maven.compiler.plugin.version>
