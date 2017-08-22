@@ -4,14 +4,14 @@
 
   <groupId>org.metadatacenter</groupId>
   <artifactId>cedar-parent</artifactId>
-  <version>1.4.0</version>
+  <version>1.4.1</version>
   <packaging>pom</packaging>
 
   <name>CEDAR Parent</name>
   <description>Parent project for all Java-based CEDAR components</description>
 
   <properties>
-    <cedar.version>1.4.0</cedar.version>
+    <cedar.version>1.4.1</cedar.version>
 
     <apache.httpcomponents.httpclient.version>4.5.2</apache.httpcomponents.httpclient.version>
     <apache.httpclient.fluent-hc.version>4.5.2</apache.httpclient.fluent-hc.version>
@@ -82,12 +82,12 @@
 
     <snapshotRepository>
       <id>bmir-nexus-snapshots</id>
-      <url>https://nexus.bmir.stanford.edu/content/repositories/snapshots</url>
+      <url>https://nexus.bmir.stanford.edu/repository/snapshots</url>
     </snapshotRepository>
 
     <repository>
       <id>bmir-nexus-releases</id>
-      <url>https://nexus.bmir.stanford.edu/content/repositories/releases</url>
+      <url>https://nexus.bmir.stanford.edu/repository/releases</url>
     </repository>
 
   </distributionManagement>
@@ -96,7 +96,7 @@
     <connection>scm:git:git@github.com:metadatacenter/cedar-parent.git</connection>
     <developerConnection>scm:git:git@github.com:metadatacenter/cedar-parent.git</developerConnection>
     <url>https://github.com/metadatacenter/cedar-parent</url>
-    <tag>release-1.4.0</tag>
+    <tag>release-1.4.1</tag>
   </scm>
 
   <issueManagement>
