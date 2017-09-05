@@ -51,7 +51,6 @@
     <redis.clients.jedis.version>2.9.0</redis.clients.jedis.version>
     <mysql.connector.java.version>5.1.43</mysql.connector.java.version>
     <jsonld.version>0.10.0</jsonld.version>
-    <hamcrest.version>1.3</hamcrest.version>
 
     <maven.surefire.plugin.version>2.16</maven.surefire.plugin.version>
     <maven.compiler.plugin.version>3.1</maven.compiler.plugin.version>
@@ -658,13 +657,6 @@
         <groupId>com.github.jsonld-java</groupId>
         <artifactId>jsonld-java</artifactId>
         <version>${jsonld.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.hamcrest</groupId>
-        <artifactId>hamcrest-all</artifactId>
-        <version>${hamcrest.version}</version>
-        <scope>test</scope>
       </dependency>
 
     </dependencies>
