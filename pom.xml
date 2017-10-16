@@ -55,8 +55,8 @@
     <maven.surefire.plugin.version>2.16</maven.surefire.plugin.version>
     <maven.compiler.plugin.version>3.1</maven.compiler.plugin.version>
     <maven.jar.plugin.version>3.0.2</maven.jar.plugin.version>
-    <maven.jsonschema2pojo.plugin.version>0.4.22</maven.jsonschema2pojo.plugin.version>
-    <maven.jaxb2.plugin.version>0.13.1</maven.jaxb2.plugin.version>
+    <maven.jsonschema2pojo.plugin.version>0.5.1</maven.jsonschema2pojo.plugin.version>
+    <maven.jaxb2.plugin.version>0.13.2</maven.jaxb2.plugin.version>
     <maven.build-helper.plugin.version>1.4</maven.build-helper.plugin.version>
     <maven.dependency.plugin.version>2.10</maven.dependency.plugin.version>
     <maven.exec.plugin.version>1.2.1</maven.exec.plugin.version>
