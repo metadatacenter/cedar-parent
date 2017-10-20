@@ -32,6 +32,7 @@
     <junitparams.version>1.0.6</junitparams.version>
     <fge.json.schema.validator.version>2.2.6</fge.json.schema.validator.version>
     <fge.json.schema.core.version>1.2.5</fge.json.schema.core.version>
+    <fge.jackson.coreutils.version>1.8</fge.jackson.coreutils.version>
     <slf4j.version>1.7.25</slf4j.version>
     <logback.version>1.2.3</logback.version>
     <jboss.logging>3.3.0.Final</jboss.logging>
@@ -41,6 +42,7 @@
     <apache.lucene.version>5.3.1</apache.lucene.version>
     <java.dev.jna.version>4.2.1</java.dev.jna.version>
     <google-guava.version>21.0</google-guava.version>
+    <google.code.findbugs.version>3.0.0</google.code.findbugs.version>
 
     <dropwizard.version>1.1.2</dropwizard.version>
     <dropwizard.metrics.version>3.2.3</dropwizard.metrics.version>
@@ -262,6 +264,12 @@
       </dependency>
 
       <dependency>
+        <groupId>com.github.fge</groupId>
+        <artifactId>jackson-coreutils</artifactId>
+        <version>${fge.jackson.coreutils.version}</version>
+      </dependency>
+
+      <dependency>
         <groupId>org.mongodb</groupId>
         <artifactId>mongo-java-driver</artifactId>
         <version>${mongodb.version}</version>
@@ -301,6 +309,12 @@
         <groupId>org.keycloak</groupId>
         <artifactId>keycloak-server-spi-private</artifactId>
         <version>${keycloak.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.google.code.findbugs</groupId>
+        <artifactId>jsr305</artifactId>
+        <version>${google.code.findbugs.version}</version>
       </dependency>
 
       <dependency>
