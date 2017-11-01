@@ -4,14 +4,14 @@
 
   <groupId>org.metadatacenter</groupId>
   <artifactId>cedar-parent</artifactId>
-  <version>1.4.2</version>
+  <version>1.5.0</version>
   <packaging>pom</packaging>
 
   <name>CEDAR Parent</name>
   <description>Parent project for all Java-based CEDAR components</description>
 
   <properties>
-    <cedar.version>1.4.2</cedar.version>
+    <cedar.version>1.5.0</cedar.version>
 
     <apache.httpcomponents.httpclient.version>4.5.2</apache.httpcomponents.httpclient.version>
     <apache.httpclient.fluent-hc.version>4.5.2</apache.httpclient.fluent-hc.version>
@@ -28,10 +28,11 @@
     <checker.framework.version>1.9.12</checker.framework.version>
     <junit.version>4.12</junit.version>
     <org.hamcrest.core.version>1.3</org.hamcrest.core.version>
-    <junit.version>4.12</junit.version>
-    <junitparams.version>1.1.0</junitparams.version>
+    <!-- Note: version 1.1.0 of JUnitParams causes an error when running the template server tests -->
+    <junitparams.version>1.0.6</junitparams.version>
     <fge.json.schema.validator.version>2.2.6</fge.json.schema.validator.version>
     <fge.json.schema.core.version>1.2.5</fge.json.schema.core.version>
+    <fge.jackson.coreutils.version>1.8</fge.jackson.coreutils.version>
     <slf4j.version>1.7.25</slf4j.version>
     <logback.version>1.2.3</logback.version>
     <jboss.logging>3.3.0.Final</jboss.logging>
@@ -41,6 +42,7 @@
     <apache.lucene.version>5.3.1</apache.lucene.version>
     <java.dev.jna.version>4.2.1</java.dev.jna.version>
     <google-guava.version>21.0</google-guava.version>
+    <google.code.findbugs.version>3.0.0</google.code.findbugs.version>
 
     <dropwizard.version>1.1.2</dropwizard.version>
     <dropwizard.metrics.version>3.2.3</dropwizard.metrics.version>
@@ -51,21 +53,25 @@
     <redis.clients.jedis.version>2.9.0</redis.clients.jedis.version>
     <mysql.connector.java.version>5.1.43</mysql.connector.java.version>
     <jsonld.version>0.10.0</jsonld.version>
+    <weka.version>3.8.1</weka.version>
+    <javax.annotation-api.version>1.3.1</javax.annotation-api.version>
+    <javax.ws-api.version>2.3.0</javax.ws-api.version>
 
     <maven.surefire.plugin.version>2.16</maven.surefire.plugin.version>
-    <maven.compiler.plugin.version>3.1</maven.compiler.plugin.version>
+    <maven.compiler.plugin.version>3.7.0</maven.compiler.plugin.version>
     <maven.jar.plugin.version>3.0.2</maven.jar.plugin.version>
-    <maven.jsonschema2pojo.plugin.version>0.4.22</maven.jsonschema2pojo.plugin.version>
-    <maven.jaxb2.plugin.version>0.13.1</maven.jaxb2.plugin.version>
+    <maven.jsonschema2pojo.plugin.version>0.5.1</maven.jsonschema2pojo.plugin.version>
+    <maven.jaxb2.plugin.version>0.13.2</maven.jaxb2.plugin.version>
     <maven.build-helper.plugin.version>1.4</maven.build-helper.plugin.version>
     <maven.dependency.plugin.version>2.10</maven.dependency.plugin.version>
     <maven.exec.plugin.version>1.2.1</maven.exec.plugin.version>
-    <maven.assembly.plugin.version>2.6</maven.assembly.plugin.version>
+    <maven.assembly.plugin.version>3.1.0</maven.assembly.plugin.version>
+    <maven.resources.plugin.version>3.0.2</maven.resources.plugin.version>
     <maven.install.plugin.version>2.5.2</maven.install.plugin.version>
     <maven.release.plugin.version>2.5.3</maven.release.plugin.version>
     <maven.source.plugin.version>3.0.0</maven.source.plugin.version>
     <maven.nexus-staging.plugin.version>1.6.7</maven.nexus-staging.plugin.version>
-    <maven.javadoc.plugin.version>2.10.3</maven.javadoc.plugin.version>
+    <maven.javadoc.plugin.version>2.10.4</maven.javadoc.plugin.version>
     <maven.scm.gitexe.version>1.9.4</maven.scm.gitexe.version>
     <maven.failsafe.plugin.version>2.19.1</maven.failsafe.plugin.version>
     <maven.shade.plugin.version>2.4.1</maven.shade.plugin.version>
@@ -97,7 +103,7 @@
     <connection>scm:git:git@github.com:metadatacenter/cedar-parent.git</connection>
     <developerConnection>scm:git:git@github.com:metadatacenter/cedar-parent.git</developerConnection>
     <url>https://github.com/metadatacenter/cedar-parent</url>
-    <tag>release-1.4.2</tag>
+    <tag>release-1.5.0</tag>
   </scm>
 
   <issueManagement>
@@ -259,6 +265,12 @@
       </dependency>
 
       <dependency>
+        <groupId>com.github.fge</groupId>
+        <artifactId>jackson-coreutils</artifactId>
+        <version>${fge.jackson.coreutils.version}</version>
+      </dependency>
+
+      <dependency>
         <groupId>org.mongodb</groupId>
         <artifactId>mongo-java-driver</artifactId>
         <version>${mongodb.version}</version>
@@ -298,6 +310,12 @@
         <groupId>org.keycloak</groupId>
         <artifactId>keycloak-server-spi-private</artifactId>
         <version>${keycloak.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.google.code.findbugs</groupId>
+        <artifactId>jsr305</artifactId>
+        <version>${google.code.findbugs.version}</version>
       </dependency>
 
       <dependency>
@@ -659,6 +677,24 @@
         <version>${jsonld.version}</version>
       </dependency>
 
+      <dependency>
+        <groupId>nz.ac.waikato.cms.weka</groupId>
+        <artifactId>weka-stable</artifactId>
+        <version>${weka.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>javax.annotation</groupId>
+        <artifactId>javax.annotation-api</artifactId>
+        <version>${javax.annotation-api.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>javax.xml.ws</groupId>
+        <artifactId>jaxws-api</artifactId>
+        <version>${javax.ws-api.version}</version>
+      </dependency>
+
     </dependencies>
   </dependencyManagement>
 
@@ -718,6 +754,12 @@
         </plugin>
 
         <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>${maven.resources.plugin.version}</version>
+        </plugin>
+
+        <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>exec-maven-plugin</artifactId>
           <version>${maven.exec.plugin.version}</version>
@@ -763,6 +805,12 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-shade-plugin</artifactId>
           <version>${maven.shade.plugin.version}</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <version>${maven.javadoc.plugin.version}</version>
         </plugin>
 
       </plugins>
