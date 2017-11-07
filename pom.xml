@@ -69,7 +69,7 @@
     <maven.resources.plugin.version>3.0.2</maven.resources.plugin.version>
     <maven.install.plugin.version>2.5.2</maven.install.plugin.version>
     <maven.release.plugin.version>2.5.3</maven.release.plugin.version>
-    <maven.source.plugin.version>3.0.0</maven.source.plugin.version>
+    <maven.source.plugin.version>3.0.1</maven.source.plugin.version>
     <maven.nexus-staging.plugin.version>1.6.7</maven.nexus-staging.plugin.version>
     <maven.javadoc.plugin.version>2.10.4</maven.javadoc.plugin.version>
     <maven.scm.gitexe.version>1.9.4</maven.scm.gitexe.version>
@@ -729,6 +729,12 @@
           </configuration>
         </plugin>
 
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-source-plugin</artifactId>
+          <version>${maven.source.plugin.version}</version>
+        </plugin>
+        
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>versions-maven-plugin</artifactId>
