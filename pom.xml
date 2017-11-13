@@ -36,7 +36,7 @@
     <logback.version>1.2.3</logback.version>
     <jboss.logging>3.3.0.Final</jboss.logging>
     <resteasy.version>3.1.2.Final</resteasy.version>
-    <elasticsearch.version>2.3.5</elasticsearch.version>
+    <elasticsearch.version>5.6.4</elasticsearch.version>
     <codehaus.groovy.version>2.4.5</codehaus.groovy.version>
     <apache.lucene.version>5.3.1</apache.lucene.version>
     <java.dev.jna.version>4.2.1</java.dev.jna.version>
@@ -172,6 +172,12 @@
       <dependency>
         <groupId>com.fasterxml.jackson.datatype</groupId>
         <artifactId>jackson-datatype-jsr310</artifactId>
+        <version>${jackson.core.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.fasterxml.jackson.module</groupId>
+        <artifactId>jackson-module-afterburner</artifactId>
         <version>${jackson.core.version}</version>
       </dependency>
 
@@ -331,6 +337,12 @@
       <dependency>
         <groupId>org.elasticsearch</groupId>
         <artifactId>elasticsearch</artifactId>
+        <version>${elasticsearch.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.elasticsearch.client</groupId>
+        <artifactId>transport</artifactId>
         <version>${elasticsearch.version}</version>
       </dependency>
 
@@ -608,6 +620,18 @@
       <dependency>
         <groupId>io.dropwizard</groupId>
         <artifactId>dropwizard-assets</artifactId>
+        <version>${dropwizard.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.dropwizard</groupId>
+        <artifactId>dropwizard-configuration</artifactId>
+        <version>${dropwizard.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.dropwizard</groupId>
+        <artifactId>dropwizard-jackson</artifactId>
         <version>${dropwizard.version}</version>
       </dependency>
 
