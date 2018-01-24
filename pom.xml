@@ -72,7 +72,7 @@
     <maven.release.plugin.version>2.5.3</maven.release.plugin.version>
     <maven.source.plugin.version>3.0.1</maven.source.plugin.version>
     <maven.nexus-staging.plugin.version>1.6.7</maven.nexus-staging.plugin.version>
-    <maven.javadoc.plugin.version>2.10.4</maven.javadoc.plugin.version>
+    <maven.javadoc.plugin.version>3.0.0</maven.javadoc.plugin.version>
     <maven.scm.gitexe.version>1.9.4</maven.scm.gitexe.version>
     <maven.failsafe.plugin.version>2.19.1</maven.failsafe.plugin.version>
     <maven.shade.plugin.version>2.4.1</maven.shade.plugin.version>
