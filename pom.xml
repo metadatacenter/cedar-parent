@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.metadatacenter</groupId>
@@ -43,6 +44,7 @@
     <java.dev.jna.version>4.2.1</java.dev.jna.version>
     <google-guava.version>21.0</google-guava.version>
     <google.code.findbugs.version>3.0.0</google.code.findbugs.version>
+    <org.neo4j.driver.version>1.5.2</org.neo4j.driver.version>
 
     <dropwizard.version>1.2.0</dropwizard.version>
     <dropwizard.metrics.version>3.2.5</dropwizard.metrics.version>
@@ -727,6 +729,12 @@
         <version>${javax.xml.bind.jaxb-api.version}</version>
       </dependency>
 
+      <dependency>
+        <groupId>org.neo4j.driver</groupId>
+        <artifactId>neo4j-java-driver</artifactId>
+        <version>${org.neo4j.driver.version}</version>
+      </dependency>
+
     </dependencies>
   </dependencyManagement>
 
@@ -778,7 +786,7 @@
           <artifactId>maven-source-plugin</artifactId>
           <version>${maven.source.plugin.version}</version>
         </plugin>
-        
+
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>versions-maven-plugin</artifactId>
