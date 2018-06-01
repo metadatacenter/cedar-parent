@@ -4,14 +4,14 @@
 
   <groupId>org.metadatacenter</groupId>
   <artifactId>cedar-parent</artifactId>
-  <version>1.8.1</version>
+  <version>1.8.2</version>
   <packaging>pom</packaging>
 
   <name>CEDAR Parent</name>
   <description>Parent project for all Java-based CEDAR components</description>
 
   <properties>
-    <cedar.version>1.8.1</cedar.version>
+    <cedar.version>1.8.2</cedar.version>
 
     <apache.httpcomponents.httpclient.version>4.5.2</apache.httpcomponents.httpclient.version>
     <apache.httpclient.fluent-hc.version>4.5.2</apache.httpclient.fluent-hc.version>
@@ -43,6 +43,7 @@
     <java.dev.jna.version>4.2.1</java.dev.jna.version>
     <google-guava.version>21.0</google-guava.version>
     <google.code.findbugs.version>3.0.0</google.code.findbugs.version>
+    <org.neo4j.driver.version>1.5.2</org.neo4j.driver.version>
 
     <dropwizard.version>1.2.0</dropwizard.version>
     <dropwizard.metrics.version>3.2.5</dropwizard.metrics.version>
@@ -105,7 +106,7 @@
     <connection>scm:git:git@github.com:metadatacenter/cedar-parent.git</connection>
     <developerConnection>scm:git:git@github.com:metadatacenter/cedar-parent.git</developerConnection>
     <url>https://github.com/metadatacenter/cedar-parent</url>
-    <tag>release-1.8.1</tag>
+    <tag>release-1.8.2</tag>
   </scm>
 
   <issueManagement>
@@ -727,6 +728,12 @@
         <version>${javax.xml.bind.jaxb-api.version}</version>
       </dependency>
 
+      <dependency>
+        <groupId>org.neo4j.driver</groupId>
+        <artifactId>neo4j-java-driver</artifactId>
+        <version>${org.neo4j.driver.version}</version>
+      </dependency>
+
     </dependencies>
   </dependencyManagement>
 
@@ -778,7 +785,7 @@
           <artifactId>maven-source-plugin</artifactId>
           <version>${maven.source.plugin.version}</version>
         </plugin>
-        
+
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>versions-maven-plugin</artifactId>
