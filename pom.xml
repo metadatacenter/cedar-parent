@@ -11,7 +11,7 @@
   <description>Parent project for all Java-based CEDAR components</description>
 
   <properties>
-    <cedar.version>1.8.6-SNAPSHOT</cedar.version>
+    <cedar.version>1.8.6</cedar.version>
 
     <apache.httpcomponents.httpclient.version>4.5.2</apache.httpcomponents.httpclient.version>
     <apache.httpclient.fluent-hc.version>4.5.2</apache.httpclient.fluent-hc.version>
