@@ -61,6 +61,8 @@
     <javax.validation.api.version>2.0.0.Final</javax.validation.api.version>
     <javax.xml.bind.jaxb-api.version>2.3.0</javax.xml.bind.jaxb-api.version>
     <org.glassfish.jaxb.jaxb-runtime.version>2.3.0</org.glassfish.jaxb.jaxb-runtime.version>
+    <javax.activation.activation.version>1.1.1</javax.activation.activation.version>
+    <com.sun.activation.javax.activation.version>1.2.0</com.sun.activation.javax.activation.version>
 
     <maven.surefire.plugin.version>2.16</maven.surefire.plugin.version>
     <maven.compiler.plugin.version>3.7.0</maven.compiler.plugin.version>
@@ -752,6 +754,18 @@
         <groupId>org.glassfish.jaxb</groupId>
         <artifactId>jaxb-runtime</artifactId>
         <version>${org.glassfish.jaxb.jaxb-runtime.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>javax.activation</groupId>
+        <artifactId>activation</artifactId>
+        <version>${javax.activation.activation.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.sun.activation</groupId>
+        <artifactId>javax.activation</artifactId>
+        <version>${com.sun.activation.javax.activation.version}</version>
       </dependency>
 
     </dependencies>
