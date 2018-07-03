@@ -4,15 +4,40 @@
 
   <groupId>org.metadatacenter</groupId>
   <artifactId>cedar-parent</artifactId>
-  <version>1.8.8</version>
+  <version>1.8.9</version>
   <packaging>pom</packaging>
 
   <name>CEDAR Parent</name>
   <description>Parent project for all Java-based CEDAR components</description>
 
   <properties>
-    <cedar.version>1.8.8</cedar.version>
+    <cedar.version>1.8.9</cedar.version>
 
+    <dropwizard.version>1.2.0</dropwizard.version>
+    <mongodb.version>3.2.2</mongodb.version>
+    <keycloak.version>3.3.0.Final</keycloak.version>
+    <dropwizard.metrics.version>3.2.5</dropwizard.metrics.version>
+    <elasticsearch.version>5.6.4</elasticsearch.version>
+    <org.neo4j.driver.version>1.5.2</org.neo4j.driver.version>
+    <mysql.connector.java.version>5.1.43</mysql.connector.java.version>
+    <redis.clients.jedis.version>2.9.0</redis.clients.jedis.version>
+    <jsonld.version>0.10.0</jsonld.version>
+    <swagger.version>1.5.16</swagger.version>
+    <org.eclipse.jetty.version>9.4.7.v20170914</org.eclipse.jetty.version>
+    <jackson.core.version>2.9.2</jackson.core.version>
+    <fge.json.schema.validator.version>2.2.6</fge.json.schema.validator.version>
+    <fge.json.schema.core.version>1.2.5</fge.json.schema.core.version>
+    <fge.jackson.coreutils.version>1.8</fge.jackson.coreutils.version>
+    <resteasy.version>3.1.2.Final</resteasy.version>
+    <codehaus.groovy.version>2.4.5</codehaus.groovy.version>
+    <google-guava.version>21.0</google-guava.version>
+    <weka.version>3.8.1</weka.version>
+    <com.sun.activation.javax.activation.version>1.2.0</com.sun.activation.javax.activation.version>
+    <org.glassfish.jaxb.jaxb-runtime.version>2.3.0</org.glassfish.jaxb.jaxb-runtime.version>
+    <commons.io.version>2.4</commons.io.version>
+    <commons.lang.version>2.4</commons.lang.version>
+    <commons.codec.version>1.10</commons.codec.version>
+    <apache.lucene.version>5.3.1</apache.lucene.version>
     <apache.httpcomponents.httpclient.version>4.5.2</apache.httpcomponents.httpclient.version>
     <apache.httpclient.fluent-hc.version>4.5.2</apache.httpclient.fluent-hc.version>
     <apache.httpcomponents.httpcore.version>4.4.4</apache.httpcomponents.httpcore.version>
@@ -20,45 +45,23 @@
     <apache.commons.fileupload.version>1.3.2</apache.commons.fileupload.version>
     <apache.commons.net.version>3.5</apache.commons.net.version>
     <apache.commons.validator.version>1.6</apache.commons.validator.version>
-    <mongodb.version>3.2.2</mongodb.version>
-    <jackson.core.version>2.9.2</jackson.core.version>
-    <commons.io.version>2.4</commons.io.version>
-    <commons.lang.version>2.4</commons.lang.version>
-    <commons.codec.version>1.10</commons.codec.version>
-    <keycloak.version>3.3.0.Final</keycloak.version>
-    <junit.version>4.12</junit.version>
-    <org.hamcrest.core.version>1.3</org.hamcrest.core.version>
-    <!-- Note: version 1.1.0 of JUnitParams causes an error when running the template server tests -->
-    <junitparams.version>1.0.6</junitparams.version>
-    <fge.json.schema.validator.version>2.2.6</fge.json.schema.validator.version>
-    <fge.json.schema.core.version>1.2.5</fge.json.schema.core.version>
-    <fge.jackson.coreutils.version>1.8</fge.jackson.coreutils.version>
-    <slf4j.version>1.7.25</slf4j.version>
-    <logback.version>1.2.3</logback.version>
-    <jboss.logging>3.3.0.Final</jboss.logging>
-    <resteasy.version>3.1.2.Final</resteasy.version>
-    <elasticsearch.version>5.6.4</elasticsearch.version>
-    <codehaus.groovy.version>2.4.5</codehaus.groovy.version>
-    <apache.lucene.version>5.3.1</apache.lucene.version>
     <java.dev.jna.version>4.2.1</java.dev.jna.version>
-    <google-guava.version>21.0</google-guava.version>
-    <google.code.findbugs.version>3.0.0</google.code.findbugs.version>
-    <org.neo4j.driver.version>1.5.2</org.neo4j.driver.version>
-
-    <dropwizard.version>1.2.0</dropwizard.version>
-    <dropwizard.metrics.version>3.2.5</dropwizard.metrics.version>
-    <swagger.version>1.5.16</swagger.version>
-    <org.eclipse.jetty.version>9.4.7.v20170914</org.eclipse.jetty.version>
-    <redis.clients.jedis.version>2.9.0</redis.clients.jedis.version>
-    <mysql.connector.java.version>5.1.43</mysql.connector.java.version>
-    <jsonld.version>0.10.0</jsonld.version>
-    <weka.version>3.8.1</weka.version>
     <javax.ws.rs.version>2.0.1</javax.ws.rs.version>
     <javax.servlet.version>3.1.0</javax.servlet.version>
     <javax.annotation-api.version>1.3.1</javax.annotation-api.version>
     <javax.ws-api.version>2.3.0</javax.ws-api.version>
     <javax.validation.api.version>2.0.0.Final</javax.validation.api.version>
     <javax.xml.bind.jaxb-api.version>2.3.0</javax.xml.bind.jaxb-api.version>
+    <javax.activation.activation.version>1.1.1</javax.activation.activation.version>
+
+    <junit.version>4.12</junit.version>
+    <org.hamcrest.core.version>1.3</org.hamcrest.core.version>
+    <!-- Note: version 1.1.0 of JUnitParams causes an error when running the template server tests -->
+    <junitparams.version>1.0.6</junitparams.version>
+    <slf4j.version>1.7.25</slf4j.version>
+    <logback.version>1.2.3</logback.version>
+    <jboss.logging>3.3.0.Final</jboss.logging>
+    <google.code.findbugs.version>3.0.0</google.code.findbugs.version>
 
     <maven.surefire.plugin.version>2.16</maven.surefire.plugin.version>
     <maven.compiler.plugin.version>3.7.0</maven.compiler.plugin.version>
@@ -66,7 +69,7 @@
     <maven.jsonschema2pojo.plugin.version>0.5.1</maven.jsonschema2pojo.plugin.version>
     <maven.jaxb2.plugin.version>0.13.2</maven.jaxb2.plugin.version>
     <maven.build-helper.plugin.version>1.4</maven.build-helper.plugin.version>
-    <maven.dependency.plugin.version>2.10</maven.dependency.plugin.version>
+    <maven.dependency.plugin.version>3.1.1</maven.dependency.plugin.version>
     <maven.exec.plugin.version>1.2.1</maven.exec.plugin.version>
     <maven.assembly.plugin.version>3.1.0</maven.assembly.plugin.version>
     <maven.resources.plugin.version>3.0.2</maven.resources.plugin.version>
@@ -81,7 +84,7 @@
     <maven.deploy.plugin.version>2.8.2</maven.deploy.plugin.version>
     <maven.versions.plugin.version>2.5</maven.versions.plugin.version>
 
-    <java.version>1.9</java.version>
+    <java.version>1.10</java.version>
 
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -106,7 +109,7 @@
     <connection>scm:git:git@github.com:metadatacenter/cedar-parent.git</connection>
     <developerConnection>scm:git:git@github.com:metadatacenter/cedar-parent.git</developerConnection>
     <url>https://github.com/metadatacenter/cedar-parent</url>
-    <tag>release-1.8.8</tag>
+    <tag>release-1.8.9</tag>
   </scm>
 
   <issueManagement>
@@ -651,6 +654,18 @@
 
       <dependency>
         <groupId>io.dropwizard</groupId>
+        <artifactId>dropwizard-db</artifactId>
+        <version>${dropwizard.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.dropwizard</groupId>
+        <artifactId>dropwizard-lifecycle</artifactId>
+        <version>${dropwizard.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.dropwizard</groupId>
         <artifactId>dropwizard-testing</artifactId>
         <version>${dropwizard.version}</version>
         <scope>test</scope>
@@ -734,6 +749,24 @@
         <version>${org.neo4j.driver.version}</version>
       </dependency>
 
+      <dependency>
+        <groupId>org.glassfish.jaxb</groupId>
+        <artifactId>jaxb-runtime</artifactId>
+        <version>${org.glassfish.jaxb.jaxb-runtime.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>javax.activation</groupId>
+        <artifactId>activation</artifactId>
+        <version>${javax.activation.activation.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.sun.activation</groupId>
+        <artifactId>javax.activation</artifactId>
+        <version>${com.sun.activation.javax.activation.version}</version>
+      </dependency>
+
     </dependencies>
   </dependencyManagement>
 
@@ -784,6 +817,15 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-source-plugin</artifactId>
           <version>${maven.source.plugin.version}</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-dependency-plugin</artifactId>
+          <version>${maven.dependency.plugin.version}</version>
+          <configuration>
+            <ignoreNonCompile>true</ignoreNonCompile>
+          </configuration>
         </plugin>
 
         <plugin>
