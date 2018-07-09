@@ -4,14 +4,14 @@
 
   <groupId>org.metadatacenter</groupId>
   <artifactId>cedar-parent</artifactId>
-  <version>1.8.9</version>
+  <version>1.8.10</version>
   <packaging>pom</packaging>
 
   <name>CEDAR Parent</name>
   <description>Parent project for all Java-based CEDAR components</description>
 
   <properties>
-    <cedar.version>1.8.9</cedar.version>
+    <cedar.version>1.8.10</cedar.version>
 
     <dropwizard.version>1.2.0</dropwizard.version>
     <mongodb.version>3.2.2</mongodb.version>
@@ -109,7 +109,7 @@
     <connection>scm:git:git@github.com:metadatacenter/cedar-parent.git</connection>
     <developerConnection>scm:git:git@github.com:metadatacenter/cedar-parent.git</developerConnection>
     <url>https://github.com/metadatacenter/cedar-parent</url>
-    <tag>release-1.8.9</tag>
+    <tag>release-1.8.10</tag>
   </scm>
 
   <issueManagement>
