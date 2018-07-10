@@ -4,14 +4,14 @@
 
   <groupId>org.metadatacenter</groupId>
   <artifactId>cedar-parent</artifactId>
-  <version>1.9.11-SNAPSHOT</version>
+  <version>1.8.11-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>CEDAR Parent</name>
   <description>Parent project for all Java-based CEDAR components</description>
 
   <properties>
-    <cedar.version>1.9.11-SNAPSHOT</cedar.version>
+    <cedar.version>1.8.11-SNAPSHOT</cedar.version>
 
     <dropwizard.version>1.2.0</dropwizard.version>
     <mongodb.version>3.2.2</mongodb.version>
