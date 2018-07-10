@@ -11,7 +11,7 @@
   <description>Parent project for all Java-based CEDAR components</description>
 
   <properties>
-    <cedar.version>1.8.11-SNAPSHOT</cedar.version>
+    <cedar.version>1.9.10</cedar.version>
 
     <dropwizard.version>1.2.0</dropwizard.version>
     <mongodb.version>3.2.2</mongodb.version>
