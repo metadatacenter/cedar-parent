@@ -4,6 +4,9 @@
 
 Parent project for all CEDAR Java-based components
 
+This repository contains a POM that contains configuration and dependency version information for all Java-based CEDAR components.
+The [CEDAR project repository](https://github.com/metadatacenter/cedar-project) contains a POM that can be used to build these components.
+
 #### Building and Installing
 
 To build this library you must have the following items installed:
