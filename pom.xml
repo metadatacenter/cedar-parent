@@ -17,7 +17,7 @@
     <mongodb.version>3.2.2</mongodb.version>
     <keycloak.version>3.3.0.Final</keycloak.version>
     <dropwizard.metrics.version>3.2.5</dropwizard.metrics.version>
-    <elasticsearch.version>5.6.4</elasticsearch.version>
+    <elasticsearch.version>6.2.4</elasticsearch.version>
     <org.neo4j.driver.version>1.5.2</org.neo4j.driver.version>
     <mysql.connector.java.version>5.1.43</mysql.connector.java.version>
     <redis.clients.jedis.version>2.9.0</redis.clients.jedis.version>
@@ -354,12 +354,6 @@
       <dependency>
         <groupId>org.elasticsearch.client</groupId>
         <artifactId>transport</artifactId>
-        <version>${elasticsearch.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.elasticsearch.plugin</groupId>
-        <artifactId>parent-join-client</artifactId>
         <version>${elasticsearch.version}</version>
       </dependency>
 
