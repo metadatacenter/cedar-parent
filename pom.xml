@@ -552,6 +552,12 @@
 
       <dependency>
         <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-permissions-operations</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
         <artifactId>cedar-cache-operations</artifactId>
         <version>${cedar.version}</version>
       </dependency>
