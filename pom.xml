@@ -13,12 +13,12 @@
   <properties>
     <cedar.version>2.1.6-SNAPSHOT</cedar.version>
 
-    <dropwizard.version>1.2.0</dropwizard.version>
+    <dropwizard.version>1.3.5</dropwizard.version>
     <mongodb.version>3.2.2</mongodb.version>
     <keycloak.version>3.3.0.Final</keycloak.version>
-    <dropwizard.metrics.version>3.2.5</dropwizard.metrics.version>
+    <dropwizard.metrics.version>4.0.3</dropwizard.metrics.version>
     <elasticsearch.version>6.2.4</elasticsearch.version>
-    <org.neo4j.driver.version>1.5.2</org.neo4j.driver.version>
+    <org.neo4j.driver.version>1.6.3</org.neo4j.driver.version>
     <mysql.connector.java.version>5.1.43</mysql.connector.java.version>
     <redis.clients.jedis.version>2.9.0</redis.clients.jedis.version>
     <jsonld.version>0.10.0</jsonld.version>
@@ -35,7 +35,7 @@
     <com.sun.activation.javax.activation.version>1.2.0</com.sun.activation.javax.activation.version>
     <org.glassfish.jaxb.jaxb-runtime.version>2.3.0</org.glassfish.jaxb.jaxb-runtime.version>
     <commons.io.version>2.4</commons.io.version>
-    <commons.lang.version>2.4</commons.lang.version>
+    <commons.lang.version>2.6</commons.lang.version>
     <commons.codec.version>1.10</commons.codec.version>
     <apache.lucene.version>5.3.1</apache.lucene.version>
     <apache.httpcomponents.httpclient.version>4.5.2</apache.httpcomponents.httpclient.version>
@@ -226,12 +226,6 @@
         <groupId>org.apache.httpcomponents</groupId>
         <artifactId>fluent-hc</artifactId>
         <version>${apache.httpclient.fluent-hc.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.apache.commons</groupId>
-        <artifactId>commons-lang3</artifactId>
-        <version>3.4</version>
       </dependency>
 
       <dependency>
@@ -552,6 +546,12 @@
 
       <dependency>
         <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-logging-operations</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
         <artifactId>cedar-permissions-operations</artifactId>
         <version>${cedar.version}</version>
       </dependency>
@@ -559,6 +559,12 @@
       <dependency>
         <groupId>org.metadatacenter</groupId>
         <artifactId>cedar-cache-operations</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-queue-operations</artifactId>
         <version>${cedar.version}</version>
       </dependency>
 
