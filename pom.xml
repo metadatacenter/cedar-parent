@@ -768,6 +768,18 @@
         <version>${com.sun.activation.javax.activation.version}</version>
       </dependency>
 
+      <dependency>
+        <groupId>com.sun.activation</groupId>
+        <artifactId>javax.activation</artifactId>
+        <version>${com.sun.activation.javax.activation.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.jayway.jsonpath</groupId>
+        <artifactId>json-path</artifactId>
+        <version>${com.jayway.jsonpath.version}</version>
+      </dependency>
+
     </dependencies>
   </dependencyManagement>
 
