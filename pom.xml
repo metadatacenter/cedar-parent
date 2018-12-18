@@ -558,13 +558,13 @@
 
       <dependency>
         <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-fairdata-server-core</artifactId>
+        <artifactId>cedar-open-server-core</artifactId>
         <version>${cedar.version}</version>
       </dependency>
 
       <dependency>
         <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-fairdata-server-application</artifactId>
+        <artifactId>cedar-open-server-application</artifactId>
         <version>${cedar.version}</version>
       </dependency>
 
