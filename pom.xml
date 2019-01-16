@@ -14,10 +14,10 @@
   <properties>
     <cedar.version>2.2.4-SNAPSHOT</cedar.version>
 
-    <dropwizard.version>1.3.7</dropwizard.version>
+    <dropwizard.version>1.3.8</dropwizard.version>
     <mongodb.version>3.2.2</mongodb.version>
     <keycloak.version>3.3.0.Final</keycloak.version>
-    <dropwizard.metrics.version>4.0.3</dropwizard.metrics.version>
+    <dropwizard.metrics.version>4.0.5</dropwizard.metrics.version>
     <elasticsearch.version>6.5.3</elasticsearch.version>
     <org.neo4j.driver.version>1.6.3</org.neo4j.driver.version>
     <mysql.connector.java.version>5.1.43</mysql.connector.java.version>
@@ -59,6 +59,7 @@
     <hibernate-core.version>5.4.0.Final</hibernate-core.version>
     <com.jayway.jsonpath.version>2.4.0</com.jayway.jsonpath.version>
     <dropwizard.sundial.version>1.3.1</dropwizard.sundial.version>
+    <org.javassist.version>3.24.0-GA</org.javassist.version>
 
     <junit.version>4.12</junit.version>
     <org.hamcrest.core.version>1.3</org.hamcrest.core.version>
@@ -838,6 +839,12 @@
         <groupId>org.knowm</groupId>
         <artifactId>dropwizard-sundial</artifactId>
         <version>${dropwizard.sundial.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.javassist</groupId>
+        <artifactId>javassist</artifactId>
+        <version>${org.javassist.version}</version>
       </dependency>
 
     </dependencies>
