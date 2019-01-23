@@ -874,7 +874,7 @@
           <dependencies>
             <dependency>
               <groupId>org.apache.maven.scm</groupId>
-              <artifactId>maven-scm-provider-gitcommons</artifactId>
+              <artifactId>maven-scm-provider-git-commons</artifactId>
               <version>${maven.scm.gitexe.version}</version>
             </dependency>
           </dependencies>
