@@ -74,10 +74,10 @@
     <maven.compiler.plugin.version>3.7.0</maven.compiler.plugin.version>
     <maven.jar.plugin.version>3.0.2</maven.jar.plugin.version>
     <maven.jsonschema2pojo.plugin.version>0.5.1</maven.jsonschema2pojo.plugin.version>
-    <maven.jaxb2.plugin.version>0.13.2</maven.jaxb2.plugin.version>
+    <maven.jax.plugin.version>0.1.5</maven.jax.plugin.version>
     <maven.build-helper.plugin.version>1.4</maven.build-helper.plugin.version>
     <maven.dependency.plugin.version>3.1.1</maven.dependency.plugin.version>
-    <maven.exec.plugin.version>1.2.1</maven.exec.plugin.version>
+    <maven.exec.plugin.version>1.6.0</maven.exec.plugin.version>
     <maven.assembly.plugin.version>3.1.0</maven.assembly.plugin.version>
     <maven.resources.plugin.version>3.0.2</maven.resources.plugin.version>
     <maven.install.plugin.version>2.5.2</maven.install.plugin.version>
@@ -938,9 +938,9 @@
         </plugin>
 
         <plugin>
-          <groupId>org.jvnet.jaxb2.maven2</groupId>
-          <artifactId>maven-jaxb2-plugin</artifactId>
-          <version>${maven.jaxb2.plugin.version}</version>
+          <groupId>com.github.davidmoten</groupId>
+          <artifactId>jax-maven-plugin</artifactId>
+          <version>${maven.jax.plugin.version}</version> 
         </plugin>
 
         <plugin>
