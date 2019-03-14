@@ -474,7 +474,7 @@
 
       <dependency>
         <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-template-server-core</artifactId>
+        <artifactId>cedar-artifact-server-core</artifactId>
         <version>${cedar.version}</version>
       </dependency>
 
