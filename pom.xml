@@ -510,6 +510,12 @@
 
       <dependency>
         <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-terminology-server-common</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
         <artifactId>cedar-valuerecommender-server-core</artifactId>
         <version>${cedar.version}</version>
       </dependency>
