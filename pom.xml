@@ -573,13 +573,13 @@
 
       <dependency>
         <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-open-server-core</artifactId>
+        <artifactId>cedar-openview-server-core</artifactId>
         <version>${cedar.version}</version>
       </dependency>
 
       <dependency>
         <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-open-server-application</artifactId>
+        <artifactId>cedar-openview-server-application</artifactId>
         <version>${cedar.version}</version>
       </dependency>
 
