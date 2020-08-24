@@ -122,8 +122,8 @@
   </distributionManagement>
 
   <scm>
-    <connection>scm:git:git@github.com:metadatacenter/cedar-parent.git</connection>
-    <developerConnection>scm:git:git@github.com:metadatacenter/cedar-parent.git</developerConnection>
+    <connection>scm:git:https://github.com/metadatacenter/cedar-parent</connection>
+    <developerConnection>scm:git:https://github.com/metadatacenter/cedar-parent</developerConnection>
     <url>https://github.com/metadatacenter/cedar-parent</url>
     <tag>release-2.5.2</tag>
   </scm>
