@@ -11,11 +11,11 @@ notifications:
   slack:
     on_success: change
     on_failure: always
-    secure: Iaao+qq4u9IV6z5prteAHa1WbR/+wXybd4qr6W70w7N3sSOOFUOgOlYRHgKPaWm/Gy89K7a0RRMzSrP34S70r6IzCgEVtyyXZU00EsCSEYqalt4E1IVCEhW03av6NOiIUxn2fnJByF1RN79uJd2z1SINtZNVXtqow3sKw2Q28DJaOGj/yZfwpEdwt3g0uTBl90tv8DLsP8mfRGV8ylznUbSWFRC1lEZA8/EF+iCulWavUqlkWpT0CP3pi/6qkNvQc/OP5J0Yo/U8vudWspTVNuR0VCeQxH/O88bTyHJKFC4NRCRxCQQ+IBctx42GU0zKJfASpIkI3JjwJheG7OaP9b37DzXkq5P6dxXlYMPhtfDRXvHYbmLAmz1reRCIkyTY96akYsZpE7Ha3Ykz7DjT+928uR/7gkJE9LAepQB5T0WPPKciUWZ0EyZnbn4w2oGpSNLt8l6nfRRT54csIpxQJ058jd16oJzfxgjdDLuH6E820jfiulRrBLU31hE5tleqE7SJu96guBBCuLn3Em3lvBTriNckgDohvOa5D70wTCg21LiFEanAiIoNJG+JtXK7XP7z7JsHS0lDZATyJa1m/SlBdnECfKpZwdeAo3DnO6Czj7PHie98bIp/kiGf/NHceB16uvq7vpKdcBlMyrGd0hn54zECKOtZTqocwJlEcqE=
-install: '[ ${TRAVIS_PULL_REQUEST} = ''false'' ] && mvn -DskipTests=false clean deploy
-  --settings .m2/travis-settings.xml'
-script: '[ ${TRAVIS_PULL_REQUEST} = ''false'' ] && mvn -DskipTests=true clean --settings
-  .m2/travis-settings.xml'
+    secure: aLNqOENyo6Xu+cMr/rZ3P3LMN+qYWxOwDQunhuEmbwP4kZQ7F+L347dNDKPDMD/jKMx16bmQj+ycH213pPhPq/gmR75mBh5aNkq2NDUTEzLv4CTrucTDac0aXgLwSlPEfXzT6k0iEEece/SiQ+5BqZ8fyLoO0aoDqw0mGZ58Cyg8oMMsNwja04MhB/7+c1VJ7Lhh4AykXELCviHfka6i0VUc5CZnEnprmg0CYUfZi9kkvAw4znDrlIaiG17/xq2lBWkiBuGr8NPcvI7qlLu2fLbHf6XglJkGw0zvKCcmFvtBeswnUUki1bsosl+cvEC8m4pBYLYcfeM612gDlJChtGTADQmfTefP3hOFmhRejC1Wc/0gcIFsSIz+qrXLdYxDEyJAIH+UZ6pECnzlNMUKciGKP+VD/p0d1QTLUja26sPl1qp8rHsw5oHz4H+Xsdyi/2NS/hR25VBcsMt73HN66W63mrUS+RPeuXFTHjROj8XF29H1xTZdVOGthuspc3tei3vI1r6peH1F6IJh9HCmP9rhWO0DOtuRioWCyHi0qrZ8ZR3+YG5i4vk8rQ8lpBDrLk5WfNzo+L0NlijIpLPuDiJ3BY2xJ5xE0iCET7xrM65l9mDvCMIMBP48alarVCSmmgomQV7MleqhEL5E66bYIDF0UUG81q4EZNlAxSZC27M=
+install: "[ ${TRAVIS_PULL_REQUEST} = 'false' ] && mvn -DskipTests=false clean deploy
+  --settings .m2/travis-settings.xml"
+script: "[ ${TRAVIS_PULL_REQUEST} = 'false' ] && mvn -DskipTests=true clean --settings
+  .m2/travis-settings.xml"
 env:
   global:
   - secure: VNY5xh8NfvIGBBoSfS8FfDBhB9Z7M697fmgHypl0/bO1Il24HpO/8vLfthPhINW+4RRTIxEkBZzyNxctDboE6gzDdfvf3+D+1CvnjXRnwe74KBW6qnGNkb9nbUmIwCWDN1R+xzuoiiOPpd54oPfItPj/3aJL2oDrypvnUGT7iR3ynEKp2EXifPp7DadiQhFaDwxyt7v28+dXO6c47UVuBEzjWN7AA78+4KbGOtoYRHaLtlEknhMI/oUUnogQwMCbSZH+B5RATWvBrOBXD2pabMa1g5C/okhpQbIE3vyHsBpEnZ53Oy8/XvTbEQ5MoSbk1gi0mGK4wNj44sDn5Rvw5MNvhgidfNrHTIeIFGC4P+QVgUHxcHKsKe+X/Y93KntPP26uY5m2FYAzaorXMJWBFgv9ioyWHPCgGLrcw4UAb7yOqmiZs/iRF+3Z364NDv5sbL1vqQdhThoKDn8uU3pc4nQFeGdMwvkjMi1DM+gprf7X413fiMR/98q35bUpZjjM2hAQy6Qnsjd7kVIYs78TZ3sMSyaSwk5FqVaV0QJb66gIeBm9AjdTk38YukeJfBUdmZes+R/iwbSut0SPiDCnltAcRpXnLN6wyVCkFt3uTVe5pSkKIqtMr0ALuIfagIKULHcWPGWzRLF92jlvTGrbCouiST2GtkNWVOKiUUxXq38=
