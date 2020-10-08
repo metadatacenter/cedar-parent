@@ -18,7 +18,7 @@
     <keycloak.version>3.3.0.Final</keycloak.version>
     <dropwizard.metrics.version>4.0.5</dropwizard.metrics.version>
     <elasticsearch.version>6.5.3</elasticsearch.version>
-    <org.neo4j.driver.version>1.7.2</org.neo4j.driver.version>
+    <org.neo4j.driver.version>4.1.1</org.neo4j.driver.version>
     <mysql.connector.java.version>5.1.43</mysql.connector.java.version>
     <redis.clients.jedis.version>2.9.0</redis.clients.jedis.version>
     <jsonld.version>0.10.0</jsonld.version>
