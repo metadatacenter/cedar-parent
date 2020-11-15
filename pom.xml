@@ -574,6 +574,12 @@
 
       <dependency>
         <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-cadsr-tools</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
         <artifactId>cedar-openview-server-core</artifactId>
         <version>${cedar.version}</version>
       </dependency>
