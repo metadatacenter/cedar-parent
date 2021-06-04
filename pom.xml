@@ -39,7 +39,7 @@
     <commons.codec.version>1.10</commons.codec.version>
     <commons.text.version>1.5</commons.text.version>
     <apache.lucene.version>5.3.1</apache.lucene.version>
-    <apache.httpcomponents.httpclient.version>4.5.2</apache.httpcomponents.httpclient.version>
+    <apache.httpcomponents.httpclient.version>4.5.13</apache.httpcomponents.httpclient.version>
     <apache.httpclient.fluent-hc.version>4.5.2</apache.httpclient.fluent-hc.version>
     <apache.httpcomponents.httpcore.version>4.4.4</apache.httpcomponents.httpcore.version>
     <apache.httpcomponents.httpmime.version>4.5.3</apache.httpcomponents.httpmime.version>
