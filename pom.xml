@@ -73,7 +73,6 @@
     <jboss.logging>3.3.0.Final</jboss.logging>
     <log4j.version>2.11.1</log4j.version>
     <google.code.findbugs.version>3.0.0</google.code.findbugs.version>
-    <me.xdrop.fuzzywuzzy.version>1.3.1</me.xdrop.fuzzywuzzy.version>
 
     <maven.version>3.0.5</maven.version>
 
