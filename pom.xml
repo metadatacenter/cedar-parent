@@ -898,12 +898,6 @@
         <version>${net.sourceforge.owlapi.version}</version>
       </dependency>
 
-      <dependency>
-        <groupId>me.xdrop</groupId>
-        <artifactId>fuzzywuzzy</artifactId>
-        <version>${me.xdrop.fuzzywuzzy.version}</version>
-      </dependency>
-
     </dependencies>
   </dependencyManagement>
 
