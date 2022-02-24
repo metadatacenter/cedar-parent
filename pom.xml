@@ -4,7 +4,7 @@
 
   <groupId>org.metadatacenter</groupId>
   <artifactId>cedar-parent</artifactId>
-  <version>2.6.18</version>
+  <version>2.6.19-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>CEDAR Parent</name>
@@ -126,7 +126,7 @@
     <connection>scm:git:https://github.com/metadatacenter/cedar-parent.git</connection>
     <developerConnection>scm:git:https://github.com/metadatacenter/cedar-parent.git</developerConnection>
     <url>https://github.com/metadatacenter/cedar-parent</url>
-    <tag>release-2.6.18</tag>
+    <tag>release-2.6.1</tag>
   </scm>
 
   <issueManagement>
