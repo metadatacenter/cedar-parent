@@ -28,7 +28,7 @@
     <fge.json.schema.validator.version>2.2.6</fge.json.schema.validator.version>
     <fge.json.schema.core.version>1.2.5</fge.json.schema.core.version>
     <fge.jackson.coreutils.version>1.8</fge.jackson.coreutils.version>
-    <resteasy.version>3.1.2.Final</resteasy.version>
+    <resteasy.version>3.14.0.Final</resteasy.version>
     <codehaus.groovy.version>2.4.5</codehaus.groovy.version>
     <google-guava.version>21.0</google-guava.version>
     <weka.version>3.8.1</weka.version>
