@@ -444,61 +444,55 @@
 
       <dependency>
         <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-server-utils-core</artifactId>
+        <artifactId>cedar-server-utils-core-library</artifactId>
         <version>${cedar.version}</version>
       </dependency>
 
       <dependency>
         <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-server-globals</artifactId>
+        <artifactId>cedar-server-globals-library</artifactId>
         <version>${cedar.version}</version>
       </dependency>
 
       <dependency>
         <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-server-utils-dropwizard</artifactId>
+        <artifactId>cedar-server-utils-dropwizard-library</artifactId>
         <version>${cedar.version}</version>
       </dependency>
 
       <dependency>
         <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-auth-operations</artifactId>
+        <artifactId>cedar-auth-operations-keycloak-library</artifactId>
         <version>${cedar.version}</version>
       </dependency>
 
       <dependency>
         <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-auth-operations-noauth</artifactId>
+        <artifactId>cedar-auth-operations-library</artifactId>
         <version>${cedar.version}</version>
       </dependency>
 
       <dependency>
         <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-auth-operations-keycloak</artifactId>
+        <artifactId>cedar-template-operations-library</artifactId>
         <version>${cedar.version}</version>
       </dependency>
 
       <dependency>
         <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-template-operations</artifactId>
+        <artifactId>cedar-user-operations-library</artifactId>
         <version>${cedar.version}</version>
       </dependency>
 
       <dependency>
         <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-user-operations</artifactId>
+        <artifactId>cedar-workspace-operations-library</artifactId>
         <version>${cedar.version}</version>
       </dependency>
 
       <dependency>
         <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-workspace-operations</artifactId>
-        <version>${cedar.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-valuerecommender-operations</artifactId>
+        <artifactId>cedar-valuerecommender-operations-library</artifactId>
         <version>${cedar.version}</version>
       </dependency>
 
@@ -630,43 +624,37 @@
 
       <dependency>
         <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-project-config</artifactId>
+        <artifactId>cedar-server-rest-library</artifactId>
         <version>${cedar.version}</version>
       </dependency>
 
       <dependency>
         <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-server-rest</artifactId>
+        <artifactId>cedar-search-operations-library</artifactId>
         <version>${cedar.version}</version>
       </dependency>
 
       <dependency>
         <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-search-operations</artifactId>
+        <artifactId>cedar-logging-operations-library</artifactId>
         <version>${cedar.version}</version>
       </dependency>
 
       <dependency>
         <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-logging-operations</artifactId>
+        <artifactId>cedar-permissions-operations-library</artifactId>
         <version>${cedar.version}</version>
       </dependency>
 
       <dependency>
         <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-permissions-operations</artifactId>
+        <artifactId>cedar-cache-operations-library</artifactId>
         <version>${cedar.version}</version>
       </dependency>
 
       <dependency>
         <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-cache-operations</artifactId>
-        <version>${cedar.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-queue-operations</artifactId>
+        <artifactId>cedar-queue-operations-library</artifactId>
         <version>${cedar.version}</version>
       </dependency>
 
