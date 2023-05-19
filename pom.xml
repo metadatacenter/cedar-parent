@@ -39,7 +39,7 @@
     <apache.httpclient.fluent-hc.version>4.5.2</apache.httpclient.fluent-hc.version>
     <apache.httpcomponents.httpcore.version>4.4.4</apache.httpcomponents.httpcore.version>
     <apache.httpcomponents.httpmime.version>4.5.3</apache.httpcomponents.httpmime.version>
-    <apache.commons.fileupload.version>1.3.3</apache.commons.fileupload.version>
+    <apache.commons.fileupload.version>1.5</apache.commons.fileupload.version>
     <apache.commons.net.version>3.5</apache.commons.net.version>
     <apache.commons.cli.version>1.4</apache.commons.cli.version>
     <apache.commons.validator.version>1.6</apache.commons.validator.version>
