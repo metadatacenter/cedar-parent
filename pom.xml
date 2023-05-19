@@ -30,7 +30,7 @@
     <weka.version>3.8.1</weka.version>
     <com.sun.activation.javax.activation.version>1.2.0</com.sun.activation.javax.activation.version>
     <org.glassfish.jaxb.jaxb-runtime.version>2.3.0</org.glassfish.jaxb.jaxb-runtime.version>
-    <commons.io.version>2.4</commons.io.version>
+    <commons.io.version>2.7</commons.io.version>
     <commons.lang.version>2.6</commons.lang.version>
     <commons.codec.version>1.10</commons.codec.version>
     <commons.text.version>1.10.0</commons.text.version>
