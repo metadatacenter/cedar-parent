@@ -481,6 +481,16 @@
       </dependency>
       <dependency>
         <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-bridge-server-core</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-bridge-server-application</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
         <artifactId>cedar-messaging-server-core</artifactId>
         <version>${cedar.version}</version>
       </dependency>
