@@ -15,11 +15,10 @@
     <dropwizard.version>1.3.29</dropwizard.version>
     <dropwizard.sundial.version>1.3.1</dropwizard.sundial.version>
     <dropwizard.metrics.version>4.2.18</dropwizard.metrics.version>
-    <net.sourceforge.owlapi.version>4.5.9</net.sourceforge.owlapi.version>
     <mongodb.version>3.2.2</mongodb.version>
     <keycloak.version>21.0.1</keycloak.version>
     <elasticsearch.version>7.17.6</elasticsearch.version>
-    <org.neo4j.driver.version>5.8.0</org.neo4j.driver.version>
+    <org.neo4j.driver.version>5.4.0</org.neo4j.driver.version>
     <mysql.connector.java.version>8.0.22</mysql.connector.java.version>
     <redis.clients.jedis.version>2.9.0</redis.clients.jedis.version>
     <jsonld.version>0.10.0</jsonld.version>
@@ -49,7 +48,7 @@
     <apache.commons.cli.version>1.4</apache.commons.cli.version>
     <apache.commons.validator.version>1.6</apache.commons.validator.version>
     <apache.poi.version>5.0.0</apache.poi.version>
-    <java.dev.jna.version>5.13.0</java.dev.jna.version>
+    <java.dev.jna.version>4.2.1</java.dev.jna.version>
     <javax.ws.rs.version>2.0.1</javax.ws.rs.version>
     <javax.servlet.version>3.1.0</javax.servlet.version>
     <javax.annotation-api.version>1.3.1</javax.annotation-api.version>
@@ -62,20 +61,17 @@
     <hibernate-core.version>5.4.0.Final</hibernate-core.version>
     <com.jayway.jsonpath.version>2.4.0</com.jayway.jsonpath.version>
     <org.javassist.version>3.24.0-GA</org.javassist.version>
+    <net.sourceforge.owlapi.version>4.5.9</net.sourceforge.owlapi.version>
     <me.xdrop.fuzzywuzzy.version>1.3.1</me.xdrop.fuzzywuzzy.version>
-
+    <junit.version>4.12</junit.version>
+    <org.hamcrest.core.version>1.3</org.hamcrest.core.version>
+    <!-- Note: version 1.1.0 of JUnitParams causes an error when running the template server tests -->
+    <junitparams.version>1.0.6</junitparams.version>
     <slf4j.version>1.7.25</slf4j.version>
     <logback.version>1.2.3</logback.version>
     <jboss.logging>3.3.0.Final</jboss.logging>
     <log4j.version>2.17.1</log4j.version>
-
-    <junit.version>4.12</junit.version>
-    <org.hamcrest.core.version>1.3</org.hamcrest.core.version>
     <google.code.findbugs.version>3.0.0</google.code.findbugs.version>
-    <!-- Note: version 1.1.0 of JUnitParams causes an error when running the template server tests -->
-    <junitparams.version>1.0.6</junitparams.version>
-    <!-- Note: This *exact* version is needed to work with Neo4j 5.8.0 test harness. Tested up to 3.12 -->
-    <org.glassfish.jersey.version>2.27</org.glassfish.jersey.version>
 
     <maven.version>3.0.5</maven.version>
     <maven.enforcer.plugin.version>3.2.1</maven.enforcer.plugin.version>
@@ -136,792 +132,21 @@
   <dependencyManagement>
 
     <dependencies>
-
-      <dependency>
-        <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-server-utils-core-library</artifactId>
-        <version>${cedar.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-server-globals-library</artifactId>
-        <version>${cedar.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-server-utils-dropwizard-library</artifactId>
-        <version>${cedar.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-auth-operations-keycloak-library</artifactId>
-        <version>${cedar.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-auth-operations-library</artifactId>
-        <version>${cedar.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-template-operations-library</artifactId>
-        <version>${cedar.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-user-operations-library</artifactId>
-        <version>${cedar.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-workspace-operations-library</artifactId>
-        <version>${cedar.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-valuerecommender-operations-library</artifactId>
-        <version>${cedar.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-schema-server-core</artifactId>
-        <version>${cedar.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-artifact-server-core</artifactId>
-        <version>${cedar.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-resource-server-core</artifactId>
-        <version>${cedar.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-group-server-core</artifactId>
-        <version>${cedar.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-repo-server-core</artifactId>
-        <version>${cedar.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-terminology-server-core</artifactId>
-        <version>${cedar.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-terminology-server-application</artifactId>
-        <version>${cedar.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-terminology-server-common</artifactId>
-        <version>${cedar.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-valuerecommender-server-core</artifactId>
-        <version>${cedar.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-valuerecommender-server-application</artifactId>
-        <version>${cedar.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-worker-server-core</artifactId>
-        <version>${cedar.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-worker-server-application</artifactId>
-        <version>${cedar.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-bridge-server-core</artifactId>
-        <version>${cedar.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-bridge-server-application</artifactId>
-        <version>${cedar.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-messaging-server-core</artifactId>
-        <version>${cedar.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-messaging-server-application</artifactId>
-        <version>${cedar.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-submission-server-core</artifactId>
-        <version>${cedar.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-submission-server-application</artifactId>
-        <version>${cedar.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-cadsr-tools</artifactId>
-        <version>${cedar.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-openview-server-core</artifactId>
-        <version>${cedar.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-openview-server-application</artifactId>
-        <version>${cedar.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-impex-server-core</artifactId>
-        <version>${cedar.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-impex-server-application</artifactId>
-        <version>${cedar.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-server-rest-library</artifactId>
-        <version>${cedar.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-search-operations-library</artifactId>
-        <version>${cedar.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-logging-operations-library</artifactId>
-        <version>${cedar.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-permissions-operations-library</artifactId>
-        <version>${cedar.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-cache-operations-library</artifactId>
-        <version>${cedar.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-queue-operations-library</artifactId>
-        <version>${cedar.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-core-library</artifactId>
-        <version>${cedar.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-model-validation-library</artifactId>
-        <version>${cedar.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-model-library</artifactId>
-        <version>${cedar.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-rest-library</artifactId>
-        <version>${cedar.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-config-library</artifactId>
-        <version>${cedar.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>com.fasterxml.jackson.core</groupId>
-        <artifactId>jackson-core</artifactId>
-        <version>${jackson.core.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>com.fasterxml.jackson.core</groupId>
-        <artifactId>jackson-annotations</artifactId>
-        <version>${jackson.core.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>com.fasterxml.jackson.core</groupId>
-        <artifactId>jackson-databind</artifactId>
-        <version>${jackson.core.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>com.fasterxml.jackson.datatype</groupId>
-        <artifactId>jackson-datatype-jsr310</artifactId>
-        <version>${jackson.core.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>com.fasterxml.jackson.module</groupId>
-        <artifactId>jackson-module-afterburner</artifactId>
-        <version>${jackson.core.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>com.fasterxml.jackson.datatype</groupId>
-        <artifactId>jackson-datatype-jdk8</artifactId>
-        <version>${jackson.core.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.apache.httpcomponents</groupId>
-        <artifactId>httpclient</artifactId>
-        <version>${apache.httpcomponents.httpclient.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.apache.httpcomponents</groupId>
-        <artifactId>httpmime</artifactId>
-        <version>${apache.httpcomponents.httpmime.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>commons-net</groupId>
-        <artifactId>commons-net</artifactId>
-        <version>${apache.commons.net.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>commons-cli</groupId>
-        <artifactId>commons-cli</artifactId>
-        <version>${apache.commons.cli.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>commons-fileupload</groupId>
-        <artifactId>commons-fileupload</artifactId>
-        <version>${apache.commons.fileupload.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>commons-validator</groupId>
-        <artifactId>commons-validator</artifactId>
-        <version>${apache.commons.validator.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.apache.httpcomponents</groupId>
-        <artifactId>httpcore</artifactId>
-        <version>${apache.httpcomponents.httpcore.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.apache.httpcomponents</groupId>
-        <artifactId>fluent-hc</artifactId>
-        <version>${apache.httpclient.fluent-hc.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>commons-io</groupId>
-        <artifactId>commons-io</artifactId>
-        <version>${commons.io.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>commons-lang</groupId>
-        <artifactId>commons-lang</artifactId>
-        <version>${commons.lang.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>commons-codec</groupId>
-        <artifactId>commons-codec</artifactId>
-        <version>${commons.codec.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.apache.commons</groupId>
-        <artifactId>commons-text</artifactId>
-        <version>${commons.text.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>com.github.java-json-tools</groupId>
-        <artifactId>json-schema-validator</artifactId>
-        <version>${java-json-tools.json.schema.validator.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>com.github.java-json-tools</groupId>
-        <artifactId>json-schema-core</artifactId>
-        <version>${java-json-tools.json.schema.core.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>com.github.java-json-tools</groupId>
-        <artifactId>jackson-coreutils</artifactId>
-        <version>${java-json-tools.jackson.coreutils.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.mongodb</groupId>
-        <artifactId>mongo-java-driver</artifactId>
-        <version>${mongodb.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.keycloak</groupId>
-        <artifactId>keycloak-common</artifactId>
-        <version>${keycloak.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.keycloak</groupId>
-        <artifactId>keycloak-core</artifactId>
-        <version>${keycloak.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.keycloak</groupId>
-        <artifactId>keycloak-adapter-core</artifactId>
-        <version>${keycloak.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.keycloak</groupId>
-        <artifactId>keycloak-admin-client-jakarta</artifactId>
-        <version>${keycloak.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.keycloak</groupId>
-        <artifactId>keycloak-server-spi</artifactId>
-        <version>${keycloak.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.keycloak</groupId>
-        <artifactId>keycloak-server-spi-private</artifactId>
-        <version>${keycloak.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.keycloak</groupId>
-        <artifactId>keycloak-services</artifactId>
-        <version>${keycloak.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>com.google.code.findbugs</groupId>
-        <artifactId>jsr305</artifactId>
-        <version>${google.code.findbugs.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>me.xdrop</groupId>
-        <artifactId>fuzzywuzzy</artifactId>
-        <version>${me.xdrop.fuzzywuzzy.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.jboss.logging</groupId>
-        <artifactId>jboss-logging</artifactId>
-        <version>${jboss.logging}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.elasticsearch</groupId>
-        <artifactId>elasticsearch</artifactId>
-        <version>${elasticsearch.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.elasticsearch.client</groupId>
-        <artifactId>elasticsearch-rest-high-level-client</artifactId>
-        <version>${elasticsearch.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.elasticsearch.client</groupId>
-        <artifactId>transport</artifactId>
-        <version>${elasticsearch.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.neo4j.driver</groupId>
-        <artifactId>neo4j-java-driver</artifactId>
-        <version>${org.neo4j.driver.version}</version>
-      </dependency>
-
-      <!-- Required by ElasticSearch -->
-      <dependency>
-        <groupId>org.codehaus.groovy</groupId>
-        <artifactId>groovy-all</artifactId>
-        <version>${codehaus.groovy.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.apache.lucene</groupId>
-        <artifactId>lucene-expressions</artifactId>
-        <version>${apache.lucene.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>net.java.dev.jna</groupId>
-        <artifactId>jna</artifactId>
-        <version>${java.dev.jna.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>com.google.guava</groupId>
-        <artifactId>guava</artifactId>
-        <version>${google-guava.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.jboss.resteasy</groupId>
-        <artifactId>resteasy-client</artifactId>
-        <version>${resteasy.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.jboss.resteasy</groupId>
-        <artifactId>resteasy-jackson2-provider</artifactId>
-        <version>${resteasy.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>net.jmob</groupId>
-        <artifactId>guice.conf</artifactId>
-        <version>1.2.0</version>
-      </dependency>
-
-      <dependency>
-        <groupId>javax.servlet</groupId>
-        <artifactId>javax.servlet-api</artifactId>
-        <version>${javax.servlet.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>javax.ws.rs</groupId>
-        <artifactId>javax.ws.rs-api</artifactId>
-        <version>${javax.ws.rs.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>io.dropwizard</groupId>
-        <artifactId>dropwizard-core</artifactId>
-        <version>${dropwizard.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>io.dropwizard</groupId>
-        <artifactId>dropwizard-jersey</artifactId>
-        <version>${dropwizard.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>io.dropwizard</groupId>
-        <artifactId>dropwizard-jetty</artifactId>
-        <version>${dropwizard.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>io.dropwizard.metrics</groupId>
-        <artifactId>metrics-annotation</artifactId>
-        <version>${dropwizard.metrics.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>io.dropwizard.metrics</groupId>
-        <artifactId>metrics-healthchecks</artifactId>
-        <version>${dropwizard.metrics.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>io.dropwizard</groupId>
-        <artifactId>dropwizard-client</artifactId>
-        <version>${dropwizard.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>io.dropwizard</groupId>
-        <artifactId>dropwizard-assets</artifactId>
-        <version>${dropwizard.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>io.dropwizard</groupId>
-        <artifactId>dropwizard-configuration</artifactId>
-        <version>${dropwizard.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>io.dropwizard</groupId>
-        <artifactId>dropwizard-jackson</artifactId>
-        <version>${dropwizard.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>io.dropwizard</groupId>
-        <artifactId>dropwizard-db</artifactId>
-        <version>${dropwizard.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>io.dropwizard</groupId>
-        <artifactId>dropwizard-lifecycle</artifactId>
-        <version>${dropwizard.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>io.dropwizard</groupId>
-        <artifactId>dropwizard-testing</artifactId>
-        <version>${dropwizard.version}</version>
-        <scope>test</scope>
-      </dependency>
-
-      <dependency>
-        <groupId>io.swagger</groupId>
-        <artifactId>swagger-annotations</artifactId>
-        <version>${swagger.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>io.swagger</groupId>
-        <artifactId>swagger-jersey2-jaxrs</artifactId>
-        <version>${swagger.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.eclipse.jetty</groupId>
-        <artifactId>jetty-servlets</artifactId>
-        <version>${org.eclipse.jetty.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>redis.clients</groupId>
-        <artifactId>jedis</artifactId>
-        <version>${redis.clients.jedis.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>io.dropwizard</groupId>
-        <artifactId>dropwizard-hibernate</artifactId>
-        <version>${dropwizard.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.hibernate.javax.persistence</groupId>
-        <artifactId>hibernate-jpa-2.1-api</artifactId>
-        <version>${hibernate.javax.persistence.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.hibernate</groupId>
-        <artifactId>hibernate-core</artifactId>
-        <version>${hibernate-core.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>mysql</groupId>
-        <artifactId>mysql-connector-java</artifactId>
-        <version>${mysql.connector.java.version}</version>
-      </dependency>
-      <dependency>
-
-        <groupId>com.github.jsonld-java</groupId>
-        <artifactId>jsonld-java</artifactId>
-        <version>${jsonld.version}</version>
-      </dependency>
-      <dependency>
-
-        <groupId>nz.ac.waikato.cms.weka</groupId>
-        <artifactId>weka-stable</artifactId>
-        <version>${weka.version}</version>
-      </dependency>
-      <dependency>
-
-        <groupId>javax.validation</groupId>
-        <artifactId>validation-api</artifactId>
-        <version>${javax.validation.api.version}</version>
-      </dependency>
-      <dependency>
-
-        <groupId>javax.annotation</groupId>
-        <artifactId>javax.annotation-api</artifactId>
-        <version>${javax.annotation-api.version}</version>
-      </dependency>
-      <dependency>
-
-        <groupId>javax.xml.ws</groupId>
-        <artifactId>jaxws-api</artifactId>
-        <version>${javax.ws-api.version}</version>
-      </dependency>
-      <dependency>
-
-        <groupId>javax.xml.bind</groupId>
-        <artifactId>jaxb-api</artifactId>
-        <version>${javax.xml.bind.jaxb-api.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.glassfish.jaxb</groupId>
-        <artifactId>jaxb-runtime</artifactId>
-        <version>${org.glassfish.jaxb.jaxb-runtime.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>javax.activation</groupId>
-        <artifactId>activation</artifactId>
-        <version>${javax.activation.activation.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>com.sun.activation</groupId>
-        <artifactId>javax.activation</artifactId>
-        <version>${com.sun.activation.javax.activation.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>com.sun.activation</groupId>
-        <artifactId>jakarta.activation</artifactId>
-        <version>${com.sun.activation.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>com.jayway.jsonpath</groupId>
-        <artifactId>json-path</artifactId>
-        <version>${com.jayway.jsonpath.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.knowm</groupId>
-        <artifactId>dropwizard-sundial</artifactId>
-        <version>${dropwizard.sundial.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.javassist</groupId>
-        <artifactId>javassist</artifactId>
-        <version>${org.javassist.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>net.sourceforge.owlapi</groupId>
-        <artifactId>owlapi-distribution</artifactId>
-        <version>${net.sourceforge.owlapi.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.apache.poi</groupId>
-        <artifactId>poi</artifactId>
-        <version>${apache.poi.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.apache.poi</groupId>
-        <artifactId>poi-ooxml</artifactId>
-        <version>${apache.poi.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>junit</groupId>
-        <artifactId>junit</artifactId>
-        <version>${junit.version}</version>
-        <scope>test</scope>
-      </dependency>
-
-      <dependency>
-        <groupId>pl.pragmatists</groupId>
-        <artifactId>JUnitParams</artifactId>
-        <version>${junitparams.version}</version>
-        <scope>test</scope>
-      </dependency>
-
-      <dependency>
-        <groupId>org.hamcrest</groupId>
-        <artifactId>hamcrest-all</artifactId>
-        <version>${org.hamcrest.core.version}</version>
-        <scope>test</scope>
-      </dependency>
-
       <dependency>
         <groupId>org.slf4j</groupId>
         <artifactId>slf4j-api</artifactId>
         <version>${slf4j.version}</version>
       </dependency>
-
       <dependency>
         <groupId>org.slf4j</groupId>
         <artifactId>jcl-over-slf4j</artifactId>
         <version>${slf4j.version}</version>
       </dependency>
-
       <dependency>
         <groupId>org.slf4j</groupId>
         <artifactId>slf4j-simple</artifactId>
         <version>${slf4j.version}</version>
       </dependency>
-
       <dependency>
         <groupId>org.slf4j</groupId>
         <artifactId>slf4j-jdk14</artifactId>
@@ -932,53 +157,661 @@
         <artifactId>logback-core</artifactId>
         <version>${logback.version}</version>
       </dependency>
-
       <dependency>
         <groupId>ch.qos.logback</groupId>
         <artifactId>logback-classic</artifactId>
         <version>${logback.version}</version>
       </dependency>
-
       <dependency>
         <groupId>org.apache.logging.log4j</groupId>
         <artifactId>log4j-api</artifactId>
         <version>${log4j.version}</version>
       </dependency>
-
       <dependency>
         <groupId>org.apache.logging.log4j</groupId>
         <artifactId>log4j-core</artifactId>
         <version>${log4j.version}</version>
       </dependency>
-
       <dependency>
-        <groupId>org.neo4j.test</groupId>
-        <artifactId>neo4j-harness</artifactId>
-        <version>${org.neo4j.driver.version}</version>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-core</artifactId>
+        <version>${jackson.core.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-annotations</artifactId>
+        <version>${jackson.core.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <version>${jackson.core.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.datatype</groupId>
+        <artifactId>jackson-datatype-jsr310</artifactId>
+        <version>${jackson.core.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.module</groupId>
+        <artifactId>jackson-module-afterburner</artifactId>
+        <version>${jackson.core.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.datatype</groupId>
+        <artifactId>jackson-datatype-jdk8</artifactId>
+        <version>${jackson.core.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpclient</artifactId>
+        <version>${apache.httpcomponents.httpclient.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpmime</artifactId>
+        <version>${apache.httpcomponents.httpmime.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>commons-net</groupId>
+        <artifactId>commons-net</artifactId>
+        <version>${apache.commons.net.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>commons-cli</groupId>
+        <artifactId>commons-cli</artifactId>
+        <version>${apache.commons.cli.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>commons-fileupload</groupId>
+        <artifactId>commons-fileupload</artifactId>
+        <version>${apache.commons.fileupload.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>commons-validator</groupId>
+        <artifactId>commons-validator</artifactId>
+        <version>${apache.commons.validator.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpcore</artifactId>
+        <version>${apache.httpcomponents.httpcore.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>fluent-hc</artifactId>
+        <version>${apache.httpclient.fluent-hc.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>commons-io</groupId>
+        <artifactId>commons-io</artifactId>
+        <version>${commons.io.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>commons-lang</groupId>
+        <artifactId>commons-lang</artifactId>
+        <version>${commons.lang.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>commons-codec</groupId>
+        <artifactId>commons-codec</artifactId>
+        <version>${commons.codec.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-text</artifactId>
+        <version>${commons.text.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.github.java-json-tools</groupId>
+        <artifactId>json-schema-validator</artifactId>
+        <version>${java-json-tools.json.schema.validator.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.github.java-json-tools</groupId>
+        <artifactId>json-schema-core</artifactId>
+        <version>${java-json-tools.json.schema.core.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.github.java-json-tools</groupId>
+        <artifactId>jackson-coreutils</artifactId>
+        <version>${java-json-tools.jackson.coreutils.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.mongodb</groupId>
+        <artifactId>mongo-java-driver</artifactId>
+        <version>${mongodb.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.keycloak</groupId>
+        <artifactId>keycloak-common</artifactId>
+        <version>${keycloak.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.keycloak</groupId>
+        <artifactId>keycloak-core</artifactId>
+        <version>${keycloak.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.keycloak</groupId>
+        <artifactId>keycloak-adapter-core</artifactId>
+        <version>${keycloak.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.keycloak</groupId>
+        <artifactId>keycloak-admin-client-jakarta</artifactId>
+        <version>${keycloak.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.keycloak</groupId>
+        <artifactId>keycloak-server-spi</artifactId>
+        <version>${keycloak.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.keycloak</groupId>
+        <artifactId>keycloak-server-spi-private</artifactId>
+        <version>${keycloak.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.keycloak</groupId>
+        <artifactId>keycloak-services</artifactId>
+        <version>${keycloak.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.google.code.findbugs</groupId>
+        <artifactId>jsr305</artifactId>
+        <version>${google.code.findbugs.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>me.xdrop</groupId>
+        <artifactId>fuzzywuzzy</artifactId>
+        <version>${me.xdrop.fuzzywuzzy.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>${junit.version}</version>
         <scope>test</scope>
       </dependency>
-
       <dependency>
-        <groupId>org.neo4j</groupId>
-        <artifactId>neo4j-graphdb-api</artifactId>
-        <version>${org.neo4j.driver.version}</version>
-        <scope>test</scope>
-       </dependency>
-
-     <dependency>
-       <groupId>org.neo4j</groupId>
-       <artifactId>neo4j-configuration</artifactId>
-       <version>${org.neo4j.driver.version}</version>
-        <scope>test</scope>
-     </dependency>
-
-     <dependency>
-	<groupId>org.glassfish.jersey.core</groupId>
-	<artifactId>jersey-common</artifactId>
-        <version>${org.glassfish.jersey.version}</version> 
+        <groupId>pl.pragmatists</groupId>
+        <artifactId>JUnitParams</artifactId>
+        <version>${junitparams.version}</version>
         <scope>test</scope>
       </dependency>
-
+      <dependency>
+        <groupId>org.hamcrest</groupId>
+        <artifactId>hamcrest-all</artifactId>
+        <version>${org.hamcrest.core.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.logging</groupId>
+        <artifactId>jboss-logging</artifactId>
+        <version>${jboss.logging}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.elasticsearch</groupId>
+        <artifactId>elasticsearch</artifactId>
+        <version>${elasticsearch.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.elasticsearch.client</groupId>
+        <artifactId>elasticsearch-rest-high-level-client</artifactId>
+        <version>${elasticsearch.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.elasticsearch.client</groupId>
+        <artifactId>transport</artifactId>
+        <version>${elasticsearch.version}</version>
+      </dependency>
+      <!-- Required by ElasticSearch -->
+      <dependency>
+        <groupId>org.codehaus.groovy</groupId>
+        <artifactId>groovy-all</artifactId>
+        <version>${codehaus.groovy.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.lucene</groupId>
+        <artifactId>lucene-expressions</artifactId>
+        <version>${apache.lucene.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>net.java.dev.jna</groupId>
+        <artifactId>jna</artifactId>
+        <version>${java.dev.jna.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.google.guava</groupId>
+        <artifactId>guava</artifactId>
+        <version>${google-guava.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-server-utils-core-library</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-server-globals-library</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-server-utils-dropwizard-library</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-auth-operations-keycloak-library</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-auth-operations-library</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-template-operations-library</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-user-operations-library</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-workspace-operations-library</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-valuerecommender-operations-library</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-schema-server-core</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-artifact-server-core</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-resource-server-core</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-group-server-core</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-repo-server-core</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-terminology-server-core</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-terminology-server-application</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-terminology-server-common</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-valuerecommender-server-core</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-valuerecommender-server-application</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-worker-server-core</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-worker-server-application</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-bridge-server-core</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-bridge-server-application</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-messaging-server-core</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-messaging-server-application</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-submission-server-core</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-submission-server-application</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-cadsr-tools</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-openview-server-core</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-openview-server-application</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-impex-server-core</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-impex-server-application</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-server-rest-library</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-search-operations-library</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-logging-operations-library</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-permissions-operations-library</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-cache-operations-library</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-queue-operations-library</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-core-library</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-model-validation-library</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-model-library</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-rest-library</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-config-library</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.resteasy</groupId>
+        <artifactId>resteasy-client</artifactId>
+        <version>${resteasy.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.resteasy</groupId>
+        <artifactId>resteasy-jackson2-provider</artifactId>
+        <version>${resteasy.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>net.jmob</groupId>
+        <artifactId>guice.conf</artifactId>
+        <version>1.2.0</version>
+      </dependency>
+      <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>javax.servlet-api</artifactId>
+        <version>${javax.servlet.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>javax.ws.rs</groupId>
+        <artifactId>javax.ws.rs-api</artifactId>
+        <version>${javax.ws.rs.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.dropwizard</groupId>
+        <artifactId>dropwizard-core</artifactId>
+        <version>${dropwizard.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.dropwizard</groupId>
+        <artifactId>dropwizard-jersey</artifactId>
+        <version>${dropwizard.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.dropwizard</groupId>
+        <artifactId>dropwizard-jetty</artifactId>
+        <version>${dropwizard.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.dropwizard.metrics</groupId>
+        <artifactId>metrics-annotation</artifactId>
+        <version>${dropwizard.metrics.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.dropwizard.metrics</groupId>
+        <artifactId>metrics-healthchecks</artifactId>
+        <version>${dropwizard.metrics.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.dropwizard</groupId>
+        <artifactId>dropwizard-client</artifactId>
+        <version>${dropwizard.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.dropwizard</groupId>
+        <artifactId>dropwizard-assets</artifactId>
+        <version>${dropwizard.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.dropwizard</groupId>
+        <artifactId>dropwizard-configuration</artifactId>
+        <version>${dropwizard.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.dropwizard</groupId>
+        <artifactId>dropwizard-jackson</artifactId>
+        <version>${dropwizard.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.dropwizard</groupId>
+        <artifactId>dropwizard-db</artifactId>
+        <version>${dropwizard.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.dropwizard</groupId>
+        <artifactId>dropwizard-lifecycle</artifactId>
+        <version>${dropwizard.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.dropwizard</groupId>
+        <artifactId>dropwizard-testing</artifactId>
+        <version>${dropwizard.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>io.swagger</groupId>
+        <artifactId>swagger-annotations</artifactId>
+        <version>${swagger.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.swagger</groupId>
+        <artifactId>swagger-jersey2-jaxrs</artifactId>
+        <version>${swagger.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-servlets</artifactId>
+        <version>${org.eclipse.jetty.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>redis.clients</groupId>
+        <artifactId>jedis</artifactId>
+        <version>${redis.clients.jedis.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.dropwizard</groupId>
+        <artifactId>dropwizard-hibernate</artifactId>
+        <version>${dropwizard.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.hibernate.javax.persistence</groupId>
+        <artifactId>hibernate-jpa-2.1-api</artifactId>
+        <version>${hibernate.javax.persistence.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-core</artifactId>
+        <version>${hibernate-core.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>${mysql.connector.java.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.github.jsonld-java</groupId>
+        <artifactId>jsonld-java</artifactId>
+        <version>${jsonld.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>nz.ac.waikato.cms.weka</groupId>
+        <artifactId>weka-stable</artifactId>
+        <version>${weka.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>javax.validation</groupId>
+        <artifactId>validation-api</artifactId>
+        <version>${javax.validation.api.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>javax.annotation</groupId>
+        <artifactId>javax.annotation-api</artifactId>
+        <version>${javax.annotation-api.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>javax.xml.ws</groupId>
+        <artifactId>jaxws-api</artifactId>
+        <version>${javax.ws-api.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>javax.xml.bind</groupId>
+        <artifactId>jaxb-api</artifactId>
+        <version>${javax.xml.bind.jaxb-api.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.neo4j.driver</groupId>
+        <artifactId>neo4j-java-driver</artifactId>
+        <version>${org.neo4j.driver.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.glassfish.jaxb</groupId>
+        <artifactId>jaxb-runtime</artifactId>
+        <version>${org.glassfish.jaxb.jaxb-runtime.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>javax.activation</groupId>
+        <artifactId>activation</artifactId>
+        <version>${javax.activation.activation.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.sun.activation</groupId>
+        <artifactId>javax.activation</artifactId>
+        <version>${com.sun.activation.javax.activation.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.sun.activation</groupId>
+        <artifactId>jakarta.activation</artifactId>
+        <version>${com.sun.activation.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.jayway.jsonpath</groupId>
+        <artifactId>json-path</artifactId>
+        <version>${com.jayway.jsonpath.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.knowm</groupId>
+        <artifactId>dropwizard-sundial</artifactId>
+        <version>${dropwizard.sundial.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.javassist</groupId>
+        <artifactId>javassist</artifactId>
+        <version>${org.javassist.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>net.sourceforge.owlapi</groupId>
+        <artifactId>owlapi-distribution</artifactId>
+        <version>${net.sourceforge.owlapi.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.poi</groupId>
+        <artifactId>poi</artifactId>
+        <version>${apache.poi.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.poi</groupId>
+        <artifactId>poi-ooxml</artifactId>
+        <version>${apache.poi.version}</version>
+      </dependency>
     </dependencies>
 
   </dependencyManagement>
