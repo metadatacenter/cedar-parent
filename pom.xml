@@ -20,7 +20,7 @@
     <redis.clients.jedis.version>2.9.0</redis.clients.jedis.version>
     <jsonld.version>0.10.0</jsonld.version>
     <swagger.version>1.5.16</swagger.version>
-    <org.eclipse.jetty.version>9.4.41.v20210516</org.eclipse.jetty.version>
+    <org.eclipse.jetty.version>9.4.52.v20230823</org.eclipse.jetty.version>
     <jackson.core.version>2.14.2</jackson.core.version>
     <java-json-tools.json.schema.validator.version>2.2.14</java-json-tools.json.schema.validator.version>
     <java-json-tools.json.schema.core.version>1.2.14</java-json-tools.json.schema.core.version>
