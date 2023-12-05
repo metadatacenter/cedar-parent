@@ -12,7 +12,7 @@
     <dropwizard.version>1.3.29</dropwizard.version>
     <dropwizard.sundial.version>1.3.1</dropwizard.sundial.version>
     <dropwizard.metrics.version>4.2.18</dropwizard.metrics.version>
-    <mongodb.version>3.2.2</mongodb.version>
+    <mongodb.version>4.11.1</mongodb.version>
     <keycloak.version>22.0.4</keycloak.version>
     <keycloak-admin-client-jakarta.version>21.1.2</keycloak-admin-client-jakarta.version>
     <elasticsearch.version>7.17.6</elasticsearch.version>
@@ -248,7 +248,7 @@
       </dependency>
       <dependency>
         <groupId>org.mongodb</groupId>
-        <artifactId>mongo-java-driver</artifactId>
+        <artifactId>mongodb-driver-sync</artifactId>
         <version>${mongodb.version}</version>
       </dependency>
       <dependency>
