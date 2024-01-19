@@ -15,7 +15,7 @@
     <mongodb.version>4.11.1</mongodb.version>
     <keycloak.version>22.0.4</keycloak.version>
     <keycloak-admin-client-jakarta.version>21.1.2</keycloak-admin-client-jakarta.version>
-    <elasticsearch.version>7.17.6</elasticsearch.version>
+    <elasticsearch.version>7.17.14</elasticsearch.version>
     <org.neo4j.driver.version>5.4.0</org.neo4j.driver.version>
     <mysql.connector.java.version>8.0.28</mysql.connector.java.version>
     <redis.clients.jedis.version>2.9.0</redis.clients.jedis.version>
