@@ -22,7 +22,7 @@
     <jsonld.version>0.10.0</jsonld.version>
     <swagger.version>1.5.16</swagger.version>
     <org.eclipse.jetty.version>9.4.52.v20230823</org.eclipse.jetty.version>
-    <jackson.core.version>2.14.2</jackson.core.version>
+    <jackson.core.version>2.14.3</jackson.core.version>
     <java-json-tools.json.schema.validator.version>2.2.14</java-json-tools.json.schema.validator.version>
     <java-json-tools.json.schema.core.version>1.2.14</java-json-tools.json.schema.core.version>
     <java-json-tools.jackson.coreutils.version>2.0</java-json-tools.jackson.coreutils.version>
@@ -69,6 +69,7 @@
     <logback.version>1.2.3</logback.version>
     <jboss.logging>3.3.0.Final</jboss.logging>
     <log4j.version>2.17.1</log4j.version>
+    <org.yaml.snakeyaml.version>2.2</org.yaml.snakeyaml.version>
     <google.code.findbugs.version>3.0.0</google.code.findbugs.version>
     <maven.version>3.0.5</maven.version>
     <maven.enforcer.plugin.version>3.2.1</maven.enforcer.plugin.version>
@@ -795,6 +796,11 @@
         <groupId>org.apache.poi</groupId>
         <artifactId>poi-ooxml</artifactId>
         <version>${apache.poi.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.yaml</groupId>
+        <artifactId>snakeyaml</artifactId>
+        <version>${org.yaml.snakeyaml.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
