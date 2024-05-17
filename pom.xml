@@ -131,6 +131,18 @@
       <organizationUrl>https://bmir.stanford.edu</organizationUrl>
     </developer>
     <developer>
+      <name>Marcos Martinez-Romero</name>
+      <email>marcosmr@stanford.edu</email>
+      <organization>Stanford Center for Biomedical Informatics Research</organization>
+      <organizationUrl>https://bmir.stanford.edu</organizationUrl>
+    </developer>
+    <developer>
+      <name>Josef Hardi</name>
+      <email>johardi@stanford.edu</email>
+      <organization>Stanford Center for Biomedical Informatics Research</organization>
+      <organizationUrl>https://bmir.stanford.edu</organizationUrl>
+    </developer>
+    <developer>
       <name>Martin O'Connor</name>
       <email>martin.oconnor@stanford.edu</email>
       <organization>Stanford Center for Biomedical Informatics Research</organization>
