@@ -7,6 +7,8 @@
   <packaging>pom</packaging>
   <name>CEDAR Parent</name>
   <description>Parent project for all Java-based CEDAR components</description>
+  <url>https://github.com/metadatacenter</url>
+
   <properties>
     <cedar.version>2.6.58-SNAPSHOT</cedar.version>
     <dropwizard.version>1.3.29</dropwizard.version>
@@ -120,6 +122,29 @@
     <system>GitHub</system>
     <url>https://waffle.io/metadatacenter/cedar-project</url>
   </issueManagement>
+
+ <developers>
+    <developer>
+      <name>Attila Egyedi</name>
+      <email>egyedia@stanford.edu</email>
+      <organization>Stanford Center for Biomedical Informatics Research</organization>
+      <organizationUrl>https://bmir.stanford.edu</organizationUrl>
+    </developer>
+    <developer>
+      <name>Martin O'Connor</name>
+      <email>martin.oconnor@stanford.edu</email>
+      <organization>Stanford Center for Biomedical Informatics Research</organization>
+      <organizationUrl>https://bmir.stanford.edu</organizationUrl>
+    </developer>
+  </developers>
+
+  <licenses>
+    <license>
+      <name>BSD 2-Clause License</name>
+      <url>https://opensource.org/licenses/BSD-2-Clause</url>
+    </license>
+  </licenses>  
+
   <dependencyManagement>
     <dependencies>
       <dependency>
