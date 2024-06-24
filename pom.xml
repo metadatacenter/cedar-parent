@@ -620,6 +620,11 @@
         <version>${cedar.version}</version>
       </dependency>
       <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-artifact-library</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+      <dependency>
         <groupId>org.jboss.resteasy</groupId>
         <artifactId>resteasy-client</artifactId>
         <version>${resteasy.version}</version>
