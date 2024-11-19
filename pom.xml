@@ -47,7 +47,7 @@
     <apache.commons.net.version>3.5</apache.commons.net.version>
     <apache.commons.cli.version>1.4</apache.commons.cli.version>
     <apache.commons.validator.version>1.7</apache.commons.validator.version>
-    <apache.poi.version>5.2.5</apache.poi.version>
+    <apache.poi.version>5.3.0</apache.poi.version>
     <java.dev.jna.version>4.2.1</java.dev.jna.version>
     <javax.ws.rs.version>2.0.1</javax.ws.rs.version>
     <javax.servlet.version>3.1.0</javax.servlet.version>
