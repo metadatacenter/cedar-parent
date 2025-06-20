@@ -21,7 +21,7 @@
     <org.neo4j.driver.version>5.4.0</org.neo4j.driver.version>
     <mysql.connector.java.version>8.0.22</mysql.connector.java.version>
     <redis.clients.jedis.version>2.9.0</redis.clients.jedis.version>
-    <jsonld.version>0.10.0</jsonld.version>
+    <jsonld.version>0.13.6</jsonld.version>
     <swagger.version>1.5.16</swagger.version>
     <org.eclipse.jetty.version>9.4.52.v20230823</org.eclipse.jetty.version>
     <jackson.core.version>2.17.2</jackson.core.version>
