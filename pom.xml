@@ -586,6 +586,11 @@
       </dependency>
       <dependency>
         <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-test-support-library</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
         <artifactId>cedar-search-operations-library</artifactId>
         <version>${cedar.version}</version>
       </dependency>
