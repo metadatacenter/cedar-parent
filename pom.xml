@@ -165,6 +165,18 @@
   </licenses>
   <dependencyManagement>
     <dependencies>
+      <!--
+        Aligns every org.junit.jupiter and org.junit.platform artifact on one JUnit 5 version,
+        including the platform artifacts surefire resolves for its JUnit Platform provider.
+        The junit:junit 4 entry below stays until the last consumer repo migrates.
+      -->
+      <dependency>
+        <groupId>org.junit</groupId>
+        <artifactId>junit-bom</artifactId>
+        <version>${junit.jupiter.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
       <dependency>
         <groupId>org.slf4j</groupId>
         <artifactId>slf4j-api</artifactId>
