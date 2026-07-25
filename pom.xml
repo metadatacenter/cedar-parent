@@ -93,6 +93,12 @@
     <maven.scm.gitexe.version>1.11.1</maven.scm.gitexe.version>
     <maven.failsafe.plugin.version>3.1.2</maven.failsafe.plugin.version>
     <maven.shade.plugin.version>3.5.0</maven.shade.plugin.version>
+    <log4j.transform.shade.extensions.version>0.2.0</log4j.transform.shade.extensions.version>
+    <!-- Guard for the managed cedar-shade execution below. Maven merges pluginManagement
+         executions into every pom that declares the plugin, so the execution defaults to the
+         inert phase "none". A pom opts in by setting cedar.shade.phase to "package" and
+         cedar.shade.main.class to its application class. -->
+    <cedar.shade.phase>none</cedar.shade.phase>
     <maven.deploy.plugin.version>3.1.1</maven.deploy.plugin.version>
     <maven.versions.plugin.version>2.16.0</maven.versions.plugin.version>
     <maven.clean.plugin.version>3.3.1</maven.clean.plugin.version>
@@ -1004,6 +1010,50 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-shade-plugin</artifactId>
           <version>${maven.shade.plugin.version}</version>
+          <dependencies>
+            <!-- Merges the Log4j2Plugins.dat plugin registries of all shaded dependencies.
+                 Without it, one dependency's small registry wins the merge, log4j-core's own
+                 converters never register, and the server logs a wall of "Unrecognized format
+                 specifier" errors at startup. -->
+            <dependency>
+              <groupId>org.apache.logging.log4j</groupId>
+              <artifactId>log4j-transform-maven-shade-plugin-extensions</artifactId>
+              <version>${log4j.transform.shade.extensions.version}</version>
+            </dependency>
+          </dependencies>
+          <configuration>
+            <createDependencyReducedPom>true</createDependencyReducedPom>
+            <filters>
+              <filter>
+                <artifact>*:*</artifact>
+                <excludes>
+                  <exclude>META-INF/*.SF</exclude>
+                  <exclude>META-INF/*.DSA</exclude>
+                  <exclude>META-INF/*.RSA</exclude>
+                </excludes>
+              </filter>
+            </filters>
+          </configuration>
+          <executions>
+            <!-- Shared shade execution for the CEDAR server application jars. Inert unless a
+                 pom sets cedar.shade.phase to "package"; see the property declaration. -->
+            <execution>
+              <id>cedar-shade</id>
+              <phase>${cedar.shade.phase}</phase>
+              <goals>
+                <goal>shade</goal>
+              </goals>
+              <configuration>
+                <transformers>
+                  <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
+                  <transformer implementation="org.apache.logging.log4j.maven.plugins.shade.transformer.Log4j2PluginCacheFileTransformer" />
+                  <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                    <mainClass>${cedar.shade.main.class}</mainClass>
+                  </transformer>
+                </transformers>
+              </configuration>
+            </execution>
+          </executions>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
