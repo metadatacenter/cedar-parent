@@ -18,22 +18,19 @@
     <opensearch.version>2.19.2</opensearch.version>
     <opensearch.transport.version>1.3.20</opensearch.transport.version>
     <org.neo4j.driver.version>5.4.0</org.neo4j.driver.version>
-    <mysql.connector.java.version>8.0.33</mysql.connector.java.version>
+    <mysql.connector.j.version>8.4.0</mysql.connector.j.version>
     <org.xerial.sqlite-jdbc.version>3.46.1.3</org.xerial.sqlite-jdbc.version>
     <redis.clients.jedis.version>5.2.0</redis.clients.jedis.version>
     <jsonld.version>0.13.6</jsonld.version>
     <swagger.version>2.2.52</swagger.version>
     <org.eclipse.jetty.version>11.0.26</org.eclipse.jetty.version>
     <jackson.core.version>2.17.2</jackson.core.version>
-    <java-json-tools.json.schema.validator.version>2.2.14</java-json-tools.json.schema.validator.version>
-    <java-json-tools.json.schema.core.version>1.2.14</java-json-tools.json.schema.core.version>
-    <java-json-tools.jackson.coreutils.version>2.0</java-json-tools.jackson.coreutils.version>
     <networknt.json.schema.validator.version>1.5.9</networknt.json.schema.validator.version>
     <resteasy.version>6.2.3.Final</resteasy.version>
     <google-guava.version>32.1.3-jre</google-guava.version>
     <weka.version>3.8.1</weka.version>
     <com.sun.activation.javax.activation.version>1.2.0</com.sun.activation.javax.activation.version>
-    <org.glassfish.jaxb.jaxb-runtime.version>2.3.0</org.glassfish.jaxb.jaxb-runtime.version>
+    <org.glassfish.jaxb.jaxb-runtime.version>4.0.5</org.glassfish.jaxb.jaxb-runtime.version>
     <commons.io.version>2.15.1</commons.io.version>
     <commons.lang3.version>3.14.0</commons.lang3.version>
     <commons.codec.version>1.13</commons.codec.version>
@@ -361,21 +358,6 @@
         <groupId>org.apache.commons</groupId>
         <artifactId>commons-text</artifactId>
         <version>${commons.text.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.github.java-json-tools</groupId>
-        <artifactId>json-schema-validator</artifactId>
-        <version>${java-json-tools.json.schema.validator.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.github.java-json-tools</groupId>
-        <artifactId>json-schema-core</artifactId>
-        <version>${java-json-tools.json.schema.core.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.github.java-json-tools</groupId>
-        <artifactId>jackson-coreutils</artifactId>
-        <version>${java-json-tools.jackson.coreutils.version}</version>
       </dependency>
       <dependency>
         <groupId>com.networknt</groupId>
@@ -869,9 +851,9 @@
         <version>${hibernate-core.version}</version>
       </dependency>
       <dependency>
-        <groupId>mysql</groupId>
-        <artifactId>mysql-connector-java</artifactId>
-        <version>${mysql.connector.java.version}</version>
+        <groupId>com.mysql</groupId>
+        <artifactId>mysql-connector-j</artifactId>
+        <version>${mysql.connector.j.version}</version>
       </dependency>
       <dependency>
         <groupId>com.github.jsonld-java</groupId>
