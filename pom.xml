@@ -10,8 +10,8 @@
   <url>https://github.com/metadatacenter</url>
   <properties>
     <cedar.version>2.8.5-SNAPSHOT</cedar.version>
-    <dropwizard.version>1.3.29</dropwizard.version>
-    <dropwizard.sundial.version>1.3.1</dropwizard.sundial.version>
+    <dropwizard.version>2.1.12</dropwizard.version>
+    <dropwizard.sundial.version>2.0.0</dropwizard.sundial.version>
     <dropwizard.metrics.version>4.2.26</dropwizard.metrics.version>
     <mongodb.version>5.1.2</mongodb.version>
     <keycloak.version>22.0.4</keycloak.version>
@@ -24,7 +24,7 @@
     <redis.clients.jedis.version>5.2.0</redis.clients.jedis.version>
     <jsonld.version>0.13.6</jsonld.version>
     <swagger.version>1.6.14</swagger.version>
-    <org.eclipse.jetty.version>9.4.52.v20230823</org.eclipse.jetty.version>
+    <org.eclipse.jetty.version>9.4.53.v20231009</org.eclipse.jetty.version>
     <jackson.core.version>2.17.2</jackson.core.version>
     <java-json-tools.json.schema.validator.version>2.2.14</java-json-tools.json.schema.validator.version>
     <java-json-tools.json.schema.core.version>1.2.14</java-json-tools.json.schema.core.version>
@@ -51,8 +51,8 @@
     <apache.commons.validator.version>1.7</apache.commons.validator.version>
     <apache.poi.version>5.4.0</apache.poi.version>
     <java.dev.jna.version>4.2.1</java.dev.jna.version>
-    <javax.ws.rs.version>2.0.1</javax.ws.rs.version>
-    <javax.servlet.version>3.1.0</javax.servlet.version>
+    <javax.ws.rs.version>2.1.1</javax.ws.rs.version>
+    <javax.servlet.version>4.0.1</javax.servlet.version>
     <javax.annotation-api.version>1.3.1</javax.annotation-api.version>
     <javax.ws-api.version>2.3.0</javax.ws-api.version>
     <javax.validation.api.version>2.0.0.Final</javax.validation.api.version>
@@ -235,6 +235,48 @@
       <dependency>
         <groupId>com.fasterxml.jackson.dataformat</groupId>
         <artifactId>jackson-dataformat-yaml</artifactId>
+        <version>${jackson.core.version}</version>
+      </dependency>
+      <!-- Keep the Jackson modules pulled in transitively by Dropwizard on the same
+           version as the Jackson core artifacts pinned above. -->
+      <dependency>
+        <groupId>com.fasterxml.jackson.datatype</groupId>
+        <artifactId>jackson-datatype-guava</artifactId>
+        <version>${jackson.core.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.datatype</groupId>
+        <artifactId>jackson-datatype-joda</artifactId>
+        <version>${jackson.core.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.datatype</groupId>
+        <artifactId>jackson-datatype-hibernate5</artifactId>
+        <version>${jackson.core.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.module</groupId>
+        <artifactId>jackson-module-blackbird</artifactId>
+        <version>${jackson.core.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.module</groupId>
+        <artifactId>jackson-module-parameter-names</artifactId>
+        <version>${jackson.core.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.module</groupId>
+        <artifactId>jackson-module-jaxb-annotations</artifactId>
+        <version>${jackson.core.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.jaxrs</groupId>
+        <artifactId>jackson-jaxrs-base</artifactId>
+        <version>${jackson.core.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.jaxrs</groupId>
+        <artifactId>jackson-jaxrs-json-provider</artifactId>
         <version>${jackson.core.version}</version>
       </dependency>
       <dependency>
@@ -691,6 +733,16 @@
         <groupId>javax.ws.rs</groupId>
         <artifactId>javax.ws.rs-api</artifactId>
         <version>${javax.ws.rs.version}</version>
+      </dependency>
+      <!-- Two JAX-RS API artifacts coexist deliberately. Jersey (Dropwizard 2) uses the javax
+           namespace, served by javax.ws.rs-api above; the Jakarta Keycloak admin client needs
+           the jakarta namespace, which only the 3.x line of this artifact provides. Jersey also
+           drags in the 2.1.6 version of this artifact (javax classes inside), so without this
+           pin the Keycloak client loses its jakarta.ws.rs classes. -->
+      <dependency>
+        <groupId>jakarta.ws.rs</groupId>
+        <artifactId>jakarta.ws.rs-api</artifactId>
+        <version>3.1.0</version>
       </dependency>
       <dependency>
         <groupId>io.dropwizard</groupId>
