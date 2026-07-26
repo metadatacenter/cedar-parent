@@ -11,7 +11,6 @@
   <properties>
     <cedar.version>2.8.5-SNAPSHOT</cedar.version>
     <dropwizard.version>2.1.12</dropwizard.version>
-    <dropwizard.sundial.version>2.0.0</dropwizard.sundial.version>
     <dropwizard.metrics.version>4.2.26</dropwizard.metrics.version>
     <mongodb.version>5.1.2</mongodb.version>
     <keycloak.version>22.0.4</keycloak.version>
@@ -885,11 +884,6 @@
         <groupId>com.jayway.jsonpath</groupId>
         <artifactId>json-path</artifactId>
         <version>${com.jayway.jsonpath.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.knowm</groupId>
-        <artifactId>dropwizard-sundial</artifactId>
-        <version>${dropwizard.sundial.version}</version>
       </dependency>
       <dependency>
         <groupId>org.javassist</groupId>
