@@ -10,8 +10,8 @@
   <url>https://github.com/metadatacenter</url>
   <properties>
     <cedar.version>2.8.5-SNAPSHOT</cedar.version>
-    <dropwizard.version>2.1.12</dropwizard.version>
-    <dropwizard.metrics.version>4.2.26</dropwizard.metrics.version>
+    <dropwizard.version>4.0.17</dropwizard.version>
+    <dropwizard.metrics.version>4.2.38</dropwizard.metrics.version>
     <mongodb.version>5.1.2</mongodb.version>
     <keycloak.version>22.0.4</keycloak.version>
     <keycloak-admin-client-jakarta.version>21.1.2</keycloak-admin-client-jakarta.version>
@@ -23,7 +23,7 @@
     <redis.clients.jedis.version>5.2.0</redis.clients.jedis.version>
     <jsonld.version>0.13.6</jsonld.version>
     <swagger.version>1.6.14</swagger.version>
-    <org.eclipse.jetty.version>9.4.53.v20231009</org.eclipse.jetty.version>
+    <org.eclipse.jetty.version>11.0.26</org.eclipse.jetty.version>
     <jackson.core.version>2.17.2</jackson.core.version>
     <java-json-tools.json.schema.validator.version>2.2.14</java-json-tools.json.schema.validator.version>
     <java-json-tools.json.schema.core.version>1.2.14</java-json-tools.json.schema.core.version>
@@ -38,10 +38,14 @@
     <commons.lang3.version>3.14.0</commons.lang3.version>
     <commons.codec.version>1.13</commons.codec.version>
     <commons.text.version>1.10.0</commons.text.version>
-    <apache.httpcomponents.core.version>5.2.4</apache.httpcomponents.core.version>
-    <apache.httpcomponents.httpclient.version>5.3.1</apache.httpcomponents.httpclient.version>
-    <apache.httpcomponents.httpclient-fluent.version>5.4</apache.httpcomponents.httpclient-fluent.version>
+    <!-- Aligned with dropwizard 4.0.17: its dropwizard-client HttpClientBuilder calls
+         RequestConfig.Builder.setProtocolUpgradeEnabled(boolean), added in httpclient5 5.4+.
+         The DW 4.0.17 BOM pairs httpclient5 5.5.2 with httpcore5 5.4. -->
+    <apache.httpcomponents.core.version>5.4</apache.httpcomponents.core.version>
+    <apache.httpcomponents.httpclient.version>5.5.2</apache.httpcomponents.httpclient.version>
+    <apache.httpcomponents.httpclient-fluent.version>5.5.2</apache.httpcomponents.httpclient-fluent.version>
     <apache.commons.fileupload.version>1.3.3</apache.commons.fileupload.version>
+    <apache.commons.fileupload2.version>2.0.0-M5</apache.commons.fileupload2.version>
     <apache.commons.net.version>3.5</apache.commons.net.version>
     <apache.commons.cli.version>1.4</apache.commons.cli.version>
     <apache.commons.validator.version>1.7</apache.commons.validator.version>
@@ -56,7 +60,11 @@
     <javax.activation.activation.version>1.1.1</javax.activation.activation.version>
     <com.sun.activation.version>1.2.1</com.sun.activation.version>
     <hibernate.javax.persistence.version>1.0.0.Final</hibernate.javax.persistence.version>
-    <hibernate-core.version>5.6.15.Final</hibernate-core.version>
+    <hibernate-core.version>6.1.7.Final</hibernate-core.version>
+    <jakarta.persistence-api.version>3.0.0</jakarta.persistence-api.version>
+    <jakarta.servlet-api.version>5.0.0</jakarta.servlet-api.version>
+    <jakarta.validation-api.version>3.0.2</jakarta.validation-api.version>
+    <jakarta.xml.bind-api.version>4.0.2</jakarta.xml.bind-api.version>
     <com.jayway.jsonpath.version>2.4.0</com.jayway.jsonpath.version>
     <org.javassist.version>3.24.0-GA</org.javassist.version>
     <net.sourceforge.owlapi.version>4.5.9</net.sourceforge.owlapi.version>
@@ -66,8 +74,12 @@
     <org.hamcrest.core.version>1.3</org.hamcrest.core.version>
     <!-- Note: version 1.1.0 of JUnitParams causes an error when running the template server tests -->
     <junitparams.version>1.0.6</junitparams.version>
-    <slf4j.version>1.7.36</slf4j.version>
-    <logback.version>1.2.13</logback.version>
+    <!-- Dropwizard 4 runs on the jakarta-era logging stack: logback 1.5.x + slf4j 2.0.x
+         (logback 1.4+ ships the slf4j 2.0 ServiceLoader provider). The former logback 1.2.13 /
+         slf4j 1.7.36 pins made DropwizardLayout fail at boot with NoSuchMethodError on
+         PatternLayoutBase.getDefaultConverterSupplierMap(). Versions match dropwizard 4.0.17. -->
+    <slf4j.version>2.0.17</slf4j.version>
+    <logback.version>1.5.26</logback.version>
     <jboss.logging>3.3.0.Final</jboss.logging>
     <log4j.version>2.24.3</log4j.version>
     <org.yaml.snakeyaml.version>2.2</org.yaml.snakeyaml.version>
@@ -275,6 +287,14 @@
         <artifactId>jackson-jaxrs-json-provider</artifactId>
         <version>${jackson.core.version}</version>
       </dependency>
+      <!-- Jakarta-RS flavor of the Jackson JAX-RS provider. Dropwizard 4 bundles this in place
+           of the javax jackson-jaxrs-json-provider; CEDAR's Keycloak client registers it on the
+           Jakarta RESTEasy client. Class names: com.fasterxml.jackson.jakarta.rs.json.* -->
+      <dependency>
+        <groupId>com.fasterxml.jackson.jakarta.rs</groupId>
+        <artifactId>jackson-jakarta-rs-json-provider</artifactId>
+        <version>${jackson.core.version}</version>
+      </dependency>
       <dependency>
         <groupId>org.apache.httpcomponents.core5</groupId>
         <artifactId>httpcore5</artifactId>
@@ -304,6 +324,18 @@
         <groupId>commons-fileupload</groupId>
         <artifactId>commons-fileupload</artifactId>
         <version>${apache.commons.fileupload.version}</version>
+      </dependency>
+      <!-- Jakarta-namespace successor to commons-fileupload, for Jetty 11 / jakarta.servlet 5.0.
+           The servlet5 module binds to jakarta.servlet 5.x; it pulls commons-fileupload2-core. -->
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-fileupload2-jakarta-servlet5</artifactId>
+        <version>${apache.commons.fileupload2.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-fileupload2-core</artifactId>
+        <version>${apache.commons.fileupload2.version}</version>
       </dependency>
       <dependency>
         <groupId>commons-validator</groupId>
@@ -724,6 +756,24 @@
         <artifactId>jakarta.ws.rs-api</artifactId>
         <version>3.1.0</version>
       </dependency>
+      <!-- Jakarta EE API artifacts for the Dropwizard 4 (Jetty 11 / Jersey 3.0 / Hibernate 6)
+           stack. These replace the javax.* EE APIs of Dropwizard 2; the versions match the
+           dropwizard-dependencies 4.0.x BOM (servlet 5.0, validation 3.0, persistence 3.0). -->
+      <dependency>
+        <groupId>jakarta.servlet</groupId>
+        <artifactId>jakarta.servlet-api</artifactId>
+        <version>${jakarta.servlet-api.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.validation</groupId>
+        <artifactId>jakarta.validation-api</artifactId>
+        <version>${jakarta.validation-api.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.xml.bind</groupId>
+        <artifactId>jakarta.xml.bind-api</artifactId>
+        <version>${jakarta.xml.bind-api.version}</version>
+      </dependency>
       <dependency>
         <groupId>io.dropwizard</groupId>
         <artifactId>dropwizard-core</artifactId>
@@ -790,11 +840,9 @@
         <artifactId>swagger-annotations</artifactId>
         <version>${swagger.version}</version>
       </dependency>
-      <dependency>
-        <groupId>io.swagger</groupId>
-        <artifactId>swagger-jersey2-jaxrs</artifactId>
-        <version>${swagger.version}</version>
-      </dependency>
+      <!-- swagger-jersey2-jaxrs removed: it is a Jersey 2 / javax artifact that does not resolve
+           on Jersey 3.1, and CEDAR uses it only for build-time swagger annotations (the
+           io.swagger:swagger-annotations artifact, retained above). -->
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-servlets</artifactId>
@@ -811,12 +859,12 @@
         <version>${dropwizard.version}</version>
       </dependency>
       <dependency>
-        <groupId>org.hibernate.javax.persistence</groupId>
-        <artifactId>hibernate-jpa-2.1-api</artifactId>
-        <version>${hibernate.javax.persistence.version}</version>
+        <groupId>jakarta.persistence</groupId>
+        <artifactId>jakarta.persistence-api</artifactId>
+        <version>${jakarta.persistence-api.version}</version>
       </dependency>
       <dependency>
-        <groupId>org.hibernate</groupId>
+        <groupId>org.hibernate.orm</groupId>
         <artifactId>hibernate-core</artifactId>
         <version>${hibernate-core.version}</version>
       </dependency>
