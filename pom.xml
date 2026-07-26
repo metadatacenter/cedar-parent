@@ -26,14 +26,14 @@
     <org.eclipse.jetty.version>11.0.26</org.eclipse.jetty.version>
     <jackson.core.version>2.18.3</jackson.core.version>
     <networknt.json.schema.validator.version>1.5.9</networknt.json.schema.validator.version>
-    <resteasy.version>6.2.3.Final</resteasy.version>
-    <google-guava.version>32.1.3-jre</google-guava.version>
+    <resteasy.version>6.2.4.Final</resteasy.version>
+    <google-guava.version>33.5.0-jre</google-guava.version>
     <weka.version>3.8.1</weka.version>
     <com.sun.activation.javax.activation.version>1.2.0</com.sun.activation.javax.activation.version>
     <org.glassfish.jaxb.jaxb-runtime.version>4.0.5</org.glassfish.jaxb.jaxb-runtime.version>
     <commons.io.version>2.15.1</commons.io.version>
     <commons.lang3.version>3.18.0</commons.lang3.version>
-    <commons.codec.version>1.13</commons.codec.version>
+    <commons.codec.version>1.18.0</commons.codec.version>
     <commons.text.version>1.10.0</commons.text.version>
     <!-- Aligned with dropwizard 4.0.17: its dropwizard-client HttpClientBuilder calls
          RequestConfig.Builder.setProtocolUpgradeEnabled(boolean), added in httpclient5 5.4+.
@@ -41,7 +41,6 @@
     <apache.httpcomponents.core.version>5.4</apache.httpcomponents.core.version>
     <apache.httpcomponents.httpclient.version>5.5.2</apache.httpcomponents.httpclient.version>
     <apache.httpcomponents.httpclient-fluent.version>5.5.2</apache.httpcomponents.httpclient-fluent.version>
-    <apache.commons.fileupload.version>1.3.3</apache.commons.fileupload.version>
     <apache.commons.fileupload2.version>2.0.0-M5</apache.commons.fileupload2.version>
     <apache.commons.net.version>3.5</apache.commons.net.version>
     <apache.commons.cli.version>1.4</apache.commons.cli.version>
@@ -49,10 +48,8 @@
     <apache.poi.version>5.4.0</apache.poi.version>
     <java.dev.jna.version>4.2.1</java.dev.jna.version>
     <javax.ws.rs.version>2.1.1</javax.ws.rs.version>
-    <javax.servlet.version>4.0.1</javax.servlet.version>
     <javax.annotation-api.version>1.3.1</javax.annotation-api.version>
     <javax.ws-api.version>2.3.0</javax.ws-api.version>
-    <javax.validation.api.version>2.0.0.Final</javax.validation.api.version>
     <javax.xml.bind.jaxb-api.version>2.3.0</javax.xml.bind.jaxb-api.version>
     <javax.activation.activation.version>1.1.1</javax.activation.activation.version>
     <com.sun.activation.version>1.2.1</com.sun.activation.version>
@@ -316,11 +313,6 @@
         <groupId>commons-cli</groupId>
         <artifactId>commons-cli</artifactId>
         <version>${apache.commons.cli.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>commons-fileupload</groupId>
-        <artifactId>commons-fileupload</artifactId>
-        <version>${apache.commons.fileupload.version}</version>
       </dependency>
       <!-- Jakarta-namespace successor to commons-fileupload, for Jetty 11 / jakarta.servlet 5.0.
            The servlet5 module binds to jakarta.servlet 5.x; it pulls commons-fileupload2-core. -->
@@ -719,11 +711,6 @@
         <version>1.2.0</version>
       </dependency>
       <dependency>
-        <groupId>javax.servlet</groupId>
-        <artifactId>javax.servlet-api</artifactId>
-        <version>${javax.servlet.version}</version>
-      </dependency>
-      <dependency>
         <groupId>javax.ws.rs</groupId>
         <artifactId>javax.ws.rs-api</artifactId>
         <version>${javax.ws.rs.version}</version>
@@ -864,11 +851,6 @@
         <groupId>nz.ac.waikato.cms.weka</groupId>
         <artifactId>weka-stable</artifactId>
         <version>${weka.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>javax.validation</groupId>
-        <artifactId>validation-api</artifactId>
-        <version>${javax.validation.api.version}</version>
       </dependency>
       <dependency>
         <groupId>javax.annotation</groupId>
