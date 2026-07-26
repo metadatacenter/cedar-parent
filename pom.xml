@@ -29,6 +29,7 @@
     <java-json-tools.json.schema.validator.version>2.2.14</java-json-tools.json.schema.validator.version>
     <java-json-tools.json.schema.core.version>1.2.14</java-json-tools.json.schema.core.version>
     <java-json-tools.jackson.coreutils.version>2.0</java-json-tools.jackson.coreutils.version>
+    <networknt.json.schema.validator.version>1.5.9</networknt.json.schema.validator.version>
     <resteasy.version>6.2.3.Final</resteasy.version>
     <google-guava.version>32.1.3-jre</google-guava.version>
     <weka.version>3.8.1</weka.version>
@@ -344,6 +345,11 @@
         <groupId>com.github.java-json-tools</groupId>
         <artifactId>jackson-coreutils</artifactId>
         <version>${java-json-tools.jackson.coreutils.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.networknt</groupId>
+        <artifactId>json-schema-validator</artifactId>
+        <version>${networknt.json.schema.validator.version}</version>
       </dependency>
       <dependency>
         <groupId>org.mongodb</groupId>
