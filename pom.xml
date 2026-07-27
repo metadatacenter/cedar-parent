@@ -3,85 +3,81 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.metadatacenter</groupId>
   <artifactId>cedar-parent</artifactId>
-  <version>2.8.4</version>
+  <version>2.9.0</version>
   <packaging>pom</packaging>
   <name>CEDAR Parent</name>
   <description>Parent project for all Java-based CEDAR components</description>
   <url>https://github.com/metadatacenter</url>
   <properties>
-    <cedar.version>2.8.4</cedar.version>
-    <dropwizard.version>1.3.29</dropwizard.version>
-    <dropwizard.sundial.version>1.3.1</dropwizard.sundial.version>
-    <dropwizard.metrics.version>4.2.18</dropwizard.metrics.version>
+    <cedar.version>2.9.0</cedar.version>
+    <dropwizard.version>4.0.17</dropwizard.version>
+    <dropwizard.metrics.version>4.2.38</dropwizard.metrics.version>
     <mongodb.version>5.1.2</mongodb.version>
     <keycloak.version>22.0.4</keycloak.version>
     <keycloak-admin-client-jakarta.version>21.1.2</keycloak-admin-client-jakarta.version>
     <opensearch.version>2.19.2</opensearch.version>
     <opensearch.transport.version>1.3.20</opensearch.transport.version>
     <org.neo4j.driver.version>5.4.0</org.neo4j.driver.version>
-    <mysql.connector.java.version>8.0.28</mysql.connector.java.version>
-    <redis.clients.jedis.version>2.9.0</redis.clients.jedis.version>
+    <mysql.connector.j.version>8.4.0</mysql.connector.j.version>
+    <org.xerial.sqlite-jdbc.version>3.46.1.3</org.xerial.sqlite-jdbc.version>
+    <redis.clients.jedis.version>5.2.0</redis.clients.jedis.version>
     <jsonld.version>0.13.6</jsonld.version>
-    <swagger.version>1.5.16</swagger.version>
-    <org.eclipse.jetty.version>9.4.52.v20230823</org.eclipse.jetty.version>
-    <jackson.core.version>2.17.2</jackson.core.version>
-    <java-json-tools.json.schema.validator.version>2.2.14</java-json-tools.json.schema.validator.version>
-    <java-json-tools.json.schema.core.version>1.2.14</java-json-tools.json.schema.core.version>
-    <java-json-tools.jackson.coreutils.version>2.0</java-json-tools.jackson.coreutils.version>
-    <resteasy.version>6.2.3.Final</resteasy.version>
-    <codehaus.groovy.version>2.4.5</codehaus.groovy.version>
-    <google-guava.version>32.1.3-jre</google-guava.version>
+    <swagger.version>2.2.52</swagger.version>
+    <org.eclipse.jetty.version>11.0.26</org.eclipse.jetty.version>
+    <jackson.core.version>2.18.3</jackson.core.version>
+    <networknt.json.schema.validator.version>1.5.9</networknt.json.schema.validator.version>
+    <resteasy.version>6.2.4.Final</resteasy.version>
+    <google-guava.version>33.5.0-jre</google-guava.version>
     <weka.version>3.8.1</weka.version>
-    <com.sun.activation.javax.activation.version>1.2.0</com.sun.activation.javax.activation.version>
-    <org.glassfish.jaxb.jaxb-runtime.version>2.3.0</org.glassfish.jaxb.jaxb-runtime.version>
-    <commons.io.version>2.15.1</commons.io.version>
-    <commons.lang.version>2.6</commons.lang.version>
-    <commons.codec.version>1.13</commons.codec.version>
-    <commons.text.version>1.10.0</commons.text.version>
-    <apache.lucene.version>5.3.1</apache.lucene.version>
-    <apache.httpcomponents.core.version>5.2.4</apache.httpcomponents.core.version>
-    <apache.httpcomponents.httpclient.version>5.3.1</apache.httpcomponents.httpclient.version>
-    <apache.httpcomponents.httpclient-fluent.version>5.4</apache.httpcomponents.httpclient-fluent.version>
-    <apache.httpcomponents.httpcore.version>4.4.16</apache.httpcomponents.httpcore.version>
-    <apache.httpcomponents.httpmime.version>4.5.14</apache.httpcomponents.httpmime.version>
-    <apache.commons.fileupload.version>1.3.3</apache.commons.fileupload.version>
-    <apache.commons.net.version>3.5</apache.commons.net.version>
-    <apache.commons.cli.version>1.4</apache.commons.cli.version>
-    <apache.commons.validator.version>1.7</apache.commons.validator.version>
+    <org.glassfish.jaxb.jaxb-runtime.version>4.0.5</org.glassfish.jaxb.jaxb-runtime.version>
+    <commons.io.version>2.18.0</commons.io.version>
+    <commons.lang3.version>3.18.0</commons.lang3.version>
+    <commons.codec.version>1.18.0</commons.codec.version>
+    <commons.text.version>1.12.0</commons.text.version>
+    <!-- Aligned with dropwizard 4.0.17: its dropwizard-client HttpClientBuilder calls
+         RequestConfig.Builder.setProtocolUpgradeEnabled(boolean), added in httpclient5 5.4+.
+         The DW 4.0.17 BOM pairs httpclient5 5.5.2 with httpcore5 5.4. -->
+    <apache.httpcomponents.core.version>5.4</apache.httpcomponents.core.version>
+    <apache.httpcomponents.httpclient.version>5.5.2</apache.httpcomponents.httpclient.version>
+    <apache.httpcomponents.httpclient-fluent.version>5.5.2</apache.httpcomponents.httpclient-fluent.version>
+    <!-- HttpClient 4, kept only for the OpenSearch REST client and jsonld-java. These match the
+         versions the OpenSearch client resolves, so pinning them changes nothing that was already
+         winning on the classpath; it removes the older duplicate. -->
+    <apache.httpcomponents.legacy.core.version>4.4.16</apache.httpcomponents.legacy.core.version>
+    <apache.httpcomponents.legacy.httpclient.version>4.5.14</apache.httpcomponents.legacy.httpclient.version>
+    <apache.commons.fileupload2.version>2.0.0-M5</apache.commons.fileupload2.version>
+    <apache.commons.net.version>3.11.1</apache.commons.net.version>
+    <apache.commons.cli.version>1.9.0</apache.commons.cli.version>
+    <apache.commons.validator.version>1.9.0</apache.commons.validator.version>
     <apache.poi.version>5.4.0</apache.poi.version>
-    <java.dev.jna.version>4.2.1</java.dev.jna.version>
-    <javax.ws.rs.version>2.0.1</javax.ws.rs.version>
-    <javax.servlet.version>3.1.0</javax.servlet.version>
-    <javax.annotation-api.version>1.3.1</javax.annotation-api.version>
+    <java.dev.jna.version>5.13.0</java.dev.jna.version>
     <javax.ws-api.version>2.3.0</javax.ws-api.version>
-    <javax.validation.api.version>2.0.0.Final</javax.validation.api.version>
-    <javax.xml.bind.jaxb-api.version>2.3.0</javax.xml.bind.jaxb-api.version>
-    <javax.activation.activation.version>1.1.1</javax.activation.activation.version>
-    <com.sun.activation.version>1.2.1</com.sun.activation.version>
-    <hibernate.javax.persistence.version>1.0.0.Final</hibernate.javax.persistence.version>
-    <hibernate-core.version>5.4.33.Final</hibernate-core.version>
-    <com.jayway.jsonpath.version>2.4.0</com.jayway.jsonpath.version>
-    <org.javassist.version>3.24.0-GA</org.javassist.version>
-    <net.sourceforge.owlapi.version>5.1.5</net.sourceforge.owlapi.version>
-    <junit.version>4.13.1</junit.version>
+    <com.sun.activation.version>2.0.0</com.sun.activation.version>
+    <hibernate-core.version>6.1.7.Final</hibernate-core.version>
+    <jakarta.persistence-api.version>3.0.0</jakarta.persistence-api.version>
+    <jakarta.servlet-api.version>5.0.0</jakarta.servlet-api.version>
+    <jakarta.validation-api.version>3.0.2</jakarta.validation-api.version>
+    <jakarta.xml.bind-api.version>4.0.2</jakarta.xml.bind-api.version>
+    <com.jayway.jsonpath.version>2.9.0</com.jayway.jsonpath.version>
+    <org.javassist.version>3.30.2-GA</org.javassist.version>
     <net.sourceforge.owlapi.version>4.5.9</net.sourceforge.owlapi.version>
-    <me.xdrop.fuzzywuzzy.version>1.3.1</me.xdrop.fuzzywuzzy.version>
-    <junit.version>4.13.1</junit.version>
+    <me.xdrop.fuzzywuzzy.version>1.4.0</me.xdrop.fuzzywuzzy.version>
     <junit.jupiter.version>5.11.3</junit.jupiter.version>
-    <org.hamcrest.core.version>1.3</org.hamcrest.core.version>
-    <!-- Note: version 1.1.0 of JUnitParams causes an error when running the template server tests -->
-    <junitparams.version>1.0.6</junitparams.version>
-    <slf4j.version>1.7.25</slf4j.version>
-    <logback.version>1.2.9</logback.version>
+    <org.hamcrest.core.version>2.2</org.hamcrest.core.version>
+    <!-- Dropwizard 4 runs on the jakarta-era logging stack: logback 1.5.x + slf4j 2.0.x
+         (logback 1.4+ ships the slf4j 2.0 ServiceLoader provider). The former logback 1.2.13 /
+         slf4j 1.7.36 pins made DropwizardLayout fail at boot with NoSuchMethodError on
+         PatternLayoutBase.getDefaultConverterSupplierMap(). Versions match dropwizard 4.0.17. -->
+    <slf4j.version>2.0.17</slf4j.version>
+    <logback.version>1.5.26</logback.version>
     <jboss.logging>3.3.0.Final</jboss.logging>
-    <log4j.version>2.17.1</log4j.version>
+    <log4j.version>2.24.3</log4j.version>
     <org.yaml.snakeyaml.version>2.2</org.yaml.snakeyaml.version>
     <google.code.findbugs.version>3.0.0</google.code.findbugs.version>
     <maven.version>3.0.5</maven.version>
     <maven.enforcer.plugin.version>3.2.1</maven.enforcer.plugin.version>
     <maven.surefire.plugin.version>3.0.0</maven.surefire.plugin.version>
     <maven.compiler.plugin.version>3.8.0</maven.compiler.plugin.version>
-    <maven.jar.plugin.version>3.0.2</maven.jar.plugin.version>
     <maven.jsonschema2pojo.plugin.version>1.0.0</maven.jsonschema2pojo.plugin.version>
     <maven.jax.plugin.version>0.1.5</maven.jax.plugin.version>
     <maven.build-helper.plugin.version>3.0.0</maven.build-helper.plugin.version>
@@ -94,6 +90,12 @@
     <maven.scm.gitexe.version>1.11.1</maven.scm.gitexe.version>
     <maven.failsafe.plugin.version>3.1.2</maven.failsafe.plugin.version>
     <maven.shade.plugin.version>3.5.0</maven.shade.plugin.version>
+    <log4j.transform.shade.extensions.version>0.2.0</log4j.transform.shade.extensions.version>
+    <!-- Guard for the managed cedar-shade execution below. Maven merges pluginManagement
+         executions into every pom that declares the plugin, so the execution defaults to the
+         inert phase "none". A pom opts in by setting cedar.shade.phase to "package" and
+         cedar.shade.main.class to its application class. -->
+    <cedar.shade.phase>none</cedar.shade.phase>
     <maven.deploy.plugin.version>3.1.1</maven.deploy.plugin.version>
     <maven.versions.plugin.version>2.16.0</maven.versions.plugin.version>
     <maven.clean.plugin.version>3.3.1</maven.clean.plugin.version>
@@ -160,6 +162,17 @@
   </licenses>
   <dependencyManagement>
     <dependencies>
+      <!--
+        Aligns every org.junit.jupiter and org.junit.platform artifact on one JUnit 5 version,
+        including the platform artifacts surefire resolves for its JUnit Platform provider.
+      -->
+      <dependency>
+        <groupId>org.junit</groupId>
+        <artifactId>junit-bom</artifactId>
+        <version>${junit.jupiter.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
       <dependency>
         <groupId>org.slf4j</groupId>
         <artifactId>slf4j-api</artifactId>
@@ -220,6 +233,46 @@
         <artifactId>jackson-dataformat-yaml</artifactId>
         <version>${jackson.core.version}</version>
       </dependency>
+      <!-- Keep the Jackson modules pulled in transitively by Dropwizard on the same
+           version as the Jackson core artifacts pinned above. -->
+      <dependency>
+        <groupId>com.fasterxml.jackson.datatype</groupId>
+        <artifactId>jackson-datatype-guava</artifactId>
+        <version>${jackson.core.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.datatype</groupId>
+        <artifactId>jackson-datatype-joda</artifactId>
+        <version>${jackson.core.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.datatype</groupId>
+        <artifactId>jackson-datatype-hibernate5</artifactId>
+        <version>${jackson.core.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.module</groupId>
+        <artifactId>jackson-module-blackbird</artifactId>
+        <version>${jackson.core.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.module</groupId>
+        <artifactId>jackson-module-parameter-names</artifactId>
+        <version>${jackson.core.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.module</groupId>
+        <artifactId>jackson-module-jaxb-annotations</artifactId>
+        <version>${jackson.core.version}</version>
+      </dependency>
+      <!-- Jakarta-RS flavor of the Jackson JAX-RS provider. Dropwizard 4 bundles this in place
+           of the javax jackson-jaxrs-json-provider; CEDAR's Keycloak client registers it on the
+           Jakarta RESTEasy client. Class names: com.fasterxml.jackson.jakarta.rs.json.* -->
+      <dependency>
+        <groupId>com.fasterxml.jackson.jakarta.rs</groupId>
+        <artifactId>jackson-jakarta-rs-json-provider</artifactId>
+        <version>${jackson.core.version}</version>
+      </dependency>
       <dependency>
         <groupId>org.apache.httpcomponents.core5</groupId>
         <artifactId>httpcore5</artifactId>
@@ -235,10 +288,29 @@
         <artifactId>httpclient5-fluent</artifactId>
         <version>${apache.httpcomponents.httpclient-fluent.version}</version>
       </dependency>
+      <!-- HttpClient 4, which the stack no longer uses directly but cannot yet be rid of: the
+           OpenSearch REST client's public API is built on it, so org.apache.http.HttpHost appears
+           in our own signatures, and jsonld-java uses it to fetch remote JSON-LD contexts. Pinned
+           here only to keep one copy of those classes on the classpath. See the jsonld-java entry
+           below, which excludes the OSGi bundles that would otherwise supply a second, older copy.
+           These pins go away when OpenSearch moves to HttpClient 5. -->
       <dependency>
         <groupId>org.apache.httpcomponents</groupId>
-        <artifactId>httpmime</artifactId>
-        <version>${apache.httpcomponents.httpmime.version}</version>
+        <artifactId>httpcore</artifactId>
+        <version>${apache.httpcomponents.legacy.core.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpclient</artifactId>
+        <version>${apache.httpcomponents.legacy.httpclient.version}</version>
+      </dependency>
+      <!-- jsonld-java's JsonUtils builds a CachingHttpClientBuilder, whose classes live here and
+           not in httpclient. It reached them through httpclient-osgi; with that excluded it needs
+           the plain artifact. -->
+      <dependency>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpclient-cache</artifactId>
+        <version>${apache.httpcomponents.legacy.httpclient.version}</version>
       </dependency>
       <dependency>
         <groupId>commons-net</groupId>
@@ -250,10 +322,17 @@
         <artifactId>commons-cli</artifactId>
         <version>${apache.commons.cli.version}</version>
       </dependency>
+      <!-- Jakarta-namespace successor to commons-fileupload, for Jetty 11 / jakarta.servlet 5.0.
+           The servlet5 module binds to jakarta.servlet 5.x; it pulls commons-fileupload2-core. -->
       <dependency>
-        <groupId>commons-fileupload</groupId>
-        <artifactId>commons-fileupload</artifactId>
-        <version>${apache.commons.fileupload.version}</version>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-fileupload2-jakarta-servlet5</artifactId>
+        <version>${apache.commons.fileupload2.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-fileupload2-core</artifactId>
+        <version>${apache.commons.fileupload2.version}</version>
       </dependency>
       <dependency>
         <groupId>commons-validator</groupId>
@@ -261,19 +340,14 @@
         <version>${apache.commons.validator.version}</version>
       </dependency>
       <dependency>
-        <groupId>org.apache.httpcomponents</groupId>
-        <artifactId>httpcore</artifactId>
-        <version>${apache.httpcomponents.httpcore.version}</version>
-      </dependency>
-      <dependency>
         <groupId>commons-io</groupId>
         <artifactId>commons-io</artifactId>
         <version>${commons.io.version}</version>
       </dependency>
       <dependency>
-        <groupId>commons-lang</groupId>
-        <artifactId>commons-lang</artifactId>
-        <version>${commons.lang.version}</version>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-lang3</artifactId>
+        <version>${commons.lang3.version}</version>
       </dependency>
       <dependency>
         <groupId>commons-codec</groupId>
@@ -286,19 +360,9 @@
         <version>${commons.text.version}</version>
       </dependency>
       <dependency>
-        <groupId>com.github.java-json-tools</groupId>
+        <groupId>com.networknt</groupId>
         <artifactId>json-schema-validator</artifactId>
-        <version>${java-json-tools.json.schema.validator.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.github.java-json-tools</groupId>
-        <artifactId>json-schema-core</artifactId>
-        <version>${java-json-tools.json.schema.core.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.github.java-json-tools</groupId>
-        <artifactId>jackson-coreutils</artifactId>
-        <version>${java-json-tools.jackson.coreutils.version}</version>
+        <version>${networknt.json.schema.validator.version}</version>
       </dependency>
       <dependency>
         <groupId>org.mongodb</groupId>
@@ -351,26 +415,14 @@
         <version>${me.xdrop.fuzzywuzzy.version}</version>
       </dependency>
       <dependency>
-        <groupId>junit</groupId>
-        <artifactId>junit</artifactId>
-        <version>${junit.version}</version>
-        <scope>test</scope>
-      </dependency>
-      <dependency>
         <groupId>org.junit.jupiter</groupId>
         <artifactId>junit-jupiter</artifactId>
         <version>${junit.jupiter.version}</version>
         <scope>test</scope>
       </dependency>
       <dependency>
-        <groupId>pl.pragmatists</groupId>
-        <artifactId>JUnitParams</artifactId>
-        <version>${junitparams.version}</version>
-        <scope>test</scope>
-      </dependency>
-      <dependency>
         <groupId>org.hamcrest</groupId>
-        <artifactId>hamcrest-all</artifactId>
+        <artifactId>hamcrest</artifactId>
         <version>${org.hamcrest.core.version}</version>
         <scope>test</scope>
       </dependency>
@@ -393,17 +445,6 @@
         <groupId>org.opensearch.client</groupId>
         <artifactId>transport</artifactId>
         <version>${opensearch.transport.version}</version>
-      </dependency>
-      <!-- Required by ElasticSearch -->
-      <dependency>
-        <groupId>org.codehaus.groovy</groupId>
-        <artifactId>groovy-all</artifactId>
-        <version>${codehaus.groovy.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.lucene</groupId>
-        <artifactId>lucene-expressions</artifactId>
-        <version>${apache.lucene.version}</version>
       </dependency>
       <dependency>
         <groupId>net.java.dev.jna</groupId>
@@ -502,6 +543,11 @@
       </dependency>
       <dependency>
         <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-terminology-server-store</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
         <artifactId>cedar-valuerecommender-server-core</artifactId>
         <version>${cedar.version}</version>
       </dependency>
@@ -582,6 +628,11 @@
       </dependency>
       <dependency>
         <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-test-support-library</artifactId>
+        <version>${cedar.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
         <artifactId>cedar-search-operations-library</artifactId>
         <version>${cedar.version}</version>
       </dependency>
@@ -655,15 +706,30 @@
         <artifactId>guice.conf</artifactId>
         <version>1.2.0</version>
       </dependency>
+      <!-- The Jakarta Keycloak admin client needs the jakarta.ws.rs namespace, and Jersey drags in
+           an older version of this artifact, so pin the 3.x line to keep the client's classes. -->
       <dependency>
-        <groupId>javax.servlet</groupId>
-        <artifactId>javax.servlet-api</artifactId>
-        <version>${javax.servlet.version}</version>
+        <groupId>jakarta.ws.rs</groupId>
+        <artifactId>jakarta.ws.rs-api</artifactId>
+        <version>3.1.0</version>
+      </dependency>
+      <!-- Jakarta EE API artifacts for the Dropwizard 4 (Jetty 11 / Jersey 3.0 / Hibernate 6)
+           stack. These replace the javax.* EE APIs of Dropwizard 2; the versions match the
+           dropwizard-dependencies 4.0.x BOM (servlet 5.0, validation 3.0, persistence 3.0). -->
+      <dependency>
+        <groupId>jakarta.servlet</groupId>
+        <artifactId>jakarta.servlet-api</artifactId>
+        <version>${jakarta.servlet-api.version}</version>
       </dependency>
       <dependency>
-        <groupId>javax.ws.rs</groupId>
-        <artifactId>javax.ws.rs-api</artifactId>
-        <version>${javax.ws.rs.version}</version>
+        <groupId>jakarta.validation</groupId>
+        <artifactId>jakarta.validation-api</artifactId>
+        <version>${jakarta.validation-api.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.xml.bind</groupId>
+        <artifactId>jakarta.xml.bind-api</artifactId>
+        <version>${jakarta.xml.bind-api.version}</version>
       </dependency>
       <dependency>
         <groupId>io.dropwizard</groupId>
@@ -726,14 +792,12 @@
         <version>${dropwizard.version}</version>
         <scope>test</scope>
       </dependency>
+      <!-- Swagger v3 (OpenAPI 3) annotations, jakarta variant. The io.swagger.v3.oas.annotations.*
+           types are namespace-neutral; the -jakarta artifact aligns with the Jakarta EE 9 stack and
+           the io.swagger.core.v3:swagger-maven-plugin that generates the spec at build time. -->
       <dependency>
-        <groupId>io.swagger</groupId>
-        <artifactId>swagger-annotations</artifactId>
-        <version>${swagger.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>io.swagger</groupId>
-        <artifactId>swagger-jersey2-jaxrs</artifactId>
+        <groupId>io.swagger.core.v3</groupId>
+        <artifactId>swagger-annotations-jakarta</artifactId>
         <version>${swagger.version}</version>
       </dependency>
       <dependency>
@@ -752,24 +816,38 @@
         <version>${dropwizard.version}</version>
       </dependency>
       <dependency>
-        <groupId>org.hibernate.javax.persistence</groupId>
-        <artifactId>hibernate-jpa-2.1-api</artifactId>
-        <version>${hibernate.javax.persistence.version}</version>
+        <groupId>jakarta.persistence</groupId>
+        <artifactId>jakarta.persistence-api</artifactId>
+        <version>${jakarta.persistence-api.version}</version>
       </dependency>
       <dependency>
-        <groupId>org.hibernate</groupId>
+        <groupId>org.hibernate.orm</groupId>
         <artifactId>hibernate-core</artifactId>
         <version>${hibernate-core.version}</version>
       </dependency>
       <dependency>
-        <groupId>mysql</groupId>
-        <artifactId>mysql-connector-java</artifactId>
-        <version>${mysql.connector.java.version}</version>
+        <groupId>com.mysql</groupId>
+        <artifactId>mysql-connector-j</artifactId>
+        <version>${mysql.connector.j.version}</version>
       </dependency>
       <dependency>
         <groupId>com.github.jsonld-java</groupId>
         <artifactId>jsonld-java</artifactId>
         <version>${jsonld.version}</version>
+        <exclusions>
+          <!-- These OSGi bundles embed the whole of org.apache.http, so they put a second and older
+               copy of every HttpClient 4 class on the classpath beside the one the OpenSearch REST
+               client brings, and which copy resolves depends on classpath order. jsonld-java is
+               served by the plain artifacts, pinned above. -->
+          <exclusion>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient-osgi</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpcore-osgi</artifactId>
+          </exclusion>
+        </exclusions>
       </dependency>
       <dependency>
         <groupId>nz.ac.waikato.cms.weka</groupId>
@@ -777,24 +855,9 @@
         <version>${weka.version}</version>
       </dependency>
       <dependency>
-        <groupId>javax.validation</groupId>
-        <artifactId>validation-api</artifactId>
-        <version>${javax.validation.api.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>javax.annotation</groupId>
-        <artifactId>javax.annotation-api</artifactId>
-        <version>${javax.annotation-api.version}</version>
-      </dependency>
-      <dependency>
         <groupId>javax.xml.ws</groupId>
         <artifactId>jaxws-api</artifactId>
         <version>${javax.ws-api.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>javax.xml.bind</groupId>
-        <artifactId>jaxb-api</artifactId>
-        <version>${javax.xml.bind.jaxb-api.version}</version>
       </dependency>
       <dependency>
         <groupId>org.neo4j.driver</groupId>
@@ -807,16 +870,6 @@
         <version>${org.glassfish.jaxb.jaxb-runtime.version}</version>
       </dependency>
       <dependency>
-        <groupId>javax.activation</groupId>
-        <artifactId>activation</artifactId>
-        <version>${javax.activation.activation.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.sun.activation</groupId>
-        <artifactId>javax.activation</artifactId>
-        <version>${com.sun.activation.javax.activation.version}</version>
-      </dependency>
-      <dependency>
         <groupId>com.sun.activation</groupId>
         <artifactId>jakarta.activation</artifactId>
         <version>${com.sun.activation.version}</version>
@@ -825,11 +878,6 @@
         <groupId>com.jayway.jsonpath</groupId>
         <artifactId>json-path</artifactId>
         <version>${com.jayway.jsonpath.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.knowm</groupId>
-        <artifactId>dropwizard-sundial</artifactId>
-        <version>${dropwizard.sundial.version}</version>
       </dependency>
       <dependency>
         <groupId>org.javassist</groupId>
@@ -861,6 +909,11 @@
         <artifactId>jakarta.annotation-api</artifactId>
         <version>2.0.0</version>
       </dependency>
+      <dependency>
+        <groupId>org.xerial</groupId>
+        <artifactId>sqlite-jdbc</artifactId>
+        <version>${org.xerial.sqlite-jdbc.version}</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
   <build>
@@ -880,6 +933,11 @@
                 <requireMavenVersion>
                   <version>${maven.version}</version>
                 </requireMavenVersion>
+                <!-- The app crashes at runtime on JDKs newer than 17 (Keycloak/OpenSearch), and
+                     newer build JDKs have broken ByteBuddy/Hibernate init. Lock the build JVM to 17. -->
+                <requireJavaVersion>
+                  <version>[17,18)</version>
+                </requireJavaVersion>
               </rules>
             </configuration>
           </execution>
@@ -990,6 +1048,50 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-shade-plugin</artifactId>
           <version>${maven.shade.plugin.version}</version>
+          <dependencies>
+            <!-- Merges the Log4j2Plugins.dat plugin registries of all shaded dependencies.
+                 Without it, one dependency's small registry wins the merge, log4j-core's own
+                 converters never register, and the server logs a wall of "Unrecognized format
+                 specifier" errors at startup. -->
+            <dependency>
+              <groupId>org.apache.logging.log4j</groupId>
+              <artifactId>log4j-transform-maven-shade-plugin-extensions</artifactId>
+              <version>${log4j.transform.shade.extensions.version}</version>
+            </dependency>
+          </dependencies>
+          <configuration>
+            <createDependencyReducedPom>true</createDependencyReducedPom>
+            <filters>
+              <filter>
+                <artifact>*:*</artifact>
+                <excludes>
+                  <exclude>META-INF/*.SF</exclude>
+                  <exclude>META-INF/*.DSA</exclude>
+                  <exclude>META-INF/*.RSA</exclude>
+                </excludes>
+              </filter>
+            </filters>
+          </configuration>
+          <executions>
+            <!-- Shared shade execution for the CEDAR server application jars. Inert unless a
+                 pom sets cedar.shade.phase to "package"; see the property declaration. -->
+            <execution>
+              <id>cedar-shade</id>
+              <phase>${cedar.shade.phase}</phase>
+              <goals>
+                <goal>shade</goal>
+              </goals>
+              <configuration>
+                <transformers>
+                  <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+                  <transformer implementation="org.apache.logging.log4j.maven.plugins.shade.transformer.Log4j2PluginCacheFileTransformer"/>
+                  <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                    <mainClass>${cedar.shade.main.class}</mainClass>
+                  </transformer>
+                </transformers>
+              </configuration>
+            </execution>
+          </executions>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
