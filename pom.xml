@@ -40,6 +40,11 @@
     <apache.httpcomponents.core.version>5.4</apache.httpcomponents.core.version>
     <apache.httpcomponents.httpclient.version>5.5.2</apache.httpcomponents.httpclient.version>
     <apache.httpcomponents.httpclient-fluent.version>5.5.2</apache.httpcomponents.httpclient-fluent.version>
+    <!-- HttpClient 4, kept only for the OpenSearch REST client and jsonld-java. These match the
+         versions the OpenSearch client resolves, so pinning them changes nothing that was already
+         winning on the classpath; it removes the older duplicate. -->
+    <apache.httpcomponents.legacy.core.version>4.4.16</apache.httpcomponents.legacy.core.version>
+    <apache.httpcomponents.legacy.httpclient.version>4.5.14</apache.httpcomponents.legacy.httpclient.version>
     <apache.commons.fileupload2.version>2.0.0-M5</apache.commons.fileupload2.version>
     <apache.commons.net.version>3.11.1</apache.commons.net.version>
     <apache.commons.cli.version>1.9.0</apache.commons.cli.version>
@@ -282,6 +287,30 @@
         <groupId>org.apache.httpcomponents.client5</groupId>
         <artifactId>httpclient5-fluent</artifactId>
         <version>${apache.httpcomponents.httpclient-fluent.version}</version>
+      </dependency>
+      <!-- HttpClient 4, which the stack no longer uses directly but cannot yet be rid of: the
+           OpenSearch REST client's public API is built on it, so org.apache.http.HttpHost appears
+           in our own signatures, and jsonld-java uses it to fetch remote JSON-LD contexts. Pinned
+           here only to keep one copy of those classes on the classpath. See the jsonld-java entry
+           below, which excludes the OSGi bundles that would otherwise supply a second, older copy.
+           These pins go away when OpenSearch moves to HttpClient 5. -->
+      <dependency>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpcore</artifactId>
+        <version>${apache.httpcomponents.legacy.core.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpclient</artifactId>
+        <version>${apache.httpcomponents.legacy.httpclient.version}</version>
+      </dependency>
+      <!-- jsonld-java's JsonUtils builds a CachingHttpClientBuilder, whose classes live here and
+           not in httpclient. It reached them through httpclient-osgi; with that excluded it needs
+           the plain artifact. -->
+      <dependency>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpclient-cache</artifactId>
+        <version>${apache.httpcomponents.legacy.httpclient.version}</version>
       </dependency>
       <dependency>
         <groupId>commons-net</groupId>
@@ -805,6 +834,20 @@
         <groupId>com.github.jsonld-java</groupId>
         <artifactId>jsonld-java</artifactId>
         <version>${jsonld.version}</version>
+        <exclusions>
+          <!-- These OSGi bundles embed the whole of org.apache.http, so they put a second and older
+               copy of every HttpClient 4 class on the classpath beside the one the OpenSearch REST
+               client brings, and which copy resolves depends on classpath order. jsonld-java is
+               served by the plain artifacts, pinned above. -->
+          <exclusion>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient-osgi</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpcore-osgi</artifactId>
+          </exclusion>
+        </exclusions>
       </dependency>
       <dependency>
         <groupId>nz.ac.waikato.cms.weka</groupId>
