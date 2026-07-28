@@ -1073,6 +1073,16 @@
                   <exclude>META-INF/*.SF</exclude>
                   <exclude>META-INF/*.DSA</exclude>
                   <exclude>META-INF/*.RSA</exclude>
+                  <!-- A dependency's module descriptor is meaningless in a classpath uber-jar and is
+                       what makes shade log "Discovered module-info.class. Shading will break its
+                       strong encapsulation" for ~every jar. Dropping it is shade's own recommendation
+                       and removes that whole class of warning. -->
+                  <exclude>module-info.class</exclude>
+                  <exclude>META-INF/versions/*/module-info.class</exclude>
+                  <!-- Per-dependency Maven build descriptors (pom.xml / pom.properties). Pure build
+                       metadata, present in nearly every jar, so a large source of overlapping-resource
+                       warnings; nothing at runtime reads them out of the uber-jar. -->
+                  <exclude>META-INF/maven/**</exclude>
                 </excludes>
               </filter>
             </filters>
