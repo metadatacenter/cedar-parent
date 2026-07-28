@@ -24,6 +24,9 @@
     <jsonld.version>0.13.6</jsonld.version>
     <swagger.version>2.2.52</swagger.version>
     <org.eclipse.jetty.version>11.0.26</org.eclipse.jetty.version>
+    <!-- Held at 2.18.3, not databind's latest (2.22.x): this one property drives every Jackson
+         artifact, and jackson-annotations' 2.x line lags databind, so a shared 2.22.x does not
+         resolve. A Jackson bump means aligning each artifact, and belongs with the Dropwizard upgrade. -->
     <jackson.core.version>2.18.3</jackson.core.version>
     <networknt.json.schema.validator.version>1.5.9</networknt.json.schema.validator.version>
     <resteasy.version>6.2.4.Final</resteasy.version>
@@ -67,7 +70,9 @@
     <!-- Dropwizard 4 runs on the jakarta-era logging stack: logback 1.5.x + slf4j 2.0.x
          (logback 1.4+ ships the slf4j 2.0 ServiceLoader provider). The former logback 1.2.13 /
          slf4j 1.7.36 pins made DropwizardLayout fail at boot with NoSuchMethodError on
-         PatternLayoutBase.getDefaultConverterSupplierMap(). Versions match dropwizard 4.0.17. -->
+         PatternLayoutBase.getDefaultConverterSupplierMap(). Versions match dropwizard 4.0.17.
+         Do not move to logback 1.6.x yet: it drops PatternLayout.DEFAULT_CONVERTER_MAP, which
+         dropwizard-request-logging still references, so every server crashes on boot. -->
     <slf4j.version>2.0.17</slf4j.version>
     <logback.version>1.5.26</logback.version>
     <jboss.logging>3.6.3.Final</jboss.logging>
