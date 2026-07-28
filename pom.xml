@@ -11,7 +11,7 @@
   <properties>
     <cedar.version>2.9.1-SNAPSHOT</cedar.version>
     <dropwizard.version>4.0.17</dropwizard.version>
-    <dropwizard.metrics.version>4.2.38</dropwizard.metrics.version>
+    <dropwizard.metrics.version>4.2.39</dropwizard.metrics.version>
     <mongodb.version>5.1.2</mongodb.version>
     <keycloak.version>22.0.4</keycloak.version>
     <keycloak-admin-client-jakarta.version>21.1.2</keycloak-admin-client-jakarta.version>
@@ -19,7 +19,7 @@
     <opensearch.transport.version>1.3.20</opensearch.transport.version>
     <org.neo4j.driver.version>5.4.0</org.neo4j.driver.version>
     <mysql.connector.j.version>8.4.0</mysql.connector.j.version>
-    <org.xerial.sqlite-jdbc.version>3.46.1.3</org.xerial.sqlite-jdbc.version>
+    <org.xerial.sqlite-jdbc.version>3.53.2.1</org.xerial.sqlite-jdbc.version>
     <redis.clients.jedis.version>5.2.0</redis.clients.jedis.version>
     <jsonld.version>0.13.6</jsonld.version>
     <swagger.version>2.2.52</swagger.version>
@@ -27,39 +27,39 @@
     <jackson.core.version>2.18.3</jackson.core.version>
     <networknt.json.schema.validator.version>1.5.9</networknt.json.schema.validator.version>
     <resteasy.version>6.2.4.Final</resteasy.version>
-    <google-guava.version>33.5.0-jre</google-guava.version>
-    <weka.version>3.8.1</weka.version>
-    <org.glassfish.jaxb.jaxb-runtime.version>4.0.5</org.glassfish.jaxb.jaxb-runtime.version>
-    <commons.io.version>2.18.0</commons.io.version>
-    <commons.lang3.version>3.18.0</commons.lang3.version>
-    <commons.codec.version>1.18.0</commons.codec.version>
-    <commons.text.version>1.12.0</commons.text.version>
+    <google-guava.version>33.6.0-jre</google-guava.version>
+    <weka.version>3.8.7</weka.version>
+    <org.glassfish.jaxb.jaxb-runtime.version>4.0.9</org.glassfish.jaxb.jaxb-runtime.version>
+    <commons.io.version>2.22.0</commons.io.version>
+    <commons.lang3.version>3.20.0</commons.lang3.version>
+    <commons.codec.version>1.22.0</commons.codec.version>
+    <commons.text.version>1.15.0</commons.text.version>
     <!-- Aligned with dropwizard 4.0.17: its dropwizard-client HttpClientBuilder calls
          RequestConfig.Builder.setProtocolUpgradeEnabled(boolean), added in httpclient5 5.4+.
          The DW 4.0.17 BOM pairs httpclient5 5.5.2 with httpcore5 5.4. -->
     <apache.httpcomponents.core.version>5.4</apache.httpcomponents.core.version>
-    <apache.httpcomponents.httpclient.version>5.5.2</apache.httpcomponents.httpclient.version>
-    <apache.httpcomponents.httpclient-fluent.version>5.5.2</apache.httpcomponents.httpclient-fluent.version>
+    <apache.httpcomponents.httpclient.version>5.6.2</apache.httpcomponents.httpclient.version>
+    <apache.httpcomponents.httpclient-fluent.version>5.6.2</apache.httpcomponents.httpclient-fluent.version>
     <!-- HttpClient 4, kept only for the OpenSearch REST client and jsonld-java. These match the
          versions the OpenSearch client resolves, so pinning them changes nothing that was already
          winning on the classpath; it removes the older duplicate. -->
     <apache.httpcomponents.legacy.core.version>4.4.16</apache.httpcomponents.legacy.core.version>
     <apache.httpcomponents.legacy.httpclient.version>4.5.14</apache.httpcomponents.legacy.httpclient.version>
     <apache.commons.fileupload2.version>2.0.0-M5</apache.commons.fileupload2.version>
-    <apache.commons.net.version>3.11.1</apache.commons.net.version>
-    <apache.commons.cli.version>1.9.0</apache.commons.cli.version>
-    <apache.commons.validator.version>1.9.0</apache.commons.validator.version>
-    <apache.poi.version>5.4.0</apache.poi.version>
-    <java.dev.jna.version>5.13.0</java.dev.jna.version>
-    <javax.ws-api.version>2.3.0</javax.ws-api.version>
-    <com.sun.activation.version>2.0.0</com.sun.activation.version>
+    <apache.commons.net.version>3.13.0</apache.commons.net.version>
+    <apache.commons.cli.version>1.11.0</apache.commons.cli.version>
+    <apache.commons.validator.version>1.10.1</apache.commons.validator.version>
+    <apache.poi.version>5.5.1</apache.poi.version>
+    <java.dev.jna.version>5.19.1</java.dev.jna.version>
+    <javax.ws-api.version>2.3.1</javax.ws-api.version>
+    <com.sun.activation.version>2.0.1</com.sun.activation.version>
     <hibernate-core.version>6.1.7.Final</hibernate-core.version>
     <jakarta.persistence-api.version>3.0.0</jakarta.persistence-api.version>
     <jakarta.servlet-api.version>5.0.0</jakarta.servlet-api.version>
     <jakarta.validation-api.version>3.0.2</jakarta.validation-api.version>
     <jakarta.xml.bind-api.version>4.0.2</jakarta.xml.bind-api.version>
     <com.jayway.jsonpath.version>2.9.0</com.jayway.jsonpath.version>
-    <org.javassist.version>3.30.2-GA</org.javassist.version>
+    <org.javassist.version>3.32.0-GA</org.javassist.version>
     <net.sourceforge.owlapi.version>4.5.9</net.sourceforge.owlapi.version>
     <me.xdrop.fuzzywuzzy.version>1.4.0</me.xdrop.fuzzywuzzy.version>
     <junit.jupiter.version>5.11.3</junit.jupiter.version>
@@ -70,10 +70,10 @@
          PatternLayoutBase.getDefaultConverterSupplierMap(). Versions match dropwizard 4.0.17. -->
     <slf4j.version>2.0.17</slf4j.version>
     <logback.version>1.5.26</logback.version>
-    <jboss.logging>3.3.0.Final</jboss.logging>
+    <jboss.logging>3.6.3.Final</jboss.logging>
     <log4j.version>2.24.3</log4j.version>
-    <org.yaml.snakeyaml.version>2.2</org.yaml.snakeyaml.version>
-    <google.code.findbugs.version>3.0.0</google.code.findbugs.version>
+    <org.yaml.snakeyaml.version>2.6</org.yaml.snakeyaml.version>
+    <google.code.findbugs.version>3.0.2</google.code.findbugs.version>
     <maven.version>3.0.5</maven.version>
     <maven.enforcer.plugin.version>3.2.1</maven.enforcer.plugin.version>
     <maven.surefire.plugin.version>3.0.0</maven.surefire.plugin.version>
