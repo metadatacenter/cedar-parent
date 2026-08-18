@@ -67,7 +67,7 @@
     <me.xdrop.fuzzywuzzy.version>1.4.0</me.xdrop.fuzzywuzzy.version>
     <junit.jupiter.version>5.11.3</junit.jupiter.version>
     <org.hamcrest.core.version>2.2</org.hamcrest.core.version>
-    <org.mockito.version>5.7.0</org.mockito.version>
+    <org.mockito.version>5.23.0</org.mockito.version>
     <!-- The embedded backends the backend-free suites run against. A real redis-server, mongod,
          MariaDB and Neo4j, so the tests exercise real engine semantics without anything running.
          Redis 6.2.6 tracks the deployed 6.2.7 (cedar-docker-build/cedar-infra-redis-persistent);
@@ -151,11 +151,11 @@
     <transitive.reactor-core.version>3.5.20</transitive.reactor-core.version>
     <transitive.jakarta-activation-api.version>2.1.4</transitive.jakarta-activation-api.version>
     <transitive.jakarta-inject-api.version>2.0.1.MR</transitive.jakarta-inject-api.version>
-    <!-- net.bytebuddy:byte-buddy is deliberately NOT managed here. dropwizard-hibernate
-         brings 1.18.4 at compile scope and Mockito brings 1.14.9 at test scope; that is a
-         scope boundary rather than drift. Forcing Hibernate's version onto Mockito leaves
-         stubbing silently inert — mocks return defaults and the failures read as validator
-         logic bugs. Leave each side with the version its consumer was built against. -->
+    <!-- Mockito 5.23.0 declares Byte Buddy 1.17.7, close enough to the 1.18.4 selected by
+         dropwizard-hibernate to share one tested implementation. Keep the core and agent
+         together: Mockito's inline mock maker uses both, and a mismatch can leave stubbing
+         silently inert. -->
+    <transitive.byte-buddy.version>1.18.4</transitive.byte-buddy.version>
     <transitive.commons-compress.version>1.28.0</transitive.commons-compress.version>
     <transitive.angus-activation.version>2.0.3</transitive.angus-activation.version>
     <transitive.jandex.version>2.4.3.Final</transitive.jandex.version>
@@ -1059,6 +1059,16 @@
 
       <!-- Transitive-only artifacts, pinned so every module resolves one version. See the
            matching properties above. -->
+      <dependency>
+        <groupId>net.bytebuddy</groupId>
+        <artifactId>byte-buddy</artifactId>
+        <version>${transitive.byte-buddy.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>net.bytebuddy</groupId>
+        <artifactId>byte-buddy-agent</artifactId>
+        <version>${transitive.byte-buddy.version}</version>
+      </dependency>
       <dependency>
         <groupId>io.netty</groupId>
         <artifactId>netty-buffer</artifactId>
