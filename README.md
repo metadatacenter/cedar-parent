@@ -1,6 +1,6 @@
 # cedar-parent
 
-[![Build Status](https://travis-ci.com/metadatacenter/cedar-parent.svg?branch=master)](https://travis-ci.com/metadatacenter/cedar-parent)
+[![CI](https://github.com/metadatacenter/cedar-parent/actions/workflows/ci.yml/badge.svg?branch=develop)](https://github.com/metadatacenter/cedar-parent/actions/workflows/ci.yml)
 
 Parent project for all CEDAR Java-based components
 

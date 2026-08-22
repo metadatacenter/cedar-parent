@@ -3,13 +3,13 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.metadatacenter</groupId>
   <artifactId>cedar-parent</artifactId>
-  <version>2.9.1</version>
+  <version>2.9.2</version>
   <packaging>pom</packaging>
   <name>CEDAR Parent</name>
   <description>Parent project for all Java-based CEDAR components</description>
   <url>https://github.com/metadatacenter</url>
   <properties>
-    <cedar.version>2.9.1</cedar.version>
+    <cedar.version>2.9.2</cedar.version>
     <dropwizard.version>4.0.17</dropwizard.version>
     <dropwizard.metrics.version>4.2.39</dropwizard.metrics.version>
     <mongodb.version>5.1.2</mongodb.version>
@@ -67,6 +67,23 @@
     <me.xdrop.fuzzywuzzy.version>1.4.0</me.xdrop.fuzzywuzzy.version>
     <junit.jupiter.version>5.11.3</junit.jupiter.version>
     <org.hamcrest.core.version>2.2</org.hamcrest.core.version>
+    <org.mockito.version>5.23.0</org.mockito.version>
+    <!-- The embedded backends the backend-free suites run against. A real redis-server, mongod,
+         MariaDB and Neo4j, so the tests exercise real engine semantics without anything running.
+         Redis 6.2.6 tracks the deployed 6.2.7 (cedar-docker-build/cedar-infra-redis-persistent);
+         neo4j-harness tracks the deployed Neo4j server (cedar-infra-neo4j), not the driver. -->
+    <com.github.codemonstur.embedded-redis.version>1.4.3</com.github.codemonstur.embedded-redis.version>
+    <ch.vorburger.mariadb4j.version>3.2.0</ch.vorburger.mariadb4j.version>
+    <ch.vorburger.mariadb4j.db.version>11.4.5</ch.vorburger.mariadb4j.db.version>
+    <de.flapdoodle.embed.mongo.version>4.20.0</de.flapdoodle.embed.mongo.version>
+    <org.neo4j.test.neo4j-harness.version>5.3.0</org.neo4j.test.neo4j-harness.version>
+    <org.jspecify.version>1.0.1</org.jspecify.version>
+    <!-- The javax-era XML binding stack, still on the classpath of the cadsr and impex tooling and
+         the terminology ingest. Kept apart from the jakarta artifacts above, which carry different
+         coordinates and so can be managed independently. -->
+    <com.sun.xml.bind.version>3.0.0</com.sun.xml.bind.version>
+    <javax.xml.bind.jaxb-api.version>2.3.1</javax.xml.bind.jaxb-api.version>
+    <javax.activation-api.version>1.2.0</javax.activation-api.version>
     <!-- Dropwizard 4 runs on the jakarta-era logging stack: logback 1.5.x + slf4j 2.0.x
          (logback 1.4+ ships the slf4j 2.0 ServiceLoader provider). The former logback 1.2.13 /
          slf4j 1.7.36 pins made DropwizardLayout fail at boot with NoSuchMethodError on
@@ -106,6 +123,8 @@
     <maven.clean.plugin.version>3.3.1</maven.clean.plugin.version>
     <maven.site.plugin.version>3.12.1</maven.site.plugin.version>
     <jaxb2.maven.plugin.version>3.1.0</jaxb2.maven.plugin.version>
+    <jvnet.jaxb.maven.plugin.version>4.0.16</jvnet.jaxb.maven.plugin.version>
+    <spotless.maven.plugin.version>2.43.0</spotless.maven.plugin.version>
     <maven.source.plugin.version>3.3.0</maven.source.plugin.version>
     <maven.nexus-staging.plugin.version>1.6.13</maven.nexus-staging.plugin.version>
     <maven.release.plugin.version>2.5.3</maven.release.plugin.version>
@@ -113,6 +132,33 @@
     <java.version>17</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <!-- Versions of artifacts that reach this estate only transitively. Each one resolved to more
+         than one version across the build before it was managed here, meaning the choice fell to
+         whichever upstream pom happened to sit nearest. Managed so that an upstream release cannot
+         move a shipped artifact on its own. -->
+    <transitive.netty.version>4.1.115.Final</transitive.netty.version>
+    <transitive.lucene.version>9.12.1</transitive.lucene.version>
+    <transitive.jersey.version>3.0.18</transitive.jersey.version>
+    <transitive.hk2-locator.version>3.0.6</transitive.hk2-locator.version>
+    <transitive.caffeine.version>3.2.3</transitive.caffeine.version>
+    <transitive.classmate.version>1.7.3</transitive.classmate.version>
+    <transitive.zstd-jni.version>1.5.5-5</transitive.zstd-jni.version>
+    <transitive.error-prone-annotations.version>2.47.0</transitive.error-prone-annotations.version>
+    <transitive.protobuf-java.version>3.25.5</transitive.protobuf-java.version>
+    <transitive.istack-commons-runtime.version>4.1.2</transitive.istack-commons-runtime.version>
+    <transitive.commons-logging.version>1.3.5</transitive.commons-logging.version>
+    <transitive.reactor-core.version>3.5.20</transitive.reactor-core.version>
+    <transitive.jakarta-activation-api.version>2.1.4</transitive.jakarta-activation-api.version>
+    <transitive.jakarta-inject-api.version>2.0.1.MR</transitive.jakarta-inject-api.version>
+    <!-- Mockito 5.23.0 declares Byte Buddy 1.17.7, close enough to the 1.18.4 selected by
+         dropwizard-hibernate to share one tested implementation. Keep the core and agent
+         together: Mockito's inline mock maker uses both, and a mismatch can leave stubbing
+         silently inert. -->
+    <transitive.byte-buddy.version>1.18.4</transitive.byte-buddy.version>
+    <transitive.commons-compress.version>1.28.0</transitive.commons-compress.version>
+    <transitive.angus-activation.version>2.0.3</transitive.angus-activation.version>
+    <transitive.jandex.version>2.4.3.Final</transitive.jandex.version>
+    <transitive.asm.version>9.4</transitive.asm.version>
   </properties>
   <distributionManagement>
     <snapshotRepository>
@@ -429,6 +475,96 @@
         <groupId>org.hamcrest</groupId>
         <artifactId>hamcrest</artifactId>
         <version>${org.hamcrest.core.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-core</artifactId>
+        <version>${org.mockito.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.github.codemonstur</groupId>
+        <artifactId>embedded-redis</artifactId>
+        <version>${com.github.codemonstur.embedded-redis.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>ch.vorburger.mariaDB4j</groupId>
+        <artifactId>mariaDB4j</artifactId>
+        <version>${ch.vorburger.mariadb4j.version}</version>
+      </dependency>
+      <!--
+        The platform database binaries, selected by an OS-activated profile in each consumer, since
+        profiles do not travel with dependencies. Their version is the database, not the mariaDB4j
+        wrapper, so it moves independently.
+      -->
+      <dependency>
+        <groupId>ch.vorburger.mariaDB4j</groupId>
+        <artifactId>mariaDB4j-db-macos-arm64</artifactId>
+        <version>${ch.vorburger.mariadb4j.db.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>ch.vorburger.mariaDB4j</groupId>
+        <artifactId>mariaDB4j-db-linux64</artifactId>
+        <version>${ch.vorburger.mariadb4j.db.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>ch.vorburger.mariaDB4j</groupId>
+        <artifactId>mariaDB4j-db-winx64</artifactId>
+        <version>${ch.vorburger.mariadb4j.db.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>de.flapdoodle.embed</groupId>
+        <artifactId>de.flapdoodle.embed.mongo</artifactId>
+        <version>${de.flapdoodle.embed.mongo.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.neo4j.test</groupId>
+        <artifactId>neo4j-harness</artifactId>
+        <version>${org.neo4j.test.neo4j-harness.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jspecify</groupId>
+        <artifactId>jspecify</artifactId>
+        <version>${org.jspecify.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.sun.xml.bind</groupId>
+        <artifactId>jaxb-core</artifactId>
+        <version>${com.sun.xml.bind.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.sun.xml.bind</groupId>
+        <artifactId>jaxb-impl</artifactId>
+        <version>${com.sun.xml.bind.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>javax.xml.bind</groupId>
+        <artifactId>jaxb-api</artifactId>
+        <version>${javax.xml.bind.jaxb-api.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>javax.activation</groupId>
+        <artifactId>javax.activation-api</artifactId>
+        <version>${javax.activation-api.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-simple</artifactId>
+        <version>${slf4j.version}</version>
+      </dependency>
+      <!--
+        The queue-service test fixture (EmbeddedRedis, QueueTestConfig), shared by every library and
+        server that owns a queue service. Managed separately from the library's own jar because
+        dependency management keys on the type as well as the coordinates, so the entry above for
+        cedar-queue-operations-library does not cover its test-jar.
+      -->
+      <dependency>
+        <groupId>org.metadatacenter</groupId>
+        <artifactId>cedar-queue-operations-library</artifactId>
+        <version>${cedar.version}</version>
+        <type>test-jar</type>
         <scope>test</scope>
       </dependency>
       <dependency>
@@ -919,6 +1055,188 @@
         <artifactId>sqlite-jdbc</artifactId>
         <version>${org.xerial.sqlite-jdbc.version}</version>
       </dependency>
+      <!-- Transitive-only artifacts, pinned so every module resolves one version. See the
+           matching properties above. -->
+      <dependency>
+        <groupId>net.bytebuddy</groupId>
+        <artifactId>byte-buddy</artifactId>
+        <version>${transitive.byte-buddy.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>net.bytebuddy</groupId>
+        <artifactId>byte-buddy-agent</artifactId>
+        <version>${transitive.byte-buddy.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.netty</groupId>
+        <artifactId>netty-buffer</artifactId>
+        <version>${transitive.netty.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.netty</groupId>
+        <artifactId>netty-codec</artifactId>
+        <version>${transitive.netty.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.netty</groupId>
+        <artifactId>netty-codec-http</artifactId>
+        <version>${transitive.netty.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.netty</groupId>
+        <artifactId>netty-common</artifactId>
+        <version>${transitive.netty.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.netty</groupId>
+        <artifactId>netty-handler</artifactId>
+        <version>${transitive.netty.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.netty</groupId>
+        <artifactId>netty-resolver</artifactId>
+        <version>${transitive.netty.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.netty</groupId>
+        <artifactId>netty-transport</artifactId>
+        <version>${transitive.netty.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.netty</groupId>
+        <artifactId>netty-transport-native-unix-common</artifactId>
+        <version>${transitive.netty.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.lucene</groupId>
+        <artifactId>lucene-analysis-common</artifactId>
+        <version>${transitive.lucene.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.lucene</groupId>
+        <artifactId>lucene-backward-codecs</artifactId>
+        <version>${transitive.lucene.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.lucene</groupId>
+        <artifactId>lucene-core</artifactId>
+        <version>${transitive.lucene.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.lucene</groupId>
+        <artifactId>lucene-queryparser</artifactId>
+        <version>${transitive.lucene.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.glassfish.jersey.containers</groupId>
+        <artifactId>jersey-container-servlet</artifactId>
+        <version>${transitive.jersey.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.glassfish.jersey.inject</groupId>
+        <artifactId>jersey-hk2</artifactId>
+        <version>${transitive.jersey.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.glassfish.hk2</groupId>
+        <artifactId>hk2-locator</artifactId>
+        <version>${transitive.hk2-locator.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-http</artifactId>
+        <version>${org.eclipse.jetty.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-server</artifactId>
+        <version>${org.eclipse.jetty.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.jakarta.rs</groupId>
+        <artifactId>jackson-jakarta-rs-base</artifactId>
+        <version>${jackson.core.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.module</groupId>
+        <artifactId>jackson-module-jakarta-xmlbind-annotations</artifactId>
+        <version>${jackson.core.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>jcl-over-slf4j</artifactId>
+        <version>${slf4j.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.github.ben-manes.caffeine</groupId>
+        <artifactId>caffeine</artifactId>
+        <version>${transitive.caffeine.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml</groupId>
+        <artifactId>classmate</artifactId>
+        <version>${transitive.classmate.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.github.luben</groupId>
+        <artifactId>zstd-jni</artifactId>
+        <version>${transitive.zstd-jni.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.google.errorprone</groupId>
+        <artifactId>error_prone_annotations</artifactId>
+        <version>${transitive.error-prone-annotations.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.google.protobuf</groupId>
+        <artifactId>protobuf-java</artifactId>
+        <version>${transitive.protobuf-java.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.sun.istack</groupId>
+        <artifactId>istack-commons-runtime</artifactId>
+        <version>${transitive.istack-commons-runtime.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>commons-logging</groupId>
+        <artifactId>commons-logging</artifactId>
+        <version>${transitive.commons-logging.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.projectreactor</groupId>
+        <artifactId>reactor-core</artifactId>
+        <version>${transitive.reactor-core.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.activation</groupId>
+        <artifactId>jakarta.activation-api</artifactId>
+        <version>${transitive.jakarta-activation-api.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.inject</groupId>
+        <artifactId>jakarta.inject-api</artifactId>
+        <version>${transitive.jakarta-inject-api.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-compress</artifactId>
+        <version>${transitive.commons-compress.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.eclipse.angus</groupId>
+        <artifactId>angus-activation</artifactId>
+        <version>${transitive.angus-activation.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss</groupId>
+        <artifactId>jandex</artifactId>
+        <version>${transitive.jandex.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.ow2.asm</groupId>
+        <artifactId>asm</artifactId>
+        <version>${transitive.asm.version}</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
   <build>
@@ -951,6 +1269,26 @@
     </plugins>
     <pluginManagement>
       <plugins>
+        <!-- Generates Java classes from XML Schema for the impex and submission servers. The 4.x
+             jvnet plugin emits the jakarta.xml.bind namespace; the retired org.jvnet.jaxb2.maven2
+             plugin emitted javax.xml.bind and needed a jaxb-runtime held back to 2.3.x. -->
+        <plugin>
+          <groupId>org.jvnet.jaxb</groupId>
+          <artifactId>jaxb-maven-plugin</artifactId>
+          <version>${jvnet.jaxb.maven.plugin.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>com.diffplug.spotless</groupId>
+          <artifactId>spotless-maven-plugin</artifactId>
+          <version>${spotless.maven.plugin.version}</version>
+        </plugin>
+        <!-- Generates the OpenAPI description each server publishes; the version tracks the
+             swagger-core artifacts the servers compile against. -->
+        <plugin>
+          <groupId>io.swagger.core.v3</groupId>
+          <artifactId>swagger-maven-plugin-jakarta</artifactId>
+          <version>${swagger.version}</version>
+        </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
