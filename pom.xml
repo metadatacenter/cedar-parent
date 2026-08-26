@@ -26,7 +26,7 @@
     <!-- Held at 2.18.3, not databind's latest (2.22.x): this one property drives every Jackson
          artifact, and jackson-annotations' 2.x line lags databind, so a shared 2.22.x does not
          resolve. A Jackson bump means aligning each artifact, and belongs with the Dropwizard upgrade. -->
-    <jackson.core.version>2.18.3</jackson.core.version>
+    <jackson.core.version>2.18.8</jackson.core.version>
     <networknt.json.schema.validator.version>1.5.9</networknt.json.schema.validator.version>
     <resteasy.version>6.2.4.Final</resteasy.version>
     <google-guava.version>33.6.0-jre</google-guava.version>
