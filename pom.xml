@@ -22,7 +22,7 @@
     <redis.clients.jedis.version>5.2.0</redis.clients.jedis.version>
     <jsonld.version>0.13.6</jsonld.version>
     <swagger.version>2.2.52</swagger.version>
-    <org.eclipse.jetty.version>11.0.26</org.eclipse.jetty.version>
+    <org.eclipse.jetty.version>12.0.12</org.eclipse.jetty.version>
     <!-- Held at 2.18.3, not databind's latest (2.22.x): this one property drives every Jackson
          artifact, and jackson-annotations' 2.x line lags databind, so a shared 2.22.x does not
          resolve. A Jackson bump means aligning each artifact, and belongs with the Dropwizard upgrade. -->
