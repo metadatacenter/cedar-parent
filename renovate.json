@@ -19,6 +19,15 @@
   "minimumReleaseAge": "14 days",
   "packageRules": [
     {
+      "description": "Use the CEDAR Nexus pull-through proxy so hosted Renovate is not exposed to Maven Central's shared-IP rate limit.",
+      "matchDatasources": [
+        "maven"
+      ],
+      "registryUrls": [
+        "https://nexus.bmir.stanford.edu/repository/maven-public/"
+      ]
+    },
+    {
       "description": "Never rewrite the CEDAR reactor/train version or another internal CEDAR artifact.",
       "matchPackageNames": [
         "/^org\\.metadatacenter:/"
