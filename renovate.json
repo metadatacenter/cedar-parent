@@ -1,6 +1,97 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:recommended"
-  ]
+    "config:recommended",
+    ":semanticCommitsDisabled"
+  ],
+  "description": "Review-only dependency updates for the CEDAR Maven parent. Internal CEDAR versions remain controlled by the immutable build train.",
+  "labels": [
+    "dependencies"
+  ],
+  "dependencyDashboard": true,
+  "dependencyDashboardTitle": "Dependency Dashboard",
+  "automerge": false,
+  "prConcurrentLimit": 4,
+  "prHourlyLimit": 2,
+  "minimumReleaseAge": "14 days",
+  "packageRules": [
+    {
+      "description": "Never rewrite the CEDAR reactor/train version or another internal CEDAR artifact.",
+      "matchPackageNames": [
+        "/^org\\.metadatacenter:/"
+      ],
+      "matchDepNames": [
+        "/^org\\.metadatacenter:/",
+        "/^cedar-/"
+      ],
+      "enabled": false
+    },
+    {
+      "description": "Major platform upgrades require an explicit operator decision in the Dependency Dashboard.",
+      "matchUpdateTypes": [
+        "major"
+      ],
+      "dependencyDashboardApproval": true
+    },
+    {
+      "description": "Keycloak client versions are coupled to CEDAR authentication code and server migration planning.",
+      "matchPackageNames": [
+        "/^org\\.keycloak:/"
+      ],
+      "groupName": "Keycloak clients",
+      "dependencyDashboardApproval": true
+    },
+    {
+      "description": "Jackson artifacts must move together and remain compatible with the selected Dropwizard line.",
+      "matchPackageNames": [
+        "/^com\\.fasterxml\\.jackson[.:]/"
+      ],
+      "groupName": "Jackson",
+      "dependencyDashboardApproval": true
+    },
+    {
+      "description": "Dropwizard and its Metrics modules are one tested runtime platform.",
+      "matchPackageNames": [
+        "/^io\\.dropwizard[.:]/"
+      ],
+      "groupName": "Dropwizard platform"
+    },
+    {
+      "description": "Keep SLF4J, Logback, and Log4j changes reviewable as one logging-stack update.",
+      "matchPackageNames": [
+        "/^org\\.slf4j:/",
+        "/^ch\\.qos\\.logback:/",
+        "/^org\\.apache\\.logging\\.log4j:/"
+      ],
+      "groupName": "logging stack"
+    },
+    {
+      "description": "Dropwizard 4 still references a Logback API removed in Logback 1.6.",
+      "matchPackageNames": [
+        "/^ch\\.qos\\.logback:/"
+      ],
+      "allowedVersions": "<1.6.0"
+    },
+    {
+      "description": "neo4j-harness 5.3.0 is deliberately held for OpenSearch/Lucene test-classpath compatibility.",
+      "matchPackageNames": [
+        "org.neo4j.test:neo4j-harness"
+      ],
+      "allowedVersions": "<=5.3.0"
+    },
+    {
+      "description": "Keep the Maven build plugins in a small number of reviewable maintenance pull requests.",
+      "matchPackageNames": [
+        "/^org\\.apache\\.maven\\.plugins:/",
+        "/^org\\.codehaus\\.mojo:/",
+        "com.diffplug.spotless:spotless-maven-plugin"
+      ],
+      "groupName": "Maven build plugins"
+    }
+  ],
+  "vulnerabilityAlerts": {
+    "labels": [
+      "security"
+    ]
+  }
 }
