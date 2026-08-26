@@ -16,7 +16,7 @@
     <keycloak.version>22.0.4</keycloak.version>
     <keycloak-admin-client-jakarta.version>21.1.2</keycloak-admin-client-jakarta.version>
     <opensearch.version>2.19.2</opensearch.version>
-    <org.neo4j.driver.version>5.4.0</org.neo4j.driver.version>
+    <org.neo4j.driver.version>5.28.14</org.neo4j.driver.version>
     <mysql.connector.j.version>8.4.0</mysql.connector.j.version>
     <org.xerial.sqlite-jdbc.version>3.53.2.1</org.xerial.sqlite-jdbc.version>
     <redis.clients.jedis.version>5.2.0</redis.clients.jedis.version>
@@ -67,10 +67,15 @@
     <junit.jupiter.version>5.11.3</junit.jupiter.version>
     <org.hamcrest.core.version>2.2</org.hamcrest.core.version>
     <org.mockito.version>5.23.0</org.mockito.version>
-    <!-- The embedded backends the backend-free suites run against. A real redis-server, mongod,
-         MariaDB and Neo4j, so the tests exercise real engine semantics without anything running.
-         Redis 6.2.6 tracks the deployed 6.2.7 (cedar-docker-build/cedar-infra-redis-persistent);
-         neo4j-harness tracks the deployed Neo4j server (cedar-infra-neo4j), not the driver. -->
+    <!-- The embedded backends the backend-free suites run against. neo4j-harness remains at 5.3.0:
+         5.26.0 brings Lucene 9.11.1, whose Lucene99Codec layout is incompatible with OpenSearch's
+         parent-managed Lucene 9.12.1 on the shared server test classpath; the harness fails before
+         the database starts. The independently versioned driver stays on its compatible 5.28
+         maintenance line. embedded-redis 1.4.3 bundles Redis 6.2.x and has no Redis 7.2 binary.
+         These suites therefore provide backend-free graph, command, and queue coverage, not deployed
+         Neo4j 5.26.0 / Redis 7.2.7 parity; those semantics require the real-stack smoke until the
+         helpers are isolated or replaced. Flapdoodle and MariaDB4j provide the Mongo and MariaDB
+         test engines. -->
     <com.github.codemonstur.embedded-redis.version>1.4.3</com.github.codemonstur.embedded-redis.version>
     <ch.vorburger.mariadb4j.version>3.2.0</ch.vorburger.mariadb4j.version>
     <ch.vorburger.mariadb4j.db.version>11.4.5</ch.vorburger.mariadb4j.db.version>
