@@ -818,11 +818,6 @@
       </dependency>
       <dependency>
         <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-rest-library</artifactId>
-        <version>${cedar.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.metadatacenter</groupId>
         <artifactId>cedar-config-library</artifactId>
         <version>${cedar.version}</version>
       </dependency>
