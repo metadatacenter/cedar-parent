@@ -50,9 +50,12 @@
       "dependencyDashboardApproval": true
     },
     {
-      "description": "Dropwizard and its Metrics modules are one tested runtime platform.",
+      "description": "Dropwizard, Metrics, Jetty, Jersey, and Hibernate are one tested runtime platform and must move together.",
       "matchPackageNames": [
-        "/^io\\.dropwizard[.:]/"
+        "/^io\\.dropwizard[.:]/",
+        "/^org\\.eclipse\\.jetty:/",
+        "/^org\\.glassfish\\.jersey[.:]/",
+        "/^org\\.hibernate[.:]/"
       ],
       "groupName": "Dropwizard platform"
     },

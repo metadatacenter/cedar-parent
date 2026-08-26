@@ -19,6 +19,39 @@ concurrency:
   cancel-in-progress: ${{ github.event_name != 'push' }}
 
 jobs:
+  # A dependency bot sees the Maven client and Docker server versions as unrelated updates. Check
+  # the proposed cedar-parent revision against the server versions on cedar-docker-build/develop so
+  # a client-only pull request cannot break a compatibility pair without saying so.
+  pairing:
+    name: Check client versions still pair with their servers
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out cedar-parent
+        uses: actions/checkout@v7
+        with:
+          path: CEDAR/cedar-parent
+
+      - name: Check out cedar-development
+        uses: actions/checkout@v7
+        with:
+          repository: metadatacenter/cedar-development
+          ref: develop
+          path: CEDAR/cedar-development
+
+      - name: Check out cedar-docker-build
+        uses: actions/checkout@v7
+        with:
+          repository: metadatacenter/cedar-docker-build
+          ref: develop
+          path: CEDAR/cedar-docker-build
+
+      - name: Compare each pair
+        shell: bash
+        run: |
+          export CEDAR_HOME="${GITHUB_WORKSPACE}/CEDAR"
+          "${CEDAR_HOME}/cedar-development/ops/check_version_pairing.py"
+
   test:
     name: Maven verify (Java 17)
     runs-on: ubuntu-latest
