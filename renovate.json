@@ -5,6 +5,9 @@
     ":semanticCommitsDisabled"
   ],
   "description": "Review-only dependency updates for the CEDAR Maven parent. Internal CEDAR versions remain controlled by the immutable build train.",
+  "baseBranchPatterns": [
+    "develop"
+  ],
   "labels": [
     "dependencies"
   ],
