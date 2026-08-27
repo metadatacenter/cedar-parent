@@ -1313,6 +1313,23 @@
               <include>**/*Spec.java</include>
               <include>**/*Test.java</include>
             </includes>
+            <systemPropertyVariables>
+              <!-- Backend-free server tests have no application-log Redis. Queue behavior is
+                   covered separately against embedded Redis; avoid one network timeout for every
+                   HTTP and Cypher log event in every other test JVM. -->
+              <cedar.test.suppressAppLogQueue>true</cedar.test.suppressAppLogQueue>
+              <!-- Production drivers retain their defaults. Outage tests need the same exception
+                   path, not thirty seconds of retry/backoff before reaching it. -->
+              <cedar.test.dependencyTimeoutMillis>1000</cedar.test.dependencyTimeoutMillis>
+            </systemPropertyVariables>
+            <environmentVariables>
+              <!-- Never inherit a developer profile's remote Redis address in a backend-free
+                   suite. Tests that exercise a queue construct their own embedded-Redis config. -->
+              <CEDAR_REDIS_PERSISTENT_HOST>127.0.0.1</CEDAR_REDIS_PERSISTENT_HOST>
+              <CEDAR_REDIS_PERSISTENT_PORT>1</CEDAR_REDIS_PERSISTENT_PORT>
+              <CEDAR_REDIS_NONPERSISTENT_HOST>127.0.0.1</CEDAR_REDIS_NONPERSISTENT_HOST>
+              <CEDAR_REDIS_NONPERSISTENT_PORT>1</CEDAR_REDIS_NONPERSISTENT_PORT>
+            </environmentVariables>
           </configuration>
         </plugin>
         <plugin>
