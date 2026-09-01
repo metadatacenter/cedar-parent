@@ -22,7 +22,7 @@
     <redis.clients.jedis.version>5.2.0</redis.clients.jedis.version>
     <jsonld.version>0.13.6</jsonld.version>
     <swagger.version>2.2.52</swagger.version>
-    <org.eclipse.jetty.version>12.1.9</org.eclipse.jetty.version>
+    <org.eclipse.jetty.version>12.1.10</org.eclipse.jetty.version>
     <!-- Keep every Jackson artifact on the version in the Dropwizard 5.0.2 dependency bundle. -->
     <jackson.core.version>2.21.4</jackson.core.version>
     <networknt.json.schema.validator.version>1.5.9</networknt.json.schema.validator.version>
