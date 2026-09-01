@@ -120,6 +120,7 @@
     <jaxb2.maven.plugin.version>3.1.0</jaxb2.maven.plugin.version>
     <jvnet.jaxb.maven.plugin.version>4.0.16</jvnet.jaxb.maven.plugin.version>
     <spotless.maven.plugin.version>2.43.0</spotless.maven.plugin.version>
+    <maven.jar.plugin.version>3.5.0</maven.jar.plugin.version>
     <maven.source.plugin.version>3.3.0</maven.source.plugin.version>
     <maven.central-publishing.plugin.version>0.11.0</maven.central-publishing.plugin.version>
     <maven.release.plugin.version>2.5.3</maven.release.plugin.version>
@@ -1241,6 +1242,11 @@
               <CEDAR_REDIS_NONPERSISTENT_PORT>1</CEDAR_REDIS_NONPERSISTENT_PORT>
             </environmentVariables>
           </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>${maven.jar.plugin.version}</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
