@@ -1238,8 +1238,6 @@
                    suite. Tests that exercise a queue construct their own embedded-Redis config. -->
               <CEDAR_REDIS_PERSISTENT_HOST>127.0.0.1</CEDAR_REDIS_PERSISTENT_HOST>
               <CEDAR_REDIS_PERSISTENT_PORT>1</CEDAR_REDIS_PERSISTENT_PORT>
-              <CEDAR_REDIS_NONPERSISTENT_HOST>127.0.0.1</CEDAR_REDIS_NONPERSISTENT_HOST>
-              <CEDAR_REDIS_NONPERSISTENT_PORT>1</CEDAR_REDIS_NONPERSISTENT_PORT>
             </environmentVariables>
           </configuration>
         </plugin>
