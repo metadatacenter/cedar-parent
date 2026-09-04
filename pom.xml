@@ -153,7 +153,7 @@
     <transitive.byte-buddy.version>1.18.13-jdk5</transitive.byte-buddy.version>
     <transitive.commons-compress.version>1.28.0</transitive.commons-compress.version>
     <transitive.angus-activation.version>2.0.3</transitive.angus-activation.version>
-    <transitive.jandex.version>2.4.3.Final</transitive.jandex.version>
+    <transitive.jandex.version>3.3.1</transitive.jandex.version>
     <transitive.asm.version>9.10.1</transitive.asm.version>
   </properties>
   <distributionManagement>
