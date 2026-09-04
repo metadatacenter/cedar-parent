@@ -86,7 +86,7 @@
     <javax.activation-api.version>1.2.0</javax.activation-api.version>
     <!-- Versions match the Dropwizard 5.0.2 dependency bundle. -->
     <slf4j.version>2.0.18</slf4j.version>
-    <logback.version>1.5.33</logback.version>
+    <logback.version>1.5.38</logback.version>
     <jboss.logging>3.6.3.Final</jboss.logging>
     <log4j.version>2.24.3</log4j.version>
     <org.yaml.snakeyaml.version>2.6</org.yaml.snakeyaml.version>
