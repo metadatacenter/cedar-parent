@@ -56,7 +56,7 @@
     <jakarta.servlet-api.version>6.0.0</jakarta.servlet-api.version>
     <jakarta.validation-api.version>3.0.2</jakarta.validation-api.version>
     <jakarta.xml.bind-api.version>4.0.5</jakarta.xml.bind-api.version>
-    <com.jayway.jsonpath.version>2.9.0</com.jayway.jsonpath.version>
+    <com.jayway.jsonpath.version>3.0.0</com.jayway.jsonpath.version>
     <org.javassist.version>3.33.0-GA</org.javassist.version>
     <net.sourceforge.owlapi.version>4.5.9</net.sourceforge.owlapi.version>
     <me.xdrop.fuzzywuzzy.version>1.4.0</me.xdrop.fuzzywuzzy.version>
@@ -104,7 +104,6 @@
     <maven.resources.plugin.version>3.3.1</maven.resources.plugin.version>
     <maven.install.plugin.version>3.1.1</maven.install.plugin.version>
     <maven.javadoc.plugin.version>3.12.0</maven.javadoc.plugin.version>
-    <maven.scm.gitexe.version>1.11.1</maven.scm.gitexe.version>
     <maven.failsafe.plugin.version>3.6.0</maven.failsafe.plugin.version>
     <maven.shade.plugin.version>3.6.2</maven.shade.plugin.version>
     <log4j.transform.shade.extensions.version>0.2.0</log4j.transform.shade.extensions.version>
@@ -123,7 +122,6 @@
     <maven.jar.plugin.version>3.5.0</maven.jar.plugin.version>
     <maven.source.plugin.version>3.3.0</maven.source.plugin.version>
     <maven.central-publishing.plugin.version>0.11.0</maven.central-publishing.plugin.version>
-    <maven.release.plugin.version>2.5.3</maven.release.plugin.version>
     <maven.gpg.plugin.version>3.0.1</maven.gpg.plugin.version>
     <java.version>17</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -1202,18 +1200,6 @@
             <source>${java.version}</source>
             <target>${java.version}</target>
           </configuration>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-release-plugin</artifactId>
-          <version>${maven.release.plugin.version}</version>
-          <dependencies>
-            <dependency>
-              <groupId>org.apache.maven.scm</groupId>
-              <artifactId>maven-scm-provider-git-commons</artifactId>
-              <version>${maven.scm.gitexe.version}</version>
-            </dependency>
-          </dependencies>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
