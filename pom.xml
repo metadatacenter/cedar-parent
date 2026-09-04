@@ -11,28 +11,28 @@
   <properties>
     <cedar.version>2.9.8-SNAPSHOT</cedar.version>
     <dropwizard.version>5.0.2</dropwizard.version>
-    <dropwizard.metrics.version>4.2.39</dropwizard.metrics.version>
+    <dropwizard.metrics.version>4.2.40</dropwizard.metrics.version>
     <mongodb.version>5.1.2</mongodb.version>
     <keycloak.version>22.0.4</keycloak.version>
     <keycloak-admin-client-jakarta.version>21.1.2</keycloak-admin-client-jakarta.version>
     <opensearch.version>2.19.2</opensearch.version>
     <org.neo4j.driver.version>5.28.14</org.neo4j.driver.version>
     <mysql.connector.j.version>8.4.0</mysql.connector.j.version>
-    <org.xerial.sqlite-jdbc.version>3.53.2.1</org.xerial.sqlite-jdbc.version>
+    <org.xerial.sqlite-jdbc.version>3.53.4.0</org.xerial.sqlite-jdbc.version>
     <redis.clients.jedis.version>5.2.0</redis.clients.jedis.version>
     <jsonld.version>0.13.6</jsonld.version>
-    <swagger.version>2.2.52</swagger.version>
-    <org.eclipse.jetty.version>12.1.9</org.eclipse.jetty.version>
+    <swagger.version>2.2.55</swagger.version>
+    <org.eclipse.jetty.version>12.1.12</org.eclipse.jetty.version>
     <!-- Keep every Jackson artifact on the version in the Dropwizard 5.0.2 dependency bundle. -->
-    <jackson.core.version>2.21.4</jackson.core.version>
+    <jackson.core.version>2.22.2</jackson.core.version>
     <networknt.json.schema.validator.version>1.5.9</networknt.json.schema.validator.version>
     <resteasy.version>6.2.4.Final</resteasy.version>
-    <google-guava.version>33.6.0-jre</google-guava.version>
+    <google-guava.version>33.7.1-jre</google-guava.version>
     <weka.version>3.8.7</weka.version>
     <org.glassfish.jaxb.jaxb-runtime.version>4.0.9</org.glassfish.jaxb.jaxb-runtime.version>
     <commons.io.version>2.22.0</commons.io.version>
     <commons.lang3.version>3.20.0</commons.lang3.version>
-    <commons.codec.version>1.22.0</commons.codec.version>
+    <commons.codec.version>1.22.1</commons.codec.version>
     <commons.text.version>1.15.0</commons.text.version>
     <!-- Aligned with the Dropwizard 5.0.2 dependency bundle. -->
     <apache.httpcomponents.core.version>5.4.2</apache.httpcomponents.core.version>
@@ -46,7 +46,7 @@
     <apache.commons.fileupload2.version>2.0.0-M5</apache.commons.fileupload2.version>
     <apache.commons.net.version>3.13.0</apache.commons.net.version>
     <apache.commons.cli.version>1.11.0</apache.commons.cli.version>
-    <apache.commons.validator.version>1.10.1</apache.commons.validator.version>
+    <apache.commons.validator.version>1.11.0</apache.commons.validator.version>
     <apache.poi.version>5.5.1</apache.poi.version>
     <java.dev.jna.version>5.19.1</java.dev.jna.version>
     <javax.ws-api.version>2.3.1</javax.ws-api.version>
@@ -57,7 +57,7 @@
     <jakarta.validation-api.version>3.0.2</jakarta.validation-api.version>
     <jakarta.xml.bind-api.version>4.0.5</jakarta.xml.bind-api.version>
     <com.jayway.jsonpath.version>2.9.0</com.jayway.jsonpath.version>
-    <org.javassist.version>3.32.0-GA</org.javassist.version>
+    <org.javassist.version>3.33.0-GA</org.javassist.version>
     <net.sourceforge.owlapi.version>4.5.9</net.sourceforge.owlapi.version>
     <me.xdrop.fuzzywuzzy.version>1.4.0</me.xdrop.fuzzywuzzy.version>
     <junit.jupiter.version>5.11.3</junit.jupiter.version>
@@ -89,7 +89,7 @@
     <logback.version>1.5.33</logback.version>
     <jboss.logging>3.6.3.Final</jboss.logging>
     <log4j.version>2.24.3</log4j.version>
-    <org.yaml.snakeyaml.version>2.6</org.yaml.snakeyaml.version>
+    <org.yaml.snakeyaml.version>2.7</org.yaml.snakeyaml.version>
     <google.code.findbugs.version>3.0.2</google.code.findbugs.version>
     <maven.version>3.0.5</maven.version>
     <maven.enforcer.plugin.version>3.2.1</maven.enforcer.plugin.version>
