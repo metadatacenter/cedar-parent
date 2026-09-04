@@ -1218,6 +1218,17 @@
               <!-- Production drivers retain their defaults. Outage tests need the same exception
                    path, not thirty seconds of retry/backoff before reaching it. -->
               <cedar.test.dependencyTimeoutMillis>1000</cedar.test.dependencyTimeoutMillis>
+              <!-- A test class holds one HTTP client for its whole run, so its requests reuse
+                   pooled connections, and a connection the server has already closed can still be
+                   handed to the next one. The client only drops such a connection once its selector
+                   thread has processed the close, and under a full reactor's load that thread is
+                   slow enough for the next request to be written first, into a socket the server
+                   has finished with. The JDK resends in that case for GET and HEAD alone, so a POST
+                   or a PUT surfaces an IOException about an empty response stream instead of the
+                   status the test asserts. This lifts the method restriction; the condition itself
+                   is unchanged and stays narrow, since the JDK raises it only for a connection that
+                   came from the pool and produced no response bytes at all. -->
+              <jdk.httpclient.enableAllMethodRetry>true</jdk.httpclient.enableAllMethodRetry>
             </systemPropertyVariables>
             <environmentVariables>
               <!-- Never inherit a developer profile's remote Redis address in a backend-free
