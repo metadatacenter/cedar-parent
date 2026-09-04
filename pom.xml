@@ -140,7 +140,7 @@
     <transitive.classmate.version>1.7.3</transitive.classmate.version>
     <transitive.zstd-jni.version>1.5.7-16</transitive.zstd-jni.version>
     <transitive.error-prone-annotations.version>2.50.0</transitive.error-prone-annotations.version>
-    <transitive.protobuf-java.version>3.25.5</transitive.protobuf-java.version>
+    <transitive.protobuf-java.version>3.25.9</transitive.protobuf-java.version>
     <transitive.istack-commons-runtime.version>4.2.0</transitive.istack-commons-runtime.version>
     <transitive.commons-logging.version>1.4.0</transitive.commons-logging.version>
     <transitive.reactor-core.version>3.5.20</transitive.reactor-core.version>
