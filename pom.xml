@@ -88,7 +88,7 @@
     <slf4j.version>2.0.18</slf4j.version>
     <logback.version>1.5.33</logback.version>
     <jboss.logging>3.6.3.Final</jboss.logging>
-    <log4j.version>2.24.3</log4j.version>
+    <log4j.version>2.25.5</log4j.version>
     <org.yaml.snakeyaml.version>2.7</org.yaml.snakeyaml.version>
     <google.code.findbugs.version>3.0.2</google.code.findbugs.version>
     <maven.version>3.0.5</maven.version>
