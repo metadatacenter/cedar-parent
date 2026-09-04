@@ -132,7 +132,7 @@
          than one version across the build before it was managed here, meaning the choice fell to
          whichever upstream pom happened to sit nearest. Managed so that an upstream release cannot
          move a shipped artifact on its own. -->
-    <transitive.netty.version>4.1.115.Final</transitive.netty.version>
+    <transitive.netty.version>4.1.136.Final</transitive.netty.version>
     <transitive.lucene.version>9.12.1</transitive.lucene.version>
     <transitive.jersey.version>3.1.11</transitive.jersey.version>
     <transitive.hk2-locator.version>3.0.6</transitive.hk2-locator.version>
