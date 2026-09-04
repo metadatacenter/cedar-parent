@@ -35,7 +35,7 @@
     <commons.codec.version>1.22.0</commons.codec.version>
     <commons.text.version>1.15.0</commons.text.version>
     <!-- Aligned with the Dropwizard 5.0.2 dependency bundle. -->
-    <apache.httpcomponents.core.version>5.4.2</apache.httpcomponents.core.version>
+    <apache.httpcomponents.core.version>5.4.3</apache.httpcomponents.core.version>
     <apache.httpcomponents.httpclient.version>5.6.1</apache.httpcomponents.httpclient.version>
     <apache.httpcomponents.httpclient-fluent.version>5.6.1</apache.httpcomponents.httpclient-fluent.version>
     <!-- HttpClient 4, kept only for the OpenSearch REST client and jsonld-java. These match the
