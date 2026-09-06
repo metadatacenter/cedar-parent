@@ -225,6 +225,19 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
+      <!--
+        Aligns every io.netty artifact, the platform-classified epoll and kqueue natives included.
+        Managing only the core modules left those natives at the 4.1.84 that neo4j-harness declares,
+        under 4.1.115 classes that call a JNI symbol the older library lacks; on Linux the embedded
+        Neo4j then terminated Bolt connections while writing a result.
+      -->
+      <dependency>
+        <groupId>io.netty</groupId>
+        <artifactId>netty-bom</artifactId>
+        <version>${transitive.netty.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
       <dependency>
         <groupId>org.slf4j</groupId>
         <artifactId>slf4j-api</artifactId>
@@ -979,46 +992,6 @@
         <groupId>net.bytebuddy</groupId>
         <artifactId>byte-buddy-agent</artifactId>
         <version>${transitive.byte-buddy.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>io.netty</groupId>
-        <artifactId>netty-buffer</artifactId>
-        <version>${transitive.netty.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>io.netty</groupId>
-        <artifactId>netty-codec</artifactId>
-        <version>${transitive.netty.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>io.netty</groupId>
-        <artifactId>netty-codec-http</artifactId>
-        <version>${transitive.netty.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>io.netty</groupId>
-        <artifactId>netty-common</artifactId>
-        <version>${transitive.netty.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>io.netty</groupId>
-        <artifactId>netty-handler</artifactId>
-        <version>${transitive.netty.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>io.netty</groupId>
-        <artifactId>netty-resolver</artifactId>
-        <version>${transitive.netty.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>io.netty</groupId>
-        <artifactId>netty-transport</artifactId>
-        <version>${transitive.netty.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>io.netty</groupId>
-        <artifactId>netty-transport-native-unix-common</artifactId>
-        <version>${transitive.netty.version}</version>
       </dependency>
       <dependency>
         <groupId>org.apache.lucene</groupId>
