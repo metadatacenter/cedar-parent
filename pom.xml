@@ -1211,6 +1211,9 @@
               <include>**/*Test.java</include>
             </includes>
             <systemPropertyVariables>
+              <!-- cedar-test-support-library contributes a JUnit extension that clears its
+                   process-global environment override after every test class. -->
+              <junit.jupiter.extensions.autodetection.enabled>true</junit.jupiter.extensions.autodetection.enabled>
               <!-- Backend-free server tests have no application-log Redis. Queue behavior is
                    covered separately against embedded Redis; avoid one network timeout for every
                    HTTP and Cypher log event in every other test JVM. -->
@@ -1303,6 +1306,11 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-failsafe-plugin</artifactId>
           <version>${maven.failsafe.plugin.version}</version>
+          <configuration>
+            <systemPropertyVariables>
+              <junit.jupiter.extensions.autodetection.enabled>true</junit.jupiter.extensions.autodetection.enabled>
+            </systemPropertyVariables>
+          </configuration>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
