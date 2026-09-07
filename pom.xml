@@ -3,13 +3,13 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.metadatacenter</groupId>
   <artifactId>cedar-parent</artifactId>
-  <version>2.9.8</version>
+  <version>2.9.9</version>
   <packaging>pom</packaging>
   <name>CEDAR Parent</name>
   <description>Parent project for all Java-based CEDAR components</description>
   <url>https://github.com/metadatacenter</url>
   <properties>
-    <cedar.version>2.9.8</cedar.version>
+    <cedar.version>2.9.9</cedar.version>
     <dropwizard.version>5.0.2</dropwizard.version>
     <dropwizard.metrics.version>4.2.40</dropwizard.metrics.version>
     <mongodb.version>5.1.2</mongodb.version>
@@ -222,6 +222,19 @@
         <groupId>com.fasterxml.jackson</groupId>
         <artifactId>jackson-bom</artifactId>
         <version>${jackson.core.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <!--
+        Aligns every io.netty artifact, the platform-classified epoll and kqueue natives included.
+        Managing only the core modules left those natives at the 4.1.84 that neo4j-harness declares,
+        under 4.1.115 classes that call a JNI symbol the older library lacks; on Linux the embedded
+        Neo4j then terminated Bolt connections while writing a result.
+      -->
+      <dependency>
+        <groupId>io.netty</groupId>
+        <artifactId>netty-bom</artifactId>
+        <version>${transitive.netty.version}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -981,46 +994,6 @@
         <version>${transitive.byte-buddy.version}</version>
       </dependency>
       <dependency>
-        <groupId>io.netty</groupId>
-        <artifactId>netty-buffer</artifactId>
-        <version>${transitive.netty.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>io.netty</groupId>
-        <artifactId>netty-codec</artifactId>
-        <version>${transitive.netty.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>io.netty</groupId>
-        <artifactId>netty-codec-http</artifactId>
-        <version>${transitive.netty.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>io.netty</groupId>
-        <artifactId>netty-common</artifactId>
-        <version>${transitive.netty.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>io.netty</groupId>
-        <artifactId>netty-handler</artifactId>
-        <version>${transitive.netty.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>io.netty</groupId>
-        <artifactId>netty-resolver</artifactId>
-        <version>${transitive.netty.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>io.netty</groupId>
-        <artifactId>netty-transport</artifactId>
-        <version>${transitive.netty.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>io.netty</groupId>
-        <artifactId>netty-transport-native-unix-common</artifactId>
-        <version>${transitive.netty.version}</version>
-      </dependency>
-      <dependency>
         <groupId>org.apache.lucene</groupId>
         <artifactId>lucene-analysis-common</artifactId>
         <version>${transitive.lucene.version}</version>
@@ -1211,6 +1184,9 @@
               <include>**/*Test.java</include>
             </includes>
             <systemPropertyVariables>
+              <!-- cedar-test-support-library contributes a JUnit extension that clears its
+                   process-global environment override after every test class. -->
+              <junit.jupiter.extensions.autodetection.enabled>true</junit.jupiter.extensions.autodetection.enabled>
               <!-- Backend-free server tests have no application-log Redis. Queue behavior is
                    covered separately against embedded Redis; avoid one network timeout for every
                    HTTP and Cypher log event in every other test JVM. -->
@@ -1303,6 +1279,11 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-failsafe-plugin</artifactId>
           <version>${maven.failsafe.plugin.version}</version>
+          <configuration>
+            <systemPropertyVariables>
+              <junit.jupiter.extensions.autodetection.enabled>true</junit.jupiter.extensions.autodetection.enabled>
+            </systemPropertyVariables>
+          </configuration>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
