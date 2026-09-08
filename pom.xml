@@ -1137,6 +1137,20 @@
                 <requireJavaVersion>
                   <version>[17,18)</version>
                 </requireJavaVersion>
+                <!-- cedar-test-support-library contains in-memory authentication and embedded
+                     dependency fixtures. It belongs on a test classpath only: a compile or runtime
+                     declaration would put those classes within reach of a production application.
+                     The six-part matcher includes scope; the include is the one permitted case and
+                     overrides the broader exclusion. -->
+                <bannedDependencies>
+                  <excludes>
+                    <exclude>org.metadatacenter:cedar-test-support-library</exclude>
+                  </excludes>
+                  <includes>
+                    <include>org.metadatacenter:cedar-test-support-library:*:*:test</include>
+                  </includes>
+                  <searchTransitive>true</searchTransitive>
+                </bannedDependencies>
               </rules>
             </configuration>
           </execution>
