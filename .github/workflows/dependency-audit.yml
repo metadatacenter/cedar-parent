@@ -1,0 +1,22 @@
+name: Dependency advisory audit
+
+on:
+  schedule:
+    - cron: "30 12 * * 1"
+  push:
+    branches:
+      - develop
+    paths:
+      - pom.xml
+      - .github/workflows/dependency-audit.yml
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: read
+  security-events: write
+
+jobs:
+  scan:
+    name: Scan managed Maven dependencies
+    uses: google/osv-scanner-action/.github/workflows/osv-scanner-reusable.yml@0c58c542420dfd23fcac08dd9c8ca3cca9c36f1a # v2.5.0
