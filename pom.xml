@@ -1159,11 +1159,48 @@
           <version>${spotless.maven.plugin.version}</version>
         </plugin>
         <!-- Generates the OpenAPI description each server publishes; the version tracks the
-             swagger-core artifacts the servers compile against. -->
+             swagger-core artifacts the servers compile against. The resolve goal introspects the
+             compiled resource classes, so it is bound to process-classes: after compile, before the
+             tests and the jar consume the result. It runs twice with the same input. One execution
+             writes the committed copy under src/main/resources, which the servers' CI diffs against
+             the tree. The other writes onto the classpath under target/classes, which the contract
+             tests read and the jar packages. A single write into src/ arrives after
+             process-resources has already copied the previous document onto the classpath, so the
+             jar would ship the document of the build before. sortOutput keeps both copies
+             byte-stable and identical. Each server names only the package to scan. -->
         <plugin>
           <groupId>io.swagger.core.v3</groupId>
           <artifactId>swagger-maven-plugin-jakarta</artifactId>
           <version>${swagger.version}</version>
+          <configuration>
+            <outputFileName>swagger</outputFileName>
+            <outputFormat>JSONANDYAML</outputFormat>
+            <prettyPrint>true</prettyPrint>
+            <sortOutput>true</sortOutput>
+            <openapiFilePath>${project.build.directory}/generated-swagger/openapi-base.yaml</openapiFilePath>
+          </configuration>
+          <executions>
+            <execution>
+              <id>generate-openapi-source</id>
+              <phase>process-classes</phase>
+              <goals>
+                <goal>resolve</goal>
+              </goals>
+              <configuration>
+                <outputPath>${project.basedir}/src/main/resources/assets/swagger-api</outputPath>
+              </configuration>
+            </execution>
+            <execution>
+              <id>generate-openapi-classpath</id>
+              <phase>process-classes</phase>
+              <goals>
+                <goal>resolve</goal>
+              </goals>
+              <configuration>
+                <outputPath>${project.build.outputDirectory}/assets/swagger-api</outputPath>
+              </configuration>
+            </execution>
+          </executions>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
