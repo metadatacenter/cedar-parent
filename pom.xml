@@ -3,13 +3,13 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.metadatacenter</groupId>
   <artifactId>cedar-parent</artifactId>
-  <version>2.9.9</version>
+  <version>2.9.10</version>
   <packaging>pom</packaging>
   <name>CEDAR Parent</name>
   <description>Parent project for all Java-based CEDAR components</description>
   <url>https://github.com/metadatacenter</url>
   <properties>
-    <cedar.version>2.9.9</cedar.version>
+    <cedar.version>2.9.10</cedar.version>
     <dropwizard.version>5.0.2</dropwizard.version>
     <dropwizard.metrics.version>4.2.40</dropwizard.metrics.version>
     <mongodb.version>5.1.2</mongodb.version>
@@ -130,7 +130,7 @@
          than one version across the build before it was managed here, meaning the choice fell to
          whichever upstream pom happened to sit nearest. Managed so that an upstream release cannot
          move a shipped artifact on its own. -->
-    <transitive.netty.version>4.1.115.Final</transitive.netty.version>
+    <transitive.netty.version>4.1.137.Final</transitive.netty.version>
     <transitive.lucene.version>9.12.1</transitive.lucene.version>
     <transitive.jersey.version>3.1.11</transitive.jersey.version>
     <transitive.hk2-locator.version>3.0.6</transitive.hk2-locator.version>
@@ -1137,6 +1137,20 @@
                 <requireJavaVersion>
                   <version>[17,18)</version>
                 </requireJavaVersion>
+                <!-- cedar-test-support-library contains in-memory authentication and embedded
+                     dependency fixtures. It belongs on a test classpath only: a compile or runtime
+                     declaration would put those classes within reach of a production application.
+                     The six-part matcher includes scope; the include is the one permitted case and
+                     overrides the broader exclusion. -->
+                <bannedDependencies>
+                  <excludes>
+                    <exclude>org.metadatacenter:cedar-test-support-library</exclude>
+                  </excludes>
+                  <includes>
+                    <include>org.metadatacenter:cedar-test-support-library:*:*:test</include>
+                  </includes>
+                  <searchTransitive>true</searchTransitive>
+                </bannedDependencies>
               </rules>
             </configuration>
           </execution>
@@ -1159,11 +1173,48 @@
           <version>${spotless.maven.plugin.version}</version>
         </plugin>
         <!-- Generates the OpenAPI description each server publishes; the version tracks the
-             swagger-core artifacts the servers compile against. -->
+             swagger-core artifacts the servers compile against. The resolve goal introspects the
+             compiled resource classes, so it is bound to process-classes: after compile, before the
+             tests and the jar consume the result. It runs twice with the same input. One execution
+             writes the committed copy under src/main/resources, which the servers' CI diffs against
+             the tree. The other writes onto the classpath under target/classes, which the contract
+             tests read and the jar packages. A single write into src/ arrives after
+             process-resources has already copied the previous document onto the classpath, so the
+             jar would ship the document of the build before. sortOutput keeps both copies
+             byte-stable and identical. Each server names only the package to scan. -->
         <plugin>
           <groupId>io.swagger.core.v3</groupId>
           <artifactId>swagger-maven-plugin-jakarta</artifactId>
           <version>${swagger.version}</version>
+          <configuration>
+            <outputFileName>swagger</outputFileName>
+            <outputFormat>JSONANDYAML</outputFormat>
+            <prettyPrint>true</prettyPrint>
+            <sortOutput>true</sortOutput>
+            <openapiFilePath>${project.build.directory}/generated-swagger/openapi-base.yaml</openapiFilePath>
+          </configuration>
+          <executions>
+            <execution>
+              <id>generate-openapi-source</id>
+              <phase>process-classes</phase>
+              <goals>
+                <goal>resolve</goal>
+              </goals>
+              <configuration>
+                <outputPath>${project.basedir}/src/main/resources/assets/swagger-api</outputPath>
+              </configuration>
+            </execution>
+            <execution>
+              <id>generate-openapi-classpath</id>
+              <phase>process-classes</phase>
+              <goals>
+                <goal>resolve</goal>
+              </goals>
+              <configuration>
+                <outputPath>${project.build.outputDirectory}/assets/swagger-api</outputPath>
+              </configuration>
+            </execution>
+          </executions>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
