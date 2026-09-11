@@ -87,6 +87,7 @@
     <!-- Versions match the Dropwizard 5.0.2 dependency bundle. -->
     <slf4j.version>2.0.18</slf4j.version>
     <logback.version>1.5.33</logback.version>
+    <logback.access.version>2.0.12</logback.access.version>
     <jboss.logging>3.6.3.Final</jboss.logging>
     <log4j.version>2.24.3</log4j.version>
     <org.yaml.snakeyaml.version>2.7</org.yaml.snakeyaml.version>
@@ -252,6 +253,19 @@
         <groupId>ch.qos.logback</groupId>
         <artifactId>logback-classic</artifactId>
         <version>${logback.version}</version>
+      </dependency>
+      <!-- logback-access is a separate release line under its own group, and dropwizard-request-logging
+           is what puts it on every server's classpath. Managing it here keeps the version a stated
+           choice rather than whatever the Dropwizard dependency bundle happens to supply. -->
+      <dependency>
+        <groupId>ch.qos.logback.access</groupId>
+        <artifactId>logback-access-common</artifactId>
+        <version>${logback.access.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>ch.qos.logback.access</groupId>
+        <artifactId>logback-access-jetty12</artifactId>
+        <version>${logback.access.version}</version>
       </dependency>
       <dependency>
         <groupId>org.apache.logging.log4j</groupId>
@@ -1150,6 +1164,20 @@
                     <include>org.metadatacenter:cedar-test-support-library:*:*:test</include>
                   </includes>
                   <searchTransitive>true</searchTransitive>
+                </bannedDependencies>
+                <!-- logback 1.6 removed PatternLayout.DEFAULT_CONVERTER_MAP, which Dropwizard's
+                     LogbackAccessRequestLayout reads in a static initializer, so every server dies
+                     while building its request log. The logback.version property above is what
+                     holds the estate on the 1.5 line; this rule makes raising or dropping that pin
+                     fail here rather than inside a test JVM, where the error names a logback-access
+                     class for a field that lives in logback-classic. -->
+                <bannedDependencies>
+                  <excludes>
+                    <exclude>ch.qos.logback:logback-classic:[1.6,)</exclude>
+                    <exclude>ch.qos.logback:logback-core:[1.6,)</exclude>
+                  </excludes>
+                  <searchTransitive>true</searchTransitive>
+                  <message>logback 1.6 removed PatternLayout.DEFAULT_CONVERTER_MAP, which dropwizard-request-logging reads in a static initializer. Every Dropwizard server then fails at startup with a NoSuchFieldError naming a logback-access class. Keep logback.version on the 1.5 line until Dropwizard ships a build compiled against 1.6.</message>
                 </bannedDependencies>
               </rules>
             </configuration>
