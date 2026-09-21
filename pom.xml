@@ -88,7 +88,7 @@
          names. Logback runs ahead of that bundle's 1.5.33 within the same 1.5 maintenance line,
          under the 1.6 ceiling the enforcer's bannedDependencies rule holds. logback-access cannot
          follow it: the 2.0.15 release compiles against logback-core 1.6.3. -->
-    <slf4j.version>2.0.18</slf4j.version>
+    <slf4j.version>2.0.19</slf4j.version>
     <logback.version>1.5.38</logback.version>
     <logback.access.version>2.0.12</logback.access.version>
     <jboss.logging>3.6.3.Final</jboss.logging>
