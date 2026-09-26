@@ -21,6 +21,8 @@
     <org.xerial.sqlite-jdbc.version>3.53.4.0</org.xerial.sqlite-jdbc.version>
     <redis.clients.jedis.version>5.2.0</redis.clients.jedis.version>
     <jsonld.version>0.13.6</jsonld.version>
+    <titanium-json-ld.version>1.7.0</titanium-json-ld.version>
+    <jakarta-json-provider.version>2.0.1</jakarta-json-provider.version>
     <swagger.version>2.2.55</swagger.version>
     <org.eclipse.jetty.version>12.1.13</org.eclipse.jetty.version>
     <!-- The Jackson BOM import keeps every Jackson artifact on this one version. It runs ahead of
@@ -917,6 +919,17 @@
         <artifactId>mysql-connector-j</artifactId>
         <version>${mysql.connector.j.version}</version>
       </dependency>
+      <dependency>
+        <groupId>com.apicatalog</groupId>
+        <artifactId>titanium-json-ld</artifactId>
+        <version>${titanium-json-ld.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.glassfish</groupId>
+        <artifactId>jakarta.json</artifactId>
+        <version>${jakarta-json-provider.version}</version>
+      </dependency>
+
       <dependency>
         <groupId>com.github.jsonld-java</groupId>
         <artifactId>jsonld-java</artifactId>
