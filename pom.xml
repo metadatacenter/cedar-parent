@@ -29,6 +29,7 @@
          the 2.21.4 that the Dropwizard 5.0.2 dependency bundle names, within the same 2.x line. -->
     <jackson.core.version>2.22.3</jackson.core.version>
     <networknt.json.schema.validator.version>1.5.9</networknt.json.schema.validator.version>
+    <rhino.version>1.9.1</rhino.version>
     <resteasy.version>6.2.4.Final</resteasy.version>
     <google-guava.version>33.7.1-jre</google-guava.version>
     <weka.version>3.8.7</weka.version>
@@ -372,6 +373,11 @@
         <groupId>org.apache.commons</groupId>
         <artifactId>commons-text</artifactId>
         <version>${commons.text.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.mozilla</groupId>
+        <artifactId>rhino</artifactId>
+        <version>${rhino.version}</version>
       </dependency>
       <dependency>
         <groupId>com.networknt</groupId>
