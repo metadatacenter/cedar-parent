@@ -220,6 +220,22 @@
   </licenses>
   <dependencyManagement>
     <dependencies>
+      <!-- Upgrade the complete Jetty core and EE10 families together. A few individual
+           overrides leave the other modules on Dropwizard's older transitive versions. -->
+      <dependency>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-bom</artifactId>
+        <version>${org.eclipse.jetty.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.eclipse.jetty.ee10</groupId>
+        <artifactId>jetty-ee10-bom</artifactId>
+        <version>${org.eclipse.jetty.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
       <!--
         Aligns every org.junit.jupiter and org.junit.platform artifact on one JUnit 5 version,
         including the platform artifacts surefire resolves for its JUnit Platform provider.
@@ -492,6 +508,14 @@
         <groupId>org.neo4j.test</groupId>
         <artifactId>neo4j-harness</artifactId>
         <version>${org.neo4j.test.neo4j-harness.version}</version>
+        <exclusions>
+          <!-- EmbeddedCedarNeo4j disables the HTTP server; its legacy Jetty 9 webapp
+               stack is unused and must not enter the Jetty 12 test classpath. -->
+          <exclusion>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-webapp</artifactId>
+          </exclusion>
+        </exclusions>
       </dependency>
       <dependency>
         <groupId>org.jspecify</groupId>
@@ -899,11 +923,6 @@
         <version>${swagger.version}</version>
       </dependency>
       <dependency>
-        <groupId>org.eclipse.jetty.ee10</groupId>
-        <artifactId>jetty-ee10-servlets</artifactId>
-        <version>${org.eclipse.jetty.version}</version>
-      </dependency>
-      <dependency>
         <groupId>redis.clients</groupId>
         <artifactId>jedis</artifactId>
         <version>${redis.clients.jedis.version}</version>
@@ -1071,16 +1090,6 @@
         <version>${transitive.hk2-locator.version}</version>
       </dependency>
       <dependency>
-        <groupId>org.eclipse.jetty</groupId>
-        <artifactId>jetty-http</artifactId>
-        <version>${org.eclipse.jetty.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.eclipse.jetty</groupId>
-        <artifactId>jetty-server</artifactId>
-        <version>${org.eclipse.jetty.version}</version>
-      </dependency>
-      <dependency>
         <groupId>org.slf4j</groupId>
         <artifactId>jcl-over-slf4j</artifactId>
         <version>${slf4j.version}</version>
@@ -1164,6 +1173,30 @@
         <artifactId>maven-enforcer-plugin</artifactId>
         <version>${maven.enforcer.plugin.version}</version>
         <executions>
+          <execution>
+            <id>enforce-jetty-alignment</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <bannedDependencies>
+                  <excludes>
+                    <exclude>org.eclipse.jetty:*</exclude>
+                    <exclude>org.eclipse.jetty.*:*</exclude>
+                  </excludes>
+                  <includes>
+                    <include>org.eclipse.jetty:*:[${org.eclipse.jetty.version}]</include>
+                    <include>org.eclipse.jetty.*:*:[${org.eclipse.jetty.version}]</include>
+                    <!-- Build/toolchain helpers, including setuid-jna, have independent versions. -->
+                    <include>org.eclipse.jetty.toolchain*:*</include>
+                  </includes>
+                  <searchTransitive>true</searchTransitive>
+                  <message>All Jetty framework modules must use ${org.eclipse.jetty.version}, as managed by the cedar-parent Jetty BOMs. Remove individual version overrides or legacy Jetty dependencies.</message>
+                </bannedDependencies>
+              </rules>
+            </configuration>
+          </execution>
           <execution>
             <id>enforce-maven</id>
             <goals>
