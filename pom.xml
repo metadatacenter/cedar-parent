@@ -129,6 +129,7 @@
     <maven.install.plugin.version>3.2.0</maven.install.plugin.version>
     <maven.javadoc.plugin.version>3.12.0</maven.javadoc.plugin.version>
     <maven.failsafe.plugin.version>3.6.0</maven.failsafe.plugin.version>
+    <jacoco.maven.plugin.version>0.8.15</jacoco.maven.plugin.version>
     <maven.shade.plugin.version>3.6.2</maven.shade.plugin.version>
     <log4j.transform.shade.extensions.version>0.2.0</log4j.transform.shade.extensions.version>
     <!-- Guard for the managed cedar-shade execution below. Maven merges pluginManagement
@@ -1280,6 +1281,59 @@
           </execution>
         </executions>
       </plugin>
+      <!-- Test coverage, measured by JaCoCo on every build that runs tests, so a local build runs
+           its suites exactly as CI does. -Djacoco.skip=true turns it off for one build. Each module
+           reports on the classes it compiles, in target/site/jacoco for Surefire suites and
+           target/site/jacoco-it for Failsafe suites. A module that runs no tests writes no report.
+
+           Surefire and Failsafe take the agent from the argLine property that prepare-agent sets. A
+           module that configures <argLine> itself must begin it with @{argLine}, or its tests run
+           without the agent and the report reads zero with no error. Server suites start their
+           Dropwizard application inside the test JVM, so the report covers the service and not only
+           the test client. The embedded Neo4j, MongoDB and Dropwizard classes run in that JVM too,
+           and the agent instruments only classes under org.metadatacenter. -->
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>coverage-agent</id>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+            <configuration>
+              <includes>
+                <include>org.metadatacenter.*</include>
+              </includes>
+            </configuration>
+          </execution>
+          <execution>
+            <id>coverage-agent-integration</id>
+            <goals>
+              <goal>prepare-agent-integration</goal>
+            </goals>
+            <configuration>
+              <includes>
+                <include>org.metadatacenter.*</include>
+              </includes>
+            </configuration>
+          </execution>
+          <!-- A module that compiles generated classes excludes them from its reports by giving
+               these executions <excludes> in its own declaration of this plugin. -->
+          <execution>
+            <id>coverage-report</id>
+            <goals>
+              <goal>report</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>coverage-report-integration</id>
+            <goals>
+              <goal>report-integration</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
     <pluginManagement>
       <plugins>
@@ -1451,6 +1505,11 @@
               <junit.jupiter.extensions.autodetection.enabled>true</junit.jupiter.extensions.autodetection.enabled>
             </systemPropertyVariables>
           </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.jacoco</groupId>
+          <artifactId>jacoco-maven-plugin</artifactId>
+          <version>${jacoco.maven.plugin.version}</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
