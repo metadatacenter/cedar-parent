@@ -12,10 +12,10 @@
     <cedar.version>2.9.26-SNAPSHOT</cedar.version>
     <dropwizard.version>5.0.2</dropwizard.version>
     <dropwizard.metrics.version>4.2.40</dropwizard.metrics.version>
-    <mongodb.version>5.1.2</mongodb.version>
+    <mongodb.version>5.13.0</mongodb.version>
     <keycloak.version>22.0.4</keycloak.version>
     <keycloak-admin-client-jakarta.version>21.1.2</keycloak-admin-client-jakarta.version>
-    <opensearch.version>2.19.2</opensearch.version>
+    <opensearch.version>2.19.6</opensearch.version>
     <org.neo4j.driver.version>5.28.15</org.neo4j.driver.version>
     <mysql.connector.j.version>8.4.0</mysql.connector.j.version>
     <org.xerial.sqlite-jdbc.version>3.53.4.0</org.xerial.sqlite-jdbc.version>
@@ -24,19 +24,19 @@
     <titanium-json-ld.version>1.7.0</titanium-json-ld.version>
     <jakarta-json-provider.version>2.0.1</jakarta-json-provider.version>
     <swagger.version>2.2.55</swagger.version>
-    <org.eclipse.jetty.version>12.1.13</org.eclipse.jetty.version>
+    <org.eclipse.jetty.version>12.1.14</org.eclipse.jetty.version>
     <!-- The Jackson BOM import keeps every Jackson artifact on this one version. It runs ahead of
          the 2.21.4 that the Dropwizard 5.0.2 dependency bundle names, within the same 2.x line. -->
     <jackson.core.version>2.22.3</jackson.core.version>
     <networknt.json.schema.validator.version>1.5.9</networknt.json.schema.validator.version>
     <rhino.version>1.9.1</rhino.version>
     <resteasy.version>6.2.4.Final</resteasy.version>
-    <google-guava.version>33.7.1-jre</google-guava.version>
+    <google-guava.version>33.7.2-jre</google-guava.version>
     <weka.version>3.8.7</weka.version>
     <org.glassfish.jaxb.jaxb-runtime.version>4.0.9</org.glassfish.jaxb.jaxb-runtime.version>
     <commons.io.version>2.22.0</commons.io.version>
-    <commons.lang3.version>3.20.0</commons.lang3.version>
-    <commons.codec.version>1.22.1</commons.codec.version>
+    <commons.lang3.version>3.21.0</commons.lang3.version>
+    <commons.codec.version>1.23.0</commons.codec.version>
     <commons.text.version>1.15.0</commons.text.version>
     <!-- Patch releases ahead of the Dropwizard 5.0.2 dependency bundle's HttpCore 5.4.2 and
          HttpClient 5.6.1, on the same minor lines. -->
@@ -57,7 +57,7 @@
     <javax.ws-api.version>2.3.1</javax.ws-api.version>
     <com.sun.activation.version>2.0.1</com.sun.activation.version>
     <hibernate-core.version>6.6.58.Final</hibernate-core.version>
-    <jakarta.annotation-api.version>2.0.0</jakarta.annotation-api.version>
+    <jakarta.annotation-api.version>2.1.1</jakarta.annotation-api.version>
     <jakarta.persistence-api.version>3.1.0</jakarta.persistence-api.version>
     <jakarta.servlet-api.version>6.0.0</jakarta.servlet-api.version>
     <jakarta.validation-api.version>3.0.2</jakarta.validation-api.version>
@@ -72,18 +72,21 @@
     <org.hamcrest.core.version>3.0</org.hamcrest.core.version>
     <org.mockito.version>5.24.0</org.mockito.version>
     <!-- The embedded backends the backend-free suites run against. neo4j-harness remains at 5.3.0:
-         5.26.0 brings Lucene 9.11.1, whose Lucene99Codec layout is incompatible with OpenSearch's
-         parent-managed Lucene 9.12.1 on the shared server test classpath; the harness fails before
+         5.26.0 brings Lucene 9.11.1, whose Lucene99Codec layout is incompatible with the Lucene 9.12
+         line OpenSearch requires on the shared server test classpath; the harness fails before
          the database starts. The independently versioned driver stays on its compatible 5.28
          maintenance line. embedded-redis 1.4.3 bundles Redis 6.2.x and has no Redis 7.2 binary.
          These suites therefore provide backend-free graph, command, and queue coverage, not deployed
          Neo4j 5.26.0 / Redis 7.2.7 parity; those semantics require the real-stack smoke until the
          helpers are isolated or replaced. Flapdoodle and MariaDB4j provide the Mongo and MariaDB
-         test engines. -->
+         test engines. Flapdoodle stays at 4.22.0. MongoDB published no macOS ARM build of 5.0, and
+         4.22.0 is the last release that resolves the x86-64 build there instead. From 4.23.0 every
+         suite that starts the embedded store on Apple silicon fails with "could not resolve package
+         for V5_0". -->
     <com.github.codemonstur.embedded-redis.version>1.4.4</com.github.codemonstur.embedded-redis.version>
     <ch.vorburger.mariadb4j.version>3.3.1</ch.vorburger.mariadb4j.version>
     <ch.vorburger.mariadb4j.db.version>11.4.5</ch.vorburger.mariadb4j.db.version>
-    <de.flapdoodle.embed.mongo.version>4.20.0</de.flapdoodle.embed.mongo.version>
+    <de.flapdoodle.embed.mongo.version>4.22.0</de.flapdoodle.embed.mongo.version>
     <org.neo4j.test.neo4j-harness.version>5.3.0</org.neo4j.test.neo4j-harness.version>
     <org.jspecify.version>1.0.1</org.jspecify.version>
     <!-- The javax-era XML binding stack, still on the classpath of the cadsr and impex tooling and
@@ -92,14 +95,14 @@
     <com.sun.xml.bind.version>4.0.9</com.sun.xml.bind.version>
     <javax.xml.bind.jaxb-api.version>2.3.1</javax.xml.bind.jaxb-api.version>
     <javax.activation-api.version>1.2.0</javax.activation-api.version>
-    <!-- logback-access carries the version the Dropwizard 5.0.2 dependency bundle names. SLF4J
-         runs ahead of that bundle's 2.0.18 by patch releases. Logback runs ahead of that bundle's
-         1.5.33 within the same 1.5 maintenance line, under the 1.6 ceiling the enforcer's
-         bannedDependencies rule holds. logback-access cannot follow it: the 2.0.15 release
-         compiles against logback-core 1.6.3. -->
+    <!-- SLF4J runs ahead of the Dropwizard 5.0.2 dependency bundle's 2.0.18 by patch releases.
+         Logback runs ahead of that bundle's 1.5.33 within the same 1.5 maintenance line, under the
+         1.6 ceiling the enforcer's bannedDependencies rule holds. logback-access runs one release
+         ahead of the bundle's 2.0.12. Its 2.0.13 release compiles against logback-core 1.5.38, and
+         2.0.14 is the first built against 1.6, so 2.0.13 is the last that fits under the ceiling. -->
     <slf4j.version>2.0.20</slf4j.version>
     <logback.version>1.5.38</logback.version>
-    <logback.access.version>2.0.12</logback.access.version>
+    <logback.access.version>2.0.13</logback.access.version>
     <jboss.logging>3.6.3.Final</jboss.logging>
     <log4j.version>2.26.1</log4j.version>
     <org.yaml.snakeyaml.version>2.7</org.yaml.snakeyaml.version>
@@ -129,7 +132,7 @@
     <maven.versions.plugin.version>2.22.0</maven.versions.plugin.version>
     <maven.clean.plugin.version>3.5.0</maven.clean.plugin.version>
     <maven.site.plugin.version>3.22.0</maven.site.plugin.version>
-    <jaxb2.maven.plugin.version>4.1.0</jaxb2.maven.plugin.version>
+    <jaxb2.maven.plugin.version>4.2.0</jaxb2.maven.plugin.version>
     <jvnet.jaxb.maven.plugin.version>4.0.16</jvnet.jaxb.maven.plugin.version>
     <spotless.maven.plugin.version>3.10.2</spotless.maven.plugin.version>
     <maven.jar.plugin.version>3.5.1</maven.jar.plugin.version>
@@ -144,7 +147,10 @@
          whichever upstream pom happened to sit nearest. Managed so that an upstream release cannot
          move a shipped artifact on its own. -->
     <transitive.netty.version>4.1.138.Final</transitive.netty.version>
-    <transitive.lucene.version>9.12.1</transitive.lucene.version>
+    <!-- Lucene and reactor-core carry the versions that the OpenSearch POM at opensearch.version
+         names. Move them with opensearch.version and never alone. OpenSearch is built against one
+         Lucene, and a newer reactor-core runs ahead of what its client was tested with. -->
+    <transitive.lucene.version>9.12.3</transitive.lucene.version>
     <transitive.jersey.version>3.1.12</transitive.jersey.version>
     <transitive.hk2-locator.version>3.0.6</transitive.hk2-locator.version>
     <transitive.caffeine.version>3.2.4</transitive.caffeine.version>
@@ -154,7 +160,7 @@
     <transitive.protobuf-java.version>3.25.9</transitive.protobuf-java.version>
     <transitive.istack-commons-runtime.version>4.2.0</transitive.istack-commons-runtime.version>
     <transitive.commons-logging.version>1.4.0</transitive.commons-logging.version>
-    <transitive.reactor-core.version>3.5.20</transitive.reactor-core.version>
+    <transitive.reactor-core.version>3.7.19</transitive.reactor-core.version>
     <transitive.jakarta-activation-api.version>2.1.4</transitive.jakarta-activation-api.version>
     <transitive.jakarta-inject-api.version>2.0.1.MR</transitive.jakarta-inject-api.version>
     <!-- Mockito 5.24.0 declares Byte Buddy 1.17.7, close enough to the 1.18.8-jdk5 selected by
