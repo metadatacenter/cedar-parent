@@ -28,6 +28,9 @@
     <jakarta-json-provider.version>2.0.1</jakarta-json-provider.version>
     <swagger.version>2.2.55</swagger.version>
     <org.eclipse.jetty.version>12.1.14</org.eclipse.jetty.version>
+    <!-- The Jersey BOM import keeps every Jersey module on this one version. It runs ahead of the
+         3.1.11 that the Dropwizard 5.0.2 dependency bundle names, within the same 3.1 line. -->
+    <org.glassfish.jersey.version>3.1.12</org.glassfish.jersey.version>
     <!-- The Jackson BOM import keeps every Jackson artifact on this one version. It runs ahead of
          the 2.21.4 that the Dropwizard 5.0.2 dependency bundle names, within the same 2.x line. -->
     <jackson.core.version>2.22.3</jackson.core.version>
@@ -156,7 +159,6 @@
          names. Move them with opensearch.version and never alone. OpenSearch is built against one
          Lucene, and a newer reactor-core runs ahead of what its client was tested with. -->
     <transitive.lucene.version>9.12.3</transitive.lucene.version>
-    <transitive.jersey.version>3.1.12</transitive.jersey.version>
     <transitive.hk2-locator.version>3.0.6</transitive.hk2-locator.version>
     <transitive.caffeine.version>3.2.4</transitive.caffeine.version>
     <transitive.classmate.version>1.7.3</transitive.classmate.version>
@@ -249,6 +251,16 @@
         <groupId>org.eclipse.jetty.ee10</groupId>
         <artifactId>jetty-ee10-bom</artifactId>
         <version>${org.eclipse.jetty.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <!-- Upgrade every Jersey module together. Managing only jersey-container-servlet and
+           jersey-hk2 left jersey-common, -server, -client and the rest on the 3.1.11 that the
+           Dropwizard dependency bundle names, so one application ran two Jersey releases. -->
+      <dependency>
+        <groupId>org.glassfish.jersey</groupId>
+        <artifactId>jersey-bom</artifactId>
+        <version>${org.glassfish.jersey.version}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -1086,16 +1098,6 @@
         <version>${transitive.lucene.version}</version>
       </dependency>
       <dependency>
-        <groupId>org.glassfish.jersey.containers</groupId>
-        <artifactId>jersey-container-servlet</artifactId>
-        <version>${transitive.jersey.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.glassfish.jersey.inject</groupId>
-        <artifactId>jersey-hk2</artifactId>
-        <version>${transitive.jersey.version}</version>
-      </dependency>
-      <dependency>
         <groupId>org.glassfish.hk2</groupId>
         <artifactId>hk2-locator</artifactId>
         <version>${transitive.hk2-locator.version}</version>
@@ -1204,6 +1206,28 @@
                   </includes>
                   <searchTransitive>true</searchTransitive>
                   <message>All Jetty framework modules must use ${org.eclipse.jetty.version}, as managed by the cedar-parent Jetty BOMs. Remove individual version overrides or legacy Jetty dependencies.</message>
+                </bannedDependencies>
+              </rules>
+            </configuration>
+          </execution>
+          <execution>
+            <id>enforce-jersey-alignment</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <bannedDependencies>
+                  <excludes>
+                    <exclude>org.glassfish.jersey:*</exclude>
+                    <exclude>org.glassfish.jersey.*:*</exclude>
+                  </excludes>
+                  <includes>
+                    <include>org.glassfish.jersey:*:[${org.glassfish.jersey.version}]</include>
+                    <include>org.glassfish.jersey.*:*:[${org.glassfish.jersey.version}]</include>
+                  </includes>
+                  <searchTransitive>true</searchTransitive>
+                  <message>All Jersey modules must use ${org.glassfish.jersey.version}, as managed by the cedar-parent Jersey BOM. Remove individual version overrides.</message>
                 </bannedDependencies>
               </rules>
             </configuration>
