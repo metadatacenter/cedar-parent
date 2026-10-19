@@ -3,13 +3,13 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.metadatacenter</groupId>
   <artifactId>cedar-parent</artifactId>
-  <version>2.9.24</version>
+  <version>2.9.25</version>
   <packaging>pom</packaging>
   <name>CEDAR Parent</name>
   <description>Parent project for all Java-based CEDAR components</description>
   <url>https://github.com/metadatacenter</url>
   <properties>
-    <cedar.version>2.9.24</cedar.version>
+    <cedar.version>2.9.25</cedar.version>
     <dropwizard.version>5.0.2</dropwizard.version>
     <dropwizard.metrics.version>4.2.40</dropwizard.metrics.version>
     <mongodb.version>5.1.2</mongodb.version>
@@ -29,6 +29,7 @@
          the 2.21.4 that the Dropwizard 5.0.2 dependency bundle names, within the same 2.x line. -->
     <jackson.core.version>2.22.3</jackson.core.version>
     <networknt.json.schema.validator.version>1.5.9</networknt.json.schema.validator.version>
+    <rhino.version>1.9.1</rhino.version>
     <resteasy.version>6.2.4.Final</resteasy.version>
     <google-guava.version>33.7.1-jre</google-guava.version>
     <weka.version>3.8.7</weka.version>
@@ -219,6 +220,22 @@
   </licenses>
   <dependencyManagement>
     <dependencies>
+      <!-- Upgrade the complete Jetty core and EE10 families together. A few individual
+           overrides leave the other modules on Dropwizard's older transitive versions. -->
+      <dependency>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-bom</artifactId>
+        <version>${org.eclipse.jetty.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.eclipse.jetty.ee10</groupId>
+        <artifactId>jetty-ee10-bom</artifactId>
+        <version>${org.eclipse.jetty.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
       <!--
         Aligns every org.junit.jupiter and org.junit.platform artifact on one JUnit 5 version,
         including the platform artifacts surefire resolves for its JUnit Platform provider.
@@ -374,6 +391,11 @@
         <version>${commons.text.version}</version>
       </dependency>
       <dependency>
+        <groupId>org.mozilla</groupId>
+        <artifactId>rhino</artifactId>
+        <version>${rhino.version}</version>
+      </dependency>
+      <dependency>
         <groupId>com.networknt</groupId>
         <artifactId>json-schema-validator</artifactId>
         <version>${networknt.json.schema.validator.version}</version>
@@ -486,6 +508,14 @@
         <groupId>org.neo4j.test</groupId>
         <artifactId>neo4j-harness</artifactId>
         <version>${org.neo4j.test.neo4j-harness.version}</version>
+        <exclusions>
+          <!-- EmbeddedCedarNeo4j disables the HTTP server; its legacy Jetty 9 webapp
+               stack is unused and must not enter the Jetty 12 test classpath. -->
+          <exclusion>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-webapp</artifactId>
+          </exclusion>
+        </exclusions>
       </dependency>
       <dependency>
         <groupId>org.jspecify</groupId>
@@ -893,11 +923,6 @@
         <version>${swagger.version}</version>
       </dependency>
       <dependency>
-        <groupId>org.eclipse.jetty.ee10</groupId>
-        <artifactId>jetty-ee10-servlets</artifactId>
-        <version>${org.eclipse.jetty.version}</version>
-      </dependency>
-      <dependency>
         <groupId>redis.clients</groupId>
         <artifactId>jedis</artifactId>
         <version>${redis.clients.jedis.version}</version>
@@ -1065,16 +1090,6 @@
         <version>${transitive.hk2-locator.version}</version>
       </dependency>
       <dependency>
-        <groupId>org.eclipse.jetty</groupId>
-        <artifactId>jetty-http</artifactId>
-        <version>${org.eclipse.jetty.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.eclipse.jetty</groupId>
-        <artifactId>jetty-server</artifactId>
-        <version>${org.eclipse.jetty.version}</version>
-      </dependency>
-      <dependency>
         <groupId>org.slf4j</groupId>
         <artifactId>jcl-over-slf4j</artifactId>
         <version>${slf4j.version}</version>
@@ -1158,6 +1173,30 @@
         <artifactId>maven-enforcer-plugin</artifactId>
         <version>${maven.enforcer.plugin.version}</version>
         <executions>
+          <execution>
+            <id>enforce-jetty-alignment</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <bannedDependencies>
+                  <excludes>
+                    <exclude>org.eclipse.jetty:*</exclude>
+                    <exclude>org.eclipse.jetty.*:*</exclude>
+                  </excludes>
+                  <includes>
+                    <include>org.eclipse.jetty:*:[${org.eclipse.jetty.version}]</include>
+                    <include>org.eclipse.jetty.*:*:[${org.eclipse.jetty.version}]</include>
+                    <!-- Build/toolchain helpers, including setuid-jna, have independent versions. -->
+                    <include>org.eclipse.jetty.toolchain*:*</include>
+                  </includes>
+                  <searchTransitive>true</searchTransitive>
+                  <message>All Jetty framework modules must use ${org.eclipse.jetty.version}, as managed by the cedar-parent Jetty BOMs. Remove individual version overrides or legacy Jetty dependencies.</message>
+                </bannedDependencies>
+              </rules>
+            </configuration>
+          </execution>
           <execution>
             <id>enforce-maven</id>
             <goals>
@@ -1295,17 +1334,9 @@
               <!-- Production drivers retain their defaults. Outage tests need the same exception
                    path, not thirty seconds of retry/backoff before reaching it. -->
               <cedar.test.dependencyTimeoutMillis>1000</cedar.test.dependencyTimeoutMillis>
-              <!-- A test class holds one HTTP client for its whole run, so its requests reuse
-                   pooled connections, and a connection the server has already closed can still be
-                   handed to the next one. The client only drops such a connection once its selector
-                   thread has processed the close, and under a full reactor's load that thread is
-                   slow enough for the next request to be written first, into a socket the server
-                   has finished with. The JDK resends in that case for GET and HEAD alone, so a POST
-                   or a PUT surfaces an IOException about an empty response stream instead of the
-                   status the test asserts. This lifts the method restriction; the condition itself
-                   is unchanged and stays narrow, since the JDK raises it only for a connection that
-                   came from the pool and produced no response bytes at all. -->
-              <jdk.httpclient.enableAllMethodRetry>true</jdk.httpclient.enableAllMethodRetry>
+              <!-- A missing response does not prove a write was not applied. Preserve the JDK's
+                   method restriction so a POST/PUT failure cannot pass by replaying the write. -->
+              <jdk.httpclient.enableAllMethodRetry>false</jdk.httpclient.enableAllMethodRetry>
             </systemPropertyVariables>
             <environmentVariables>
               <!-- Never inherit a developer profile's remote Redis address in a backend-free
