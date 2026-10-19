@@ -72,20 +72,125 @@
       "groupName": "Dropwizard platform"
     },
     {
-      "description": "Keep SLF4J, Logback, and Log4j changes reviewable as one logging-stack update.",
+      "description": "Dropwizard 5 is a Jakarta EE 10 platform. The EE 11 lines of these APIs and of Jersey and Hibernate wait for a Dropwizard release built on EE 11.",
+      "matchPackageNames": [
+        "jakarta.servlet:jakarta.servlet-api"
+      ],
+      "allowedVersions": "<6.1.0"
+    },
+    {
+      "description": "Jakarta EE 10 hold; see the Servlet rule.",
+      "matchPackageNames": [
+        "jakarta.validation:jakarta.validation-api"
+      ],
+      "allowedVersions": "<3.1.0"
+    },
+    {
+      "description": "Jakarta EE 10 hold; see the Servlet rule.",
+      "matchPackageNames": [
+        "jakarta.persistence:jakarta.persistence-api"
+      ],
+      "allowedVersions": "<3.2.0"
+    },
+    {
+      "description": "Jakarta EE 10 hold; see the Servlet rule.",
+      "matchPackageNames": [
+        "jakarta.ws.rs:jakarta.ws.rs-api"
+      ],
+      "allowedVersions": "<3.2.0"
+    },
+    {
+      "description": "Jakarta EE 10 hold; see the Servlet rule.",
+      "matchPackageNames": [
+        "jakarta.annotation:jakarta.annotation-api"
+      ],
+      "allowedVersions": "<2.2.0"
+    },
+    {
+      "description": "Jakarta EE 10 hold; see the Servlet rule.",
+      "matchPackageNames": [
+        "/^org\\.glassfish\\.jersey[.:]/"
+      ],
+      "allowedVersions": "<4.0.0"
+    },
+    {
+      "description": "Jakarta EE 10 hold; see the Servlet rule.",
+      "matchPackageNames": [
+        "/^org\\.hibernate\\.orm:/"
+      ],
+      "allowedVersions": "<7.0.0"
+    },
+    {
+      "description": "Keep SLF4J, Logback, logback-access, and Log4j changes reviewable as one logging-stack update.",
       "matchPackageNames": [
         "/^org\\.slf4j:/",
         "/^ch\\.qos\\.logback:/",
+        "/^ch\\.qos\\.logback\\.access:/",
         "/^org\\.apache\\.logging\\.log4j:/"
       ],
       "groupName": "logging stack"
     },
     {
-      "description": "Dropwizard 4 still references a Logback API removed in Logback 1.6.",
+      "description": "Dropwizard 5's request logging reads PatternLayout.DEFAULT_CONVERTER_MAP, which Logback 1.6 removed. The cedar-parent enforcer holds the same ceiling.",
       "matchPackageNames": [
         "/^ch\\.qos\\.logback:/"
       ],
       "allowedVersions": "<1.6.0"
+    },
+    {
+      "description": "logback-access 2.0.14 is the first release built against Logback 1.6, so the Logback ceiling holds it at 2.0.13.",
+      "matchPackageNames": [
+        "/^ch\\.qos\\.logback\\.access:/"
+      ],
+      "allowedVersions": "<2.0.14"
+    },
+    {
+      "description": "Java is locked to 17, as the cedar-parent enforcer requires. Renovate reads the version from actions/setup-java in CI; moving it is an estate-wide change to the profile, CI, enforcer and runtime image together.",
+      "matchDatasources": [
+        "java-version"
+      ],
+      "allowedVersions": "<18"
+    },
+    {
+      "description": "The OpenSearch client must stay on the locked server's 2.19 line, which ops/check_version_pairing.py enforces. Approve an update only together with a hand edit that sets Lucene and reactor-core to the versions the new OpenSearch POM names.",
+      "matchPackageNames": [
+        "/^org\\.opensearch[.:]/"
+      ],
+      "allowedVersions": "<2.20.0",
+      "groupName": "OpenSearch client",
+      "dependencyDashboardApproval": true
+    },
+    {
+      "description": "These transitive pins carry the version their owner's POM names: Lucene and reactor-core follow OpenSearch, hk2-locator follows Jersey, org.jboss:jandex follows RESTEasy, and protobuf-java follows MySQL Connector/J. Renovate cannot read that relationship, so they move by hand with their owner.",
+      "matchPackageNames": [
+        "/^org\\.apache\\.lucene:/",
+        "io.projectreactor:reactor-core",
+        "/^org\\.glassfish\\.hk2:/",
+        "org.jboss:jandex",
+        "com.google.protobuf:protobuf-java"
+      ],
+      "enabled": false
+    },
+    {
+      "description": "Netty stays on 4.1 for neo4j-harness 5.3.0, which declares 4.1.84 and runs its embedded Bolt server on it. The netty BOM keeps the native transports on the same version. The Neo4j driver itself is built against 4.2, so this hold ends with the harness.",
+      "matchPackageNames": [
+        "/^io\\.netty:/"
+      ],
+      "allowedVersions": "<4.2.0"
+    },
+    {
+      "description": "Embedded Mongo 4.23.0 and later cannot resolve a MongoDB 5.0 server for macOS on ARM, which the deployed 5.0 requires, so every suite that starts it fails on Apple silicon. Linux CI does not see this.",
+      "matchPackageNames": [
+        "de.flapdoodle.embed:de.flapdoodle.embed.mongo"
+      ],
+      "allowedVersions": "<4.23.0"
+    },
+    {
+      "description": "One property sets the linux64, macos-arm64 and winx64 MariaDB test binaries, and a version is usable only when all three publish it. Renovate checks each separately and once offered a Windows-only 11.8.6, so the binaries move by hand.",
+      "matchPackageNames": [
+        "/^ch\\.vorburger\\.mariaDB4j:mariaDB4j-db-/"
+      ],
+      "enabled": false
     },
     {
       "description": "neo4j-harness 5.3.0 is deliberately held for OpenSearch/Lucene test-classpath compatibility.",
