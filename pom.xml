@@ -17,7 +17,10 @@
     <keycloak-admin-client-jakarta.version>21.1.2</keycloak-admin-client-jakarta.version>
     <opensearch.version>2.19.6</opensearch.version>
     <org.neo4j.driver.version>5.28.15</org.neo4j.driver.version>
-    <mysql.connector.j.version>8.4.0</mysql.connector.j.version>
+    <!-- 8.4.0 was the last 8.x release. Connector/J 9 supports MySQL 8.0 and later. It proposes
+         caching_sha2_password first, and still carries the mysql_native_password client plugin for
+         any account that uses it. -->
+    <mysql.connector.j.version>9.7.0</mysql.connector.j.version>
     <org.xerial.sqlite-jdbc.version>3.53.4.0</org.xerial.sqlite-jdbc.version>
     <redis.clients.jedis.version>5.2.0</redis.clients.jedis.version>
     <jsonld.version>0.13.6</jsonld.version>
@@ -30,7 +33,10 @@
     <jackson.core.version>2.22.3</jackson.core.version>
     <networknt.json.schema.validator.version>1.5.9</networknt.json.schema.validator.version>
     <rhino.version>1.9.1</rhino.version>
-    <resteasy.version>6.2.4.Final</resteasy.version>
+    <!-- RESTEasy serves the Keycloak admin client in every server and the admin tool. The Keycloak
+         event listener does not resolve these managed artifacts. It compiles against the RESTEasy
+         that keycloak-services supplies as provided, which is the version its Keycloak runs. -->
+    <resteasy.version>6.2.19.Final</resteasy.version>
     <google-guava.version>33.7.2-jre</google-guava.version>
     <weka.version>3.8.7</weka.version>
     <org.glassfish.jaxb.jaxb-runtime.version>4.0.9</org.glassfish.jaxb.jaxb-runtime.version>
@@ -67,7 +73,6 @@
     <org.javassist.version>3.33.0-GA</org.javassist.version>
     <net.sourceforge.owlapi.version>4.5.9</net.sourceforge.owlapi.version>
     <me.xdrop.fuzzywuzzy.version>1.4.0</me.xdrop.fuzzywuzzy.version>
-    <net.jmob.guice.conf.version>1.2.0</net.jmob.guice.conf.version>
     <junit.jupiter.version>6.1.3</junit.jupiter.version>
     <org.hamcrest.core.version>3.0</org.hamcrest.core.version>
     <org.mockito.version>5.24.0</org.mockito.version>
@@ -157,7 +162,12 @@
     <transitive.classmate.version>1.7.3</transitive.classmate.version>
     <transitive.zstd-jni.version>1.5.7-20</transitive.zstd-jni.version>
     <transitive.error-prone-annotations.version>2.50.0</transitive.error-prone-annotations.version>
-    <transitive.protobuf-java.version>3.25.9</transitive.protobuf-java.version>
+    <!-- protobuf-java reaches the estate through Connector/J, which names 4.31.1, and through the
+         OpenSearch server jar, which names 3.25.5. CEDAR calls neither of the features that use it,
+         the X DevAPI and OpenSearch extensions. A protobuf runtime reads generated code older than
+         itself but not newer, so the pin follows the newer of the two. OpenSearch's 3.25 classes
+         were checked to round-trip on it. -->
+    <transitive.protobuf-java.version>4.31.1</transitive.protobuf-java.version>
     <transitive.istack-commons-runtime.version>4.2.0</transitive.istack-commons-runtime.version>
     <transitive.commons-logging.version>1.4.0</transitive.commons-logging.version>
     <transitive.reactor-core.version>3.7.19</transitive.reactor-core.version>
@@ -830,11 +840,6 @@
         <groupId>org.jboss.resteasy</groupId>
         <artifactId>resteasy-jackson2-provider</artifactId>
         <version>${resteasy.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>net.jmob</groupId>
-        <artifactId>guice.conf</artifactId>
-        <version>${net.jmob.guice.conf.version}</version>
       </dependency>
       <!-- The Jakarta Keycloak admin client needs the jakarta.ws.rs namespace, and Jersey drags in
            an older version of this artifact, so pin the 3.x line to keep the client's classes. -->

@@ -161,7 +161,7 @@
       "dependencyDashboardApproval": true
     },
     {
-      "description": "These transitive pins carry the version their owner's POM names: Lucene and reactor-core follow OpenSearch, hk2-locator follows Jersey, org.jboss:jandex follows RESTEasy, and protobuf-java follows MySQL Connector/J. Renovate cannot read that relationship, so they move by hand with their owner.",
+      "description": "These transitive pins carry the version their owner's POM names: Lucene and reactor-core follow OpenSearch, hk2-locator follows Jersey, org.jboss:jandex follows RESTEasy, and protobuf-java follows the newer of MySQL Connector/J and OpenSearch, which is Connector/J. Renovate cannot read that relationship, so they move by hand with their owner.",
       "matchPackageNames": [
         "/^org\\.apache\\.lucene:/",
         "io.projectreactor:reactor-core",
