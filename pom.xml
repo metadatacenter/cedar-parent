@@ -3,13 +3,13 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.metadatacenter</groupId>
   <artifactId>cedar-parent</artifactId>
-  <version>2.9.28</version>
+  <version>2.9.29</version>
   <packaging>pom</packaging>
   <name>CEDAR Parent</name>
   <description>Parent project for all Java-based CEDAR components</description>
   <url>https://github.com/metadatacenter</url>
   <properties>
-    <cedar.version>2.9.28</cedar.version>
+    <cedar.version>2.9.29</cedar.version>
     <dropwizard.version>5.0.2</dropwizard.version>
     <dropwizard.metrics.version>4.2.40</dropwizard.metrics.version>
     <mongodb.version>5.13.0</mongodb.version>
@@ -33,7 +33,7 @@
     <org.glassfish.jersey.version>3.1.12</org.glassfish.jersey.version>
     <!-- The Jackson BOM import keeps every Jackson artifact on this one version. It runs ahead of
          the 2.21.4 that the Dropwizard 5.0.2 dependency bundle names, within the same 2.x line. -->
-    <jackson.core.version>2.22.3</jackson.core.version>
+    <jackson.core.version>2.22.4</jackson.core.version>
     <networknt.json.schema.validator.version>1.5.9</networknt.json.schema.validator.version>
     <rhino.version>1.9.1</rhino.version>
     <!-- RESTEasy serves the Keycloak admin client in every server and the admin tool. The Keycloak
@@ -46,11 +46,12 @@
     <commons.lang3.version>3.21.0</commons.lang3.version>
     <commons.codec.version>1.23.0</commons.codec.version>
     <commons.text.version>1.15.0</commons.text.version>
+    <commons.collections4.version>4.5.0</commons.collections4.version>
     <!-- Patch releases ahead of the Dropwizard 5.0.2 dependency bundle's HttpCore 5.4.2 and
          HttpClient 5.6.1, on the same minor lines. -->
     <apache.httpcomponents.core.version>5.4.4</apache.httpcomponents.core.version>
-    <apache.httpcomponents.httpclient.version>5.6.4</apache.httpcomponents.httpclient.version>
-    <apache.httpcomponents.httpclient-fluent.version>5.6.4</apache.httpcomponents.httpclient-fluent.version>
+    <apache.httpcomponents.httpclient.version>5.6.5</apache.httpcomponents.httpclient.version>
+    <apache.httpcomponents.httpclient-fluent.version>5.6.5</apache.httpcomponents.httpclient-fluent.version>
     <!-- HttpClient 4, kept only for the OpenSearch REST client and jsonld-java. These match the
          versions the OpenSearch client resolves, so pinning them changes nothing that was already
          winning on the classpath; it removes the older duplicate. -->
@@ -64,7 +65,7 @@
     <java.dev.jna.version>5.19.1</java.dev.jna.version>
     <javax.ws-api.version>2.3.1</javax.ws-api.version>
     <com.sun.activation.version>2.0.1</com.sun.activation.version>
-    <hibernate-core.version>6.6.58.Final</hibernate-core.version>
+    <hibernate-core.version>6.6.59.Final</hibernate-core.version>
     <jakarta.annotation-api.version>2.1.1</jakarta.annotation-api.version>
     <jakarta.persistence-api.version>3.1.0</jakarta.persistence-api.version>
     <jakarta.servlet-api.version>6.0.0</jakarta.servlet-api.version>
@@ -94,9 +95,8 @@
     <de.flapdoodle.embed.mongo.version>4.22.0</de.flapdoodle.embed.mongo.version>
     <org.neo4j.test.neo4j-harness.version>5.3.0</org.neo4j.test.neo4j-harness.version>
     <org.jspecify.version>1.0.1</org.jspecify.version>
-    <!-- The javax-era XML binding stack, still on the classpath of the cadsr and impex tooling and
-         the terminology ingest. Kept apart from the jakarta artifacts above, which carry different
-         coordinates and so can be managed independently. -->
+    <!-- JAXB implementation jars use jakarta.xml.bind despite their com.sun.xml.bind group.
+         The legacy javax APIs below remain separate for the OWLAPI 4 terminology parsers. -->
     <com.sun.xml.bind.version>4.0.9</com.sun.xml.bind.version>
     <javax.xml.bind.jaxb-api.version>2.3.1</javax.xml.bind.jaxb-api.version>
     <javax.activation-api.version>1.2.0</javax.activation-api.version>
@@ -139,15 +139,15 @@
          cedar.shade.main.class to its application class. -->
     <cedar.shade.phase>none</cedar.shade.phase>
     <maven.deploy.plugin.version>3.2.0</maven.deploy.plugin.version>
-    <maven.versions.plugin.version>2.22.0</maven.versions.plugin.version>
+    <maven.versions.plugin.version>2.23.0</maven.versions.plugin.version>
     <maven.clean.plugin.version>3.5.0</maven.clean.plugin.version>
     <maven.site.plugin.version>3.22.0</maven.site.plugin.version>
     <jaxb2.maven.plugin.version>4.2.0</jaxb2.maven.plugin.version>
     <jvnet.jaxb.maven.plugin.version>4.0.16</jvnet.jaxb.maven.plugin.version>
-    <spotless.maven.plugin.version>3.10.2</spotless.maven.plugin.version>
+    <spotless.maven.plugin.version>3.10.4</spotless.maven.plugin.version>
     <maven.jar.plugin.version>3.5.1</maven.jar.plugin.version>
     <maven.source.plugin.version>3.4.0</maven.source.plugin.version>
-    <maven.central-publishing.plugin.version>0.11.0</maven.central-publishing.plugin.version>
+    <maven.central-publishing.plugin.version>0.12.0</maven.central-publishing.plugin.version>
     <maven.gpg.plugin.version>3.2.8</maven.gpg.plugin.version>
     <java.version>17</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -156,16 +156,16 @@
          than one version across the build before it was managed here, meaning the choice fell to
          whichever upstream pom happened to sit nearest. Managed so that an upstream release cannot
          move a shipped artifact on its own. -->
-    <transitive.netty.version>4.1.138.Final</transitive.netty.version>
+    <transitive.netty.version>4.1.139.Final</transitive.netty.version>
     <!-- Lucene and reactor-core carry the versions that the OpenSearch POM at opensearch.version
          names. Move them with opensearch.version and never alone. OpenSearch is built against one
          Lucene, and a newer reactor-core runs ahead of what its client was tested with. -->
     <transitive.lucene.version>9.12.3</transitive.lucene.version>
     <transitive.hk2-locator.version>3.0.6</transitive.hk2-locator.version>
-    <transitive.caffeine.version>3.2.4</transitive.caffeine.version>
-    <transitive.classmate.version>1.7.3</transitive.classmate.version>
-    <transitive.zstd-jni.version>1.5.7-20</transitive.zstd-jni.version>
-    <transitive.error-prone-annotations.version>2.50.0</transitive.error-prone-annotations.version>
+    <transitive.caffeine.version>3.3.1</transitive.caffeine.version>
+    <transitive.classmate.version>1.8.0</transitive.classmate.version>
+    <transitive.zstd-jni.version>1.5.7-24</transitive.zstd-jni.version>
+    <transitive.error-prone-annotations.version>2.51.0</transitive.error-prone-annotations.version>
     <!-- protobuf-java reaches the estate through Connector/J, which names 4.31.1, and through the
          OpenSearch server jar, which names 3.25.5. CEDAR calls neither of the features that use it,
          the X DevAPI and OpenSearch extensions. A protobuf runtime reads generated code older than
@@ -181,11 +181,11 @@
          dropwizard-hibernate to share one tested implementation. Keep the core and agent
          together: Mockito's inline mock maker uses both, and a mismatch can leave stubbing
          silently inert. -->
-    <transitive.byte-buddy.version>1.18.14-jdk5</transitive.byte-buddy.version>
+    <transitive.byte-buddy.version>1.18.16-jdk5</transitive.byte-buddy.version>
     <transitive.commons-compress.version>1.28.0</transitive.commons-compress.version>
     <transitive.angus-activation.version>2.0.3</transitive.angus-activation.version>
     <transitive.jandex.version>2.4.5.Final</transitive.jandex.version>
-    <transitive.asm.version>9.10.1</transitive.asm.version>
+    <transitive.asm.version>9.11.1</transitive.asm.version>
   </properties>
   <distributionManagement>
     <snapshotRepository>
@@ -267,7 +267,7 @@
         <scope>import</scope>
       </dependency>
       <!--
-        Aligns every org.junit.jupiter and org.junit.platform artifact on one JUnit 5 version,
+        Aligns every org.junit.jupiter and org.junit.platform artifact on one JUnit version,
         including the platform artifacts surefire resolves for its JUnit Platform provider.
       -->
       <dependency>
@@ -419,6 +419,11 @@
         <groupId>org.apache.commons</groupId>
         <artifactId>commons-text</artifactId>
         <version>${commons.text.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-collections4</artifactId>
+        <version>${commons.collections4.version}</version>
       </dependency>
       <dependency>
         <groupId>org.mozilla</groupId>
@@ -1578,6 +1583,66 @@
     </pluginManagement>
   </build>
   <profiles>
+    <!-- A provider runs inside Keycloak, whose libraries are supplied at runtime. The service
+         registration activates this exception only for provider modules. Keep all versions here;
+         the listener's CI compares its provided dependency tree with a standalone import of the
+         Keycloak platform so these overrides cannot silently drift when either platform moves. -->
+    <profile>
+      <id>keycloak-provider</id>
+      <activation>
+        <file>
+          <exists>src/main/resources/META-INF/services/org.keycloak.events.EventListenerProviderFactory</exists>
+        </file>
+      </activation>
+      <properties>
+        <!-- Explicit dependency management and earlier BOM imports win over the platform import
+             below. Override their properties with the versions Keycloak 22.0.4 supplies. -->
+        <jackson.core.version>2.15.2</jackson.core.version>
+        <slf4j.version>2.0.6</slf4j.version>
+        <commons.io.version>2.13.0</commons.io.version>
+        <commons.codec.version>1.16.0</commons.codec.version>
+        <commons.collections4.version>4.4</commons.collections4.version>
+        <jboss.logging>3.5.1.Final</jboss.logging>
+        <google-guava.version>32.0.0-jre</google-guava.version>
+        <jakarta.xml.bind-api.version>4.0.0</jakarta.xml.bind-api.version>
+        <org.glassfish.jaxb.jaxb-runtime.version>4.0.3</org.glassfish.jaxb.jaxb-runtime.version>
+        <org.yaml.snakeyaml.version>2.0</org.yaml.snakeyaml.version>
+        <transitive.error-prone-annotations.version>2.19.1</transitive.error-prone-annotations.version>
+        <transitive.istack-commons-runtime.version>3.0.10</transitive.istack-commons-runtime.version>
+        <transitive.commons-logging.version>1.2</transitive.commons-logging.version>
+        <transitive.jakarta-activation-api.version>2.1.2</transitive.jakarta-activation-api.version>
+        <transitive.angus-activation.version>2.0.1</transitive.angus-activation.version>
+        <transitive.jandex.version>3.1.2</transitive.jandex.version>
+      </properties>
+      <dependencyManagement>
+        <dependencies>
+          <dependency>
+            <groupId>org.keycloak</groupId>
+            <artifactId>keycloak-parent</artifactId>
+            <version>${keycloak.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+          </dependency>
+          <!-- CEDAR's explicit Guava management also masks Keycloak's exclusions. Preserve the
+               host platform's graph as well as its versions. -->
+          <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${google-guava.version}</version>
+            <exclusions>
+              <exclusion>
+                <groupId>com.google.code.findbugs</groupId>
+                <artifactId>jsr305</artifactId>
+              </exclusion>
+              <exclusion>
+                <groupId>com.google.guava</groupId>
+                <artifactId>listenablefuture</artifactId>
+              </exclusion>
+            </exclusions>
+          </dependency>
+        </dependencies>
+      </dependencyManagement>
+    </profile>
     <profile>
       <id>maven-central-release</id>
       <activation>
