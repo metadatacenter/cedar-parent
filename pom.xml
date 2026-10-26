@@ -46,7 +46,7 @@
     <commons.lang3.version>3.21.0</commons.lang3.version>
     <commons.codec.version>1.23.0</commons.codec.version>
     <commons.text.version>1.15.0</commons.text.version>
-    <commons.collections4.version>4.5.0</commons.collections4.version>
+    <commons.collections4.version>4.6.0</commons.collections4.version>
     <!-- Patch releases ahead of the Dropwizard 5.0.2 dependency bundle's HttpCore 5.4.2 and
          HttpClient 5.6.1, on the same minor lines. -->
     <apache.httpcomponents.core.version>5.4.4</apache.httpcomponents.core.version>
