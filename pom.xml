@@ -64,7 +64,6 @@
     <apache.poi.version>5.5.1</apache.poi.version>
     <java.dev.jna.version>5.19.1</java.dev.jna.version>
     <javax.ws-api.version>2.3.1</javax.ws-api.version>
-    <com.sun.activation.version>2.0.1</com.sun.activation.version>
     <hibernate-core.version>6.6.59.Final</hibernate-core.version>
     <jakarta.annotation-api.version>2.1.1</jakarta.annotation-api.version>
     <jakarta.persistence-api.version>3.1.0</jakarta.persistence-api.version>
@@ -989,11 +988,6 @@
         <groupId>org.glassfish.jaxb</groupId>
         <artifactId>jaxb-runtime</artifactId>
         <version>${org.glassfish.jaxb.jaxb-runtime.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.sun.activation</groupId>
-        <artifactId>jakarta.activation</artifactId>
-        <version>${com.sun.activation.version}</version>
       </dependency>
       <dependency>
         <groupId>org.javassist</groupId>
