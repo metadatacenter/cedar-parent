@@ -1,50 +1,10 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:recommended",
-    ":semanticCommitsDisabled"
+    "local>metadatacenter/cedar-parent:renovate-backend"
   ],
   "description": "Review-only dependency updates for the CEDAR Maven parent. Internal CEDAR versions remain controlled by the immutable build train.",
-  "baseBranchPatterns": [
-    "develop"
-  ],
-  "labels": [
-    "dependencies"
-  ],
-  "dependencyDashboard": true,
-  "dependencyDashboardTitle": "Dependency Dashboard",
-  "automerge": false,
-  "prConcurrentLimit": 4,
-  "prHourlyLimit": 2,
-  "minimumReleaseAge": "14 days",
   "packageRules": [
-    {
-      "description": "Use the CEDAR Nexus pull-through proxy so hosted Renovate is not exposed to Maven Central's shared-IP rate limit.",
-      "matchDatasources": [
-        "maven"
-      ],
-      "registryUrls": [
-        "https://nexus.bmir.stanford.edu/repository/maven-public/"
-      ]
-    },
-    {
-      "description": "Never rewrite the CEDAR reactor/train version or another internal CEDAR artifact.",
-      "matchPackageNames": [
-        "/^org\\.metadatacenter:/"
-      ],
-      "matchDepNames": [
-        "/^org\\.metadatacenter:/",
-        "/^cedar-/"
-      ],
-      "enabled": false
-    },
-    {
-      "description": "Major platform upgrades require an explicit operator decision in the Dependency Dashboard.",
-      "matchUpdateTypes": [
-        "major"
-      ],
-      "dependencyDashboardApproval": true
-    },
     {
       "description": "Keycloak client versions are coupled to CEDAR authentication code and server migration planning.",
       "matchPackageNames": [
@@ -145,13 +105,6 @@
       "allowedVersions": "<2.0.14"
     },
     {
-      "description": "Java is locked to 17, as the cedar-parent enforcer requires. Renovate reads the version from actions/setup-java in CI; moving it is an estate-wide change to the profile, CI, enforcer and runtime image together.",
-      "matchDatasources": [
-        "java-version"
-      ],
-      "allowedVersions": "<18"
-    },
-    {
       "description": "The OpenSearch client must stay on the locked server's 2.19 line, which ops/check_version_pairing.py enforces. Approve an update only together with a hand edit that sets Lucene and reactor-core to the versions the new OpenSearch POM names.",
       "matchPackageNames": [
         "/^org\\.opensearch[.:]/"
@@ -208,10 +161,5 @@
       ],
       "groupName": "Maven build plugins"
     }
-  ],
-  "vulnerabilityAlerts": {
-    "labels": [
-      "security"
-    ]
-  }
+  ]
 }
