@@ -744,16 +744,6 @@
       </dependency>
       <dependency>
         <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-impex-server-core</artifactId>
-        <version>${cedar.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-impex-server-application</artifactId>
-        <version>${cedar.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.metadatacenter</groupId>
         <artifactId>cedar-server-rest-library</artifactId>
         <version>${cedar.version}</version>
       </dependency>
@@ -1324,7 +1314,7 @@
     </plugins>
     <pluginManagement>
       <plugins>
-        <!-- Generates Java classes from XML Schema for the impex server. The 4.x
+        <!-- Generates Java classes from XML Schema for the caDSR tools. The 4.x
              jvnet plugin emits the jakarta.xml.bind namespace; the retired org.jvnet.jaxb2.maven2
              plugin emitted javax.xml.bind and needed a jaxb-runtime held back to 2.3.x. -->
         <plugin>
