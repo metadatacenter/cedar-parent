@@ -87,11 +87,16 @@
          test engines. Flapdoodle stays at 4.22.0. MongoDB published no macOS ARM build of 5.0, and
          4.22.0 is the last release that resolves the x86-64 build there instead. From 4.23.0 every
          suite that starts the embedded store on Apple silicon fails with "could not resolve package
-         for V5_0". -->
+         for V5_0". Its operating-system detection, de.flapdoodle.os, is held separately at 1.11.1.
+         The 1.10.0 that 4.22.0 brings does not recognize Ubuntu 26.04, the release GitHub's
+         ubuntu-latest runners now provide, so it resolves no package there and the same error
+         stops every such suite in CI. 1.11.1 recognizes it, 4.22.0 then picks the Ubuntu 20.04
+         build, and that build starts once the CI job installs OpenSSL 1.1. -->
     <com.github.codemonstur.embedded-redis.version>1.4.4</com.github.codemonstur.embedded-redis.version>
     <ch.vorburger.mariadb4j.version>3.3.1</ch.vorburger.mariadb4j.version>
     <ch.vorburger.mariadb4j.db.version>11.4.5</ch.vorburger.mariadb4j.db.version>
     <de.flapdoodle.embed.mongo.version>4.22.0</de.flapdoodle.embed.mongo.version>
+    <de.flapdoodle.os.version>1.11.1</de.flapdoodle.os.version>
     <org.neo4j.test.neo4j-harness.version>5.3.0</org.neo4j.test.neo4j-harness.version>
     <org.jspecify.version>1.0.1</org.jspecify.version>
     <!-- JAXB implementation jars use jakarta.xml.bind despite their com.sun.xml.bind group.
@@ -535,6 +540,11 @@
         <groupId>de.flapdoodle.embed</groupId>
         <artifactId>de.flapdoodle.embed.mongo</artifactId>
         <version>${de.flapdoodle.embed.mongo.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>de.flapdoodle</groupId>
+        <artifactId>de.flapdoodle.os</artifactId>
+        <version>${de.flapdoodle.os.version}</version>
       </dependency>
       <dependency>
         <groupId>org.neo4j.test</groupId>
