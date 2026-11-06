@@ -3,25 +3,25 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.metadatacenter</groupId>
   <artifactId>cedar-parent</artifactId>
-  <version>2.9.31</version>
+  <version>2.9.32</version>
   <packaging>pom</packaging>
   <name>CEDAR Parent</name>
   <description>Parent project for all Java-based CEDAR components</description>
   <url>https://github.com/metadatacenter</url>
   <properties>
-    <cedar.version>2.9.31</cedar.version>
+    <cedar.version>2.9.32</cedar.version>
     <dropwizard.version>5.0.2</dropwizard.version>
     <dropwizard.metrics.version>4.2.40</dropwizard.metrics.version>
-    <mongodb.version>5.13.0</mongodb.version>
+    <mongodb.version>5.14.0</mongodb.version>
     <keycloak.version>22.0.4</keycloak.version>
     <keycloak-admin-client-jakarta.version>21.1.2</keycloak-admin-client-jakarta.version>
-    <opensearch.version>2.19.6</opensearch.version>
+    <opensearch.version>2.19.7</opensearch.version>
     <org.neo4j.driver.version>5.28.15</org.neo4j.driver.version>
     <!-- 8.4.0 was the last 8.x release. Connector/J 9 supports MySQL 8.0 and later. It proposes
          caching_sha2_password first, and still carries the mysql_native_password client plugin for
          any account that uses it. -->
     <mysql.connector.j.version>9.7.0</mysql.connector.j.version>
-    <org.xerial.sqlite-jdbc.version>3.53.4.0</org.xerial.sqlite-jdbc.version>
+    <org.xerial.sqlite-jdbc.version>3.54.1.0</org.xerial.sqlite-jdbc.version>
     <redis.clients.jedis.version>5.2.0</redis.clients.jedis.version>
     <jsonld.version>0.13.6</jsonld.version>
     <titanium-json-ld.version>1.7.0</titanium-json-ld.version>
@@ -35,12 +35,12 @@
          the 2.21.4 that the Dropwizard 5.0.2 dependency bundle names, within the same 2.x line. -->
     <jackson.core.version>2.22.4</jackson.core.version>
     <networknt.json.schema.validator.version>1.5.9</networknt.json.schema.validator.version>
-    <rhino.version>1.9.1</rhino.version>
+    <rhino.version>1.9.2</rhino.version>
     <!-- RESTEasy serves the Keycloak admin client in every server and the admin tool. The Keycloak
          event listener does not resolve these managed artifacts. It compiles against the RESTEasy
          that keycloak-services supplies as provided, which is the version its Keycloak runs. -->
     <resteasy.version>6.2.19.Final</resteasy.version>
-    <google-guava.version>33.7.2-jre</google-guava.version>
+    <google-guava.version>33.8.0-jre</google-guava.version>
     <org.glassfish.jaxb.jaxb-runtime.version>4.0.9</org.glassfish.jaxb.jaxb-runtime.version>
     <commons.io.version>2.22.0</commons.io.version>
     <commons.lang3.version>3.21.0</commons.lang3.version>
@@ -87,11 +87,16 @@
          test engines. Flapdoodle stays at 4.22.0. MongoDB published no macOS ARM build of 5.0, and
          4.22.0 is the last release that resolves the x86-64 build there instead. From 4.23.0 every
          suite that starts the embedded store on Apple silicon fails with "could not resolve package
-         for V5_0". -->
+         for V5_0". Its operating-system detection, de.flapdoodle.os, is held separately at 1.11.1.
+         The 1.10.0 that 4.22.0 brings does not recognize Ubuntu 26.04, the release GitHub's
+         ubuntu-latest runners now provide, so it resolves no package there and the same error
+         stops every such suite in CI. 1.11.1 recognizes it, 4.22.0 then picks the Ubuntu 20.04
+         build, and that build starts once the CI job installs OpenSSL 1.1. -->
     <com.github.codemonstur.embedded-redis.version>1.4.4</com.github.codemonstur.embedded-redis.version>
     <ch.vorburger.mariadb4j.version>3.3.1</ch.vorburger.mariadb4j.version>
     <ch.vorburger.mariadb4j.db.version>11.4.5</ch.vorburger.mariadb4j.db.version>
     <de.flapdoodle.embed.mongo.version>4.22.0</de.flapdoodle.embed.mongo.version>
+    <de.flapdoodle.os.version>1.11.1</de.flapdoodle.os.version>
     <org.neo4j.test.neo4j-harness.version>5.3.0</org.neo4j.test.neo4j-harness.version>
     <org.jspecify.version>1.0.1</org.jspecify.version>
     <!-- JAXB implementation jars use jakarta.xml.bind despite their com.sun.xml.bind group.
@@ -112,8 +117,8 @@
     <org.yaml.snakeyaml.version>2.7</org.yaml.snakeyaml.version>
     <google.code.findbugs.version>3.0.2</google.code.findbugs.version>
     <maven.version>3.6.3</maven.version>
-    <maven.enforcer.plugin.version>3.6.3</maven.enforcer.plugin.version>
-    <maven.surefire.plugin.version>3.6.0</maven.surefire.plugin.version>
+    <maven.enforcer.plugin.version>3.7.0</maven.enforcer.plugin.version>
+    <maven.surefire.plugin.version>3.6.1</maven.surefire.plugin.version>
     <maven.compiler.plugin.version>3.16.0</maven.compiler.plugin.version>
     <maven.jsonschema2pojo.plugin.version>1.3.3</maven.jsonschema2pojo.plugin.version>
     <maven.jax.plugin.version>0.2</maven.jax.plugin.version>
@@ -124,8 +129,8 @@
     <maven.resources.plugin.version>3.5.0</maven.resources.plugin.version>
     <maven.install.plugin.version>3.2.0</maven.install.plugin.version>
     <maven.javadoc.plugin.version>3.12.0</maven.javadoc.plugin.version>
-    <maven.failsafe.plugin.version>3.6.0</maven.failsafe.plugin.version>
-    <jacoco.maven.plugin.version>0.8.15</jacoco.maven.plugin.version>
+    <maven.failsafe.plugin.version>3.6.1</maven.failsafe.plugin.version>
+    <jacoco.maven.plugin.version>0.8.16</jacoco.maven.plugin.version>
     <!-- The share of its own lines a module's tests must cover, checked on every build that runs
          them. A module sets its own floor a little below its measured figure, so coverage cannot
          fall without someone deciding it may. The default, zero, is no floor. -->
@@ -146,7 +151,7 @@
     <maven.site.plugin.version>3.22.0</maven.site.plugin.version>
     <jaxb2.maven.plugin.version>4.2.0</jaxb2.maven.plugin.version>
     <jvnet.jaxb.maven.plugin.version>4.0.16</jvnet.jaxb.maven.plugin.version>
-    <spotless.maven.plugin.version>3.10.4</spotless.maven.plugin.version>
+    <spotless.maven.plugin.version>3.11.0</spotless.maven.plugin.version>
     <maven.jar.plugin.version>3.5.1</maven.jar.plugin.version>
     <maven.source.plugin.version>3.4.0</maven.source.plugin.version>
     <maven.central-publishing.plugin.version>0.12.0</maven.central-publishing.plugin.version>
@@ -158,7 +163,7 @@
          than one version across the build before it was managed here, meaning the choice fell to
          whichever upstream pom happened to sit nearest. Managed so that an upstream release cannot
          move a shipped artifact on its own. -->
-    <transitive.netty.version>4.1.139.Final</transitive.netty.version>
+    <transitive.netty.version>4.1.140.Final</transitive.netty.version>
     <!-- Lucene and reactor-core carry the versions that the OpenSearch POM at opensearch.version
          names. Move them with opensearch.version and never alone. OpenSearch is built against one
          Lucene, and a newer reactor-core runs ahead of what its client was tested with. -->
@@ -166,8 +171,8 @@
     <transitive.hk2-locator.version>3.0.6</transitive.hk2-locator.version>
     <transitive.caffeine.version>3.3.1</transitive.caffeine.version>
     <transitive.classmate.version>1.8.0</transitive.classmate.version>
-    <transitive.zstd-jni.version>1.5.7-24</transitive.zstd-jni.version>
-    <transitive.error-prone-annotations.version>2.51.0</transitive.error-prone-annotations.version>
+    <transitive.zstd-jni.version>1.5.7-25</transitive.zstd-jni.version>
+    <transitive.error-prone-annotations.version>2.52.0</transitive.error-prone-annotations.version>
     <!-- protobuf-java reaches the estate through Connector/J, which names 4.31.1, and through the
          OpenSearch server jar, which names 3.25.5. CEDAR calls neither of the features that use it,
          the X DevAPI and OpenSearch extensions. A protobuf runtime reads generated code older than
@@ -183,7 +188,7 @@
          dropwizard-hibernate to share one tested implementation. Keep the core and agent
          together: Mockito's inline mock maker uses both, and a mismatch can leave stubbing
          silently inert. -->
-    <transitive.byte-buddy.version>1.18.16-jdk5</transitive.byte-buddy.version>
+    <transitive.byte-buddy.version>1.18.17-jdk5</transitive.byte-buddy.version>
     <transitive.commons-compress.version>1.28.0</transitive.commons-compress.version>
     <transitive.angus-activation.version>2.0.3</transitive.angus-activation.version>
     <transitive.jandex.version>2.4.5.Final</transitive.jandex.version>
@@ -537,6 +542,11 @@
         <version>${de.flapdoodle.embed.mongo.version}</version>
       </dependency>
       <dependency>
+        <groupId>de.flapdoodle</groupId>
+        <artifactId>de.flapdoodle.os</artifactId>
+        <version>${de.flapdoodle.os.version}</version>
+      </dependency>
+      <dependency>
         <groupId>org.neo4j.test</groupId>
         <artifactId>neo4j-harness</artifactId>
         <version>${org.neo4j.test.neo4j-harness.version}</version>
@@ -740,16 +750,6 @@
       <dependency>
         <groupId>org.metadatacenter</groupId>
         <artifactId>cedar-openview-server-application</artifactId>
-        <version>${cedar.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-impex-server-core</artifactId>
-        <version>${cedar.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.metadatacenter</groupId>
-        <artifactId>cedar-impex-server-application</artifactId>
         <version>${cedar.version}</version>
       </dependency>
       <dependency>
@@ -1324,7 +1324,7 @@
     </plugins>
     <pluginManagement>
       <plugins>
-        <!-- Generates Java classes from XML Schema for the impex server. The 4.x
+        <!-- Generates Java classes from XML Schema for the caDSR tools. The 4.x
              jvnet plugin emits the jakarta.xml.bind namespace; the retired org.jvnet.jaxb2.maven2
              plugin emitted javax.xml.bind and needed a jaxb-runtime held back to 2.3.x. -->
         <plugin>
