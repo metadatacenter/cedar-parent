@@ -150,6 +150,7 @@
     <maven.source.plugin.version>3.4.0</maven.source.plugin.version>
     <maven.central-publishing.plugin.version>0.12.0</maven.central-publishing.plugin.version>
     <maven.gpg.plugin.version>3.2.8</maven.gpg.plugin.version>
+    <git.commit.id.maven.plugin.version>9.0.1</git.commit.id.maven.plugin.version>
     <java.version>17</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -1256,6 +1257,39 @@
             </configuration>
           </execution>
         </executions>
+      </plugin>
+      <!-- Stamps every jar with the commit it was built from, so a jar can say which source it
+           holds. Each module writes META-INF/cedar/<artifactId>.git.properties, a path no other
+           module writes, so a shaded server jar keeps the stamp of every CEDAR module it embeds.
+           cedarcli test e2e compares the stamps with the develop heads its record names. The
+           stamp holds no build time, so two builds of one commit produce the same jar. A build
+           outside a Git checkout writes no stamp and fails nothing. -->
+      <plugin>
+        <groupId>io.github.git-commit-id</groupId>
+        <artifactId>git-commit-id-maven-plugin</artifactId>
+        <version>${git.commit.id.maven.plugin.version}</version>
+        <executions>
+          <execution>
+            <id>cedar-build-stamp</id>
+            <goals>
+              <goal>revision</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <skipPoms>true</skipPoms>
+          <offline>true</offline>
+          <useNativeGit>true</useNativeGit>
+          <failOnNoGitDirectory>false</failOnNoGitDirectory>
+          <failOnUnableToExtractRepoInfo>false</failOnUnableToExtractRepoInfo>
+          <generateGitPropertiesFile>true</generateGitPropertiesFile>
+          <generateGitPropertiesFilename>${project.build.outputDirectory}/META-INF/cedar/${project.artifactId}.git.properties</generateGitPropertiesFilename>
+          <includeOnlyProperties>
+            <includeOnlyProperty>^git.commit.id$</includeOnlyProperty>
+            <includeOnlyProperty>^git.dirty$</includeOnlyProperty>
+            <includeOnlyProperty>^git.remote.origin.url$</includeOnlyProperty>
+          </includeOnlyProperties>
+        </configuration>
       </plugin>
     </plugins>
     <pluginManagement>
