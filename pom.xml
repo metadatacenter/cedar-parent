@@ -136,6 +136,14 @@
     <!-- How long Surefire and Failsafe wait for a test JVM's shutdown hooks before halting it.
          Embedded Neo4j, MariaDB and MongoDB stop in those hooks, and JaCoCo writes its data in one. -->
     <cedar.test.forkExitTimeoutSeconds>180</cedar.test.forkExitTimeoutSeconds>
+    <!-- The settings every test JVM takes, Surefire's and Failsafe's alike. Each plugin's
+         configuration below lists the same system properties and environment variables, with
+         these values, so an integration test that boots an application meets the same test
+         environment as a unit test. -->
+    <cedar.test.suppressAppLogQueue>true</cedar.test.suppressAppLogQueue>
+    <cedar.test.dependencyTimeoutMillis>1000</cedar.test.dependencyTimeoutMillis>
+    <cedar.test.redisHost>127.0.0.1</cedar.test.redisHost>
+    <cedar.test.redisPort>1</cedar.test.redisPort>
     <maven.shade.plugin.version>3.6.2</maven.shade.plugin.version>
     <log4j.transform.shade.extensions.version>0.2.0</log4j.transform.shade.extensions.version>
     <!-- Guard for the managed cedar-shade execution below. Maven merges pluginManagement
@@ -1376,10 +1384,10 @@
               <!-- Backend-free server tests have no application-log Redis. Queue behavior is
                    covered separately against embedded Redis; avoid one network timeout for every
                    HTTP and Cypher log event in every other test JVM. -->
-              <cedar.test.suppressAppLogQueue>true</cedar.test.suppressAppLogQueue>
+              <cedar.test.suppressAppLogQueue>${cedar.test.suppressAppLogQueue}</cedar.test.suppressAppLogQueue>
               <!-- Production drivers retain their defaults. Outage tests need the same exception
                    path, not thirty seconds of retry/backoff before reaching it. -->
-              <cedar.test.dependencyTimeoutMillis>1000</cedar.test.dependencyTimeoutMillis>
+              <cedar.test.dependencyTimeoutMillis>${cedar.test.dependencyTimeoutMillis}</cedar.test.dependencyTimeoutMillis>
               <!-- A missing response does not prove a write was not applied. Preserve the JDK's
                    method restriction so a POST/PUT failure cannot pass by replaying the write. -->
               <jdk.httpclient.enableAllMethodRetry>false</jdk.httpclient.enableAllMethodRetry>
@@ -1387,8 +1395,8 @@
             <environmentVariables>
               <!-- Never inherit a developer profile's remote Redis address in a backend-free
                    suite. Tests that exercise a queue construct their own embedded-Redis config. -->
-              <CEDAR_REDIS_PERSISTENT_HOST>127.0.0.1</CEDAR_REDIS_PERSISTENT_HOST>
-              <CEDAR_REDIS_PERSISTENT_PORT>1</CEDAR_REDIS_PERSISTENT_PORT>
+              <CEDAR_REDIS_PERSISTENT_HOST>${cedar.test.redisHost}</CEDAR_REDIS_PERSISTENT_HOST>
+              <CEDAR_REDIS_PERSISTENT_PORT>${cedar.test.redisPort}</CEDAR_REDIS_PERSISTENT_PORT>
             </environmentVariables>
           </configuration>
         </plugin>
@@ -1444,9 +1452,17 @@
           <version>${maven.failsafe.plugin.version}</version>
           <configuration>
             <forkedProcessExitTimeoutInSeconds>${cedar.test.forkExitTimeoutSeconds}</forkedProcessExitTimeoutInSeconds>
+            <!-- The same test environment as Surefire's above, for the reasons given there. -->
             <systemPropertyVariables>
               <junit.jupiter.extensions.autodetection.enabled>true</junit.jupiter.extensions.autodetection.enabled>
+              <cedar.test.suppressAppLogQueue>${cedar.test.suppressAppLogQueue}</cedar.test.suppressAppLogQueue>
+              <cedar.test.dependencyTimeoutMillis>${cedar.test.dependencyTimeoutMillis}</cedar.test.dependencyTimeoutMillis>
+              <jdk.httpclient.enableAllMethodRetry>false</jdk.httpclient.enableAllMethodRetry>
             </systemPropertyVariables>
+            <environmentVariables>
+              <CEDAR_REDIS_PERSISTENT_HOST>${cedar.test.redisHost}</CEDAR_REDIS_PERSISTENT_HOST>
+              <CEDAR_REDIS_PERSISTENT_PORT>${cedar.test.redisPort}</CEDAR_REDIS_PERSISTENT_PORT>
+            </environmentVariables>
           </configuration>
         </plugin>
         <plugin>
