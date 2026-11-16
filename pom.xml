@@ -133,6 +133,9 @@
     <!-- The same for the module's branches, which are the decisions its code makes. Line coverage
          alone lets a change stop exercising a decision without failing anything. -->
     <cedar.coverage.branch.minimum>0.00</cedar.coverage.branch.minimum>
+    <!-- How long Surefire and Failsafe wait for a test JVM's shutdown hooks before halting it.
+         Embedded Neo4j, MariaDB and MongoDB stop in those hooks, and JaCoCo writes its data in one. -->
+    <cedar.test.forkExitTimeoutSeconds>180</cedar.test.forkExitTimeoutSeconds>
     <maven.shade.plugin.version>3.6.2</maven.shade.plugin.version>
     <log4j.transform.shade.extensions.version>0.2.0</log4j.transform.shade.extensions.version>
     <!-- Guard for the managed cedar-shade execution below. Maven merges pluginManagement
@@ -1361,6 +1364,11 @@
               <include>**/*Spec.java</include>
               <include>**/*Test.java</include>
             </includes>
+            <!-- After a fork's tests end, Surefire waits this long for its shutdown hooks before
+                 halting it. The default 30 seconds cuts off embedded-store shutdown and JaCoCo's
+                 data dump on a loaded machine, and the module then fails its coverage check with a
+                 ratio of 0.00. -->
+            <forkedProcessExitTimeoutInSeconds>${cedar.test.forkExitTimeoutSeconds}</forkedProcessExitTimeoutInSeconds>
             <systemPropertyVariables>
               <!-- cedar-test-support-library contributes a JUnit extension that clears its
                    process-global environment override after every test class. -->
@@ -1435,6 +1443,7 @@
           <artifactId>maven-failsafe-plugin</artifactId>
           <version>${maven.failsafe.plugin.version}</version>
           <configuration>
+            <forkedProcessExitTimeoutInSeconds>${cedar.test.forkExitTimeoutSeconds}</forkedProcessExitTimeoutInSeconds>
             <systemPropertyVariables>
               <junit.jupiter.extensions.autodetection.enabled>true</junit.jupiter.extensions.autodetection.enabled>
             </systemPropertyVariables>
