@@ -1523,6 +1523,23 @@
                 <goal>shade</goal>
               </goals>
               <configuration>
+                <!-- Apache POI and the artifacts only it brings: 7,584 classes, about 16 MB of each
+                     server jar, most of them OOXML schemas. They reach every server through
+                     cedar-artifact-library, where only its spreadsheet renderer and its
+                     Template2Excel and Template2Tsv tools use them, and no server class uses those.
+                     A scan of every shaded jar's constant pools on 2026-11-16 found no other class,
+                     resource or class-name string that names them. A server that starts rendering
+                     spreadsheets must remove these exclusions, or it fails with
+                     NoClassDefFoundError. -->
+                <artifactSet>
+                  <excludes>
+                    <exclude>org.apache.poi:*</exclude>
+                    <exclude>org.apache.xmlbeans:xmlbeans</exclude>
+                    <exclude>com.github.virtuald:curvesapi</exclude>
+                    <exclude>com.zaxxer:SparseBitSet</exclude>
+                    <exclude>org.apache.commons:commons-math3</exclude>
+                  </excludes>
+                </artifactSet>
                 <transformers>
                   <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
                   <transformer implementation="org.apache.logging.log4j.maven.plugins.shade.transformer.Log4j2PluginCacheFileTransformer"/>
