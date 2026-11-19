@@ -3,13 +3,13 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.metadatacenter</groupId>
   <artifactId>cedar-parent</artifactId>
-  <version>2.9.36</version>
+  <version>2.9.37</version>
   <packaging>pom</packaging>
   <name>CEDAR Parent</name>
   <description>Parent project for all Java-based CEDAR components</description>
   <url>https://github.com/metadatacenter</url>
   <properties>
-    <cedar.version>2.9.36</cedar.version>
+    <cedar.version>2.9.37</cedar.version>
     <dropwizard.version>5.0.2</dropwizard.version>
     <dropwizard.metrics.version>4.2.40</dropwizard.metrics.version>
     <mongodb.version>5.14.0</mongodb.version>
@@ -133,6 +133,17 @@
     <!-- The same for the module's branches, which are the decisions its code makes. Line coverage
          alone lets a change stop exercising a decision without failing anything. -->
     <cedar.coverage.branch.minimum>0.00</cedar.coverage.branch.minimum>
+    <!-- How long Surefire and Failsafe wait for a test JVM's shutdown hooks before halting it.
+         Embedded Neo4j, MariaDB and MongoDB stop in those hooks, and JaCoCo writes its data in one. -->
+    <cedar.test.forkExitTimeoutSeconds>180</cedar.test.forkExitTimeoutSeconds>
+    <!-- The settings every test JVM takes, Surefire's and Failsafe's alike. Each plugin's
+         configuration below lists the same system properties and environment variables, with
+         these values, so an integration test that boots an application meets the same test
+         environment as a unit test. -->
+    <cedar.test.suppressAppLogQueue>true</cedar.test.suppressAppLogQueue>
+    <cedar.test.dependencyTimeoutMillis>1000</cedar.test.dependencyTimeoutMillis>
+    <cedar.test.redisHost>127.0.0.1</cedar.test.redisHost>
+    <cedar.test.redisPort>1</cedar.test.redisPort>
     <maven.shade.plugin.version>3.6.2</maven.shade.plugin.version>
     <log4j.transform.shade.extensions.version>0.2.0</log4j.transform.shade.extensions.version>
     <!-- Guard for the managed cedar-shade execution below. Maven merges pluginManagement
@@ -150,6 +161,7 @@
     <maven.source.plugin.version>3.4.0</maven.source.plugin.version>
     <maven.central-publishing.plugin.version>0.12.0</maven.central-publishing.plugin.version>
     <maven.gpg.plugin.version>3.2.8</maven.gpg.plugin.version>
+    <git.commit.id.maven.plugin.version>9.0.1</git.commit.id.maven.plugin.version>
     <java.version>17</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -1257,6 +1269,39 @@
           </execution>
         </executions>
       </plugin>
+      <!-- Stamps every jar with the commit it was built from, so a jar can say which source it
+           holds. Each module writes META-INF/cedar/<artifactId>.git.properties, a path no other
+           module writes, so a shaded server jar keeps the stamp of every CEDAR module it embeds.
+           cedarcli test e2e compares the stamps with the develop heads its record names. The
+           stamp holds no build time, so two builds of one commit produce the same jar. A build
+           outside a Git checkout writes no stamp and fails nothing. -->
+      <plugin>
+        <groupId>io.github.git-commit-id</groupId>
+        <artifactId>git-commit-id-maven-plugin</artifactId>
+        <version>${git.commit.id.maven.plugin.version}</version>
+        <executions>
+          <execution>
+            <id>cedar-build-stamp</id>
+            <goals>
+              <goal>revision</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <skipPoms>true</skipPoms>
+          <offline>true</offline>
+          <useNativeGit>true</useNativeGit>
+          <failOnNoGitDirectory>false</failOnNoGitDirectory>
+          <failOnUnableToExtractRepoInfo>false</failOnUnableToExtractRepoInfo>
+          <generateGitPropertiesFile>true</generateGitPropertiesFile>
+          <generateGitPropertiesFilename>${project.build.outputDirectory}/META-INF/cedar/${project.artifactId}.git.properties</generateGitPropertiesFilename>
+          <includeOnlyProperties>
+            <includeOnlyProperty>^git.commit.id$</includeOnlyProperty>
+            <includeOnlyProperty>^git.dirty$</includeOnlyProperty>
+            <includeOnlyProperty>^git.remote.origin.url$</includeOnlyProperty>
+          </includeOnlyProperties>
+        </configuration>
+      </plugin>
     </plugins>
     <pluginManagement>
       <plugins>
@@ -1327,6 +1372,11 @@
               <include>**/*Spec.java</include>
               <include>**/*Test.java</include>
             </includes>
+            <!-- After a fork's tests end, Surefire waits this long for its shutdown hooks before
+                 halting it. The default 30 seconds cuts off embedded-store shutdown and JaCoCo's
+                 data dump on a loaded machine, and the module then fails its coverage check with a
+                 ratio of 0.00. -->
+            <forkedProcessExitTimeoutInSeconds>${cedar.test.forkExitTimeoutSeconds}</forkedProcessExitTimeoutInSeconds>
             <systemPropertyVariables>
               <!-- cedar-test-support-library contributes a JUnit extension that clears its
                    process-global environment override after every test class. -->
@@ -1334,10 +1384,10 @@
               <!-- Backend-free server tests have no application-log Redis. Queue behavior is
                    covered separately against embedded Redis; avoid one network timeout for every
                    HTTP and Cypher log event in every other test JVM. -->
-              <cedar.test.suppressAppLogQueue>true</cedar.test.suppressAppLogQueue>
+              <cedar.test.suppressAppLogQueue>${cedar.test.suppressAppLogQueue}</cedar.test.suppressAppLogQueue>
               <!-- Production drivers retain their defaults. Outage tests need the same exception
                    path, not thirty seconds of retry/backoff before reaching it. -->
-              <cedar.test.dependencyTimeoutMillis>1000</cedar.test.dependencyTimeoutMillis>
+              <cedar.test.dependencyTimeoutMillis>${cedar.test.dependencyTimeoutMillis}</cedar.test.dependencyTimeoutMillis>
               <!-- A missing response does not prove a write was not applied. Preserve the JDK's
                    method restriction so a POST/PUT failure cannot pass by replaying the write. -->
               <jdk.httpclient.enableAllMethodRetry>false</jdk.httpclient.enableAllMethodRetry>
@@ -1345,8 +1395,8 @@
             <environmentVariables>
               <!-- Never inherit a developer profile's remote Redis address in a backend-free
                    suite. Tests that exercise a queue construct their own embedded-Redis config. -->
-              <CEDAR_REDIS_PERSISTENT_HOST>127.0.0.1</CEDAR_REDIS_PERSISTENT_HOST>
-              <CEDAR_REDIS_PERSISTENT_PORT>1</CEDAR_REDIS_PERSISTENT_PORT>
+              <CEDAR_REDIS_PERSISTENT_HOST>${cedar.test.redisHost}</CEDAR_REDIS_PERSISTENT_HOST>
+              <CEDAR_REDIS_PERSISTENT_PORT>${cedar.test.redisPort}</CEDAR_REDIS_PERSISTENT_PORT>
             </environmentVariables>
           </configuration>
         </plugin>
@@ -1401,9 +1451,18 @@
           <artifactId>maven-failsafe-plugin</artifactId>
           <version>${maven.failsafe.plugin.version}</version>
           <configuration>
+            <forkedProcessExitTimeoutInSeconds>${cedar.test.forkExitTimeoutSeconds}</forkedProcessExitTimeoutInSeconds>
+            <!-- The same test environment as Surefire's above, for the reasons given there. -->
             <systemPropertyVariables>
               <junit.jupiter.extensions.autodetection.enabled>true</junit.jupiter.extensions.autodetection.enabled>
+              <cedar.test.suppressAppLogQueue>${cedar.test.suppressAppLogQueue}</cedar.test.suppressAppLogQueue>
+              <cedar.test.dependencyTimeoutMillis>${cedar.test.dependencyTimeoutMillis}</cedar.test.dependencyTimeoutMillis>
+              <jdk.httpclient.enableAllMethodRetry>false</jdk.httpclient.enableAllMethodRetry>
             </systemPropertyVariables>
+            <environmentVariables>
+              <CEDAR_REDIS_PERSISTENT_HOST>${cedar.test.redisHost}</CEDAR_REDIS_PERSISTENT_HOST>
+              <CEDAR_REDIS_PERSISTENT_PORT>${cedar.test.redisPort}</CEDAR_REDIS_PERSISTENT_PORT>
+            </environmentVariables>
           </configuration>
         </plugin>
         <plugin>
@@ -1464,6 +1523,23 @@
                 <goal>shade</goal>
               </goals>
               <configuration>
+                <!-- Apache POI and the artifacts only it brings: 7,584 classes, about 16 MB of each
+                     server jar, most of them OOXML schemas. They reach every server through
+                     cedar-artifact-library, where only its spreadsheet renderer and its
+                     Template2Excel and Template2Tsv tools use them, and no server class uses those.
+                     A scan of every shaded jar's constant pools on 2026-11-16 found no other class,
+                     resource or class-name string that names them. A server that starts rendering
+                     spreadsheets must remove these exclusions, or it fails with
+                     NoClassDefFoundError. -->
+                <artifactSet>
+                  <excludes>
+                    <exclude>org.apache.poi:*</exclude>
+                    <exclude>org.apache.xmlbeans:xmlbeans</exclude>
+                    <exclude>com.github.virtuald:curvesapi</exclude>
+                    <exclude>com.zaxxer:SparseBitSet</exclude>
+                    <exclude>org.apache.commons:commons-math3</exclude>
+                  </excludes>
+                </artifactSet>
                 <transformers>
                   <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
                   <transformer implementation="org.apache.logging.log4j.maven.plugins.shade.transformer.Log4j2PluginCacheFileTransformer"/>
