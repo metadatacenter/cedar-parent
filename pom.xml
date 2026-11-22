@@ -202,6 +202,13 @@
     <transitive.angus-activation.version>2.0.3</transitive.angus-activation.version>
     <transitive.jandex.version>2.4.5.Final</transitive.jandex.version>
     <transitive.asm.version>9.11.1</transitive.asm.version>
+    <!-- Bouncy Castle reaches every server through the Keycloak adapter's crypto module, which names
+         1.74, and org.json reaches it through Jedis, which names 20240303. Both of those releases
+         carry published advisories. Dependabot cannot report them, because the servers' poms name no
+         versions, so the fixed releases are managed here. Keep the three Bouncy Castle artifacts on
+         one release: bcpkix and bcutil are built against the bcprov of the same release. -->
+    <transitive.bouncycastle.version>1.87</transitive.bouncycastle.version>
+    <transitive.org-json.version>20260814</transitive.org-json.version>
   </properties>
   <distributionManagement>
     <snapshotRepository>
@@ -1084,6 +1091,28 @@
         <artifactId>asm</artifactId>
         <version>${transitive.asm.version}</version>
       </dependency>
+      <!-- Managed for their advisories rather than for a version split. See the matching
+           properties above. -->
+      <dependency>
+        <groupId>org.bouncycastle</groupId>
+        <artifactId>bcprov-jdk18on</artifactId>
+        <version>${transitive.bouncycastle.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.bouncycastle</groupId>
+        <artifactId>bcpkix-jdk18on</artifactId>
+        <version>${transitive.bouncycastle.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.bouncycastle</groupId>
+        <artifactId>bcutil-jdk18on</artifactId>
+        <version>${transitive.bouncycastle.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.json</groupId>
+        <artifactId>json</artifactId>
+        <version>${transitive.org-json.version}</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
   <build>
@@ -1607,6 +1636,7 @@
         <transitive.jakarta-activation-api.version>2.1.2</transitive.jakarta-activation-api.version>
         <transitive.angus-activation.version>2.0.1</transitive.angus-activation.version>
         <transitive.jandex.version>3.1.2</transitive.jandex.version>
+        <transitive.bouncycastle.version>1.74</transitive.bouncycastle.version>
       </properties>
       <dependencyManagement>
         <dependencies>
