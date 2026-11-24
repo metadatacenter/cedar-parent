@@ -462,6 +462,16 @@
         <version>${mongodb.version}</version>
       </dependency>
       <dependency>
+        <groupId>org.mongodb</groupId>
+        <artifactId>mongodb-driver-core</artifactId>
+        <version>${mongodb.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.mongodb</groupId>
+        <artifactId>bson</artifactId>
+        <version>${mongodb.version}</version>
+      </dependency>
+      <dependency>
         <groupId>org.keycloak</groupId>
         <artifactId>keycloak-common</artifactId>
         <version>${keycloak.version}</version>
@@ -530,6 +540,11 @@
         <artifactId>mariaDB4j</artifactId>
         <version>${ch.vorburger.mariadb4j.version}</version>
       </dependency>
+      <dependency>
+        <groupId>ch.vorburger.mariaDB4j</groupId>
+        <artifactId>mariaDB4j-core</artifactId>
+        <version>${ch.vorburger.mariadb4j.version}</version>
+      </dependency>
       <!--
         The platform database binaries, selected by an OS-activated profile in each consumer, since
         profiles do not travel with dependencies. Their version is the database, not the mariaDB4j
@@ -572,6 +587,17 @@
             <artifactId>jetty-webapp</artifactId>
           </exclusion>
         </exclusions>
+      </dependency>
+      <!-- Test classes use these two directly. They come with the harness, at its version. -->
+      <dependency>
+        <groupId>org.neo4j</groupId>
+        <artifactId>neo4j-configuration</artifactId>
+        <version>${org.neo4j.test.neo4j-harness.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.neo4j</groupId>
+        <artifactId>neo4j-graphdb-api</artifactId>
+        <version>${org.neo4j.test.neo4j-harness.version}</version>
       </dependency>
       <dependency>
         <groupId>org.jspecify</groupId>
@@ -629,6 +655,26 @@
       <dependency>
         <groupId>org.opensearch.client</groupId>
         <artifactId>opensearch-rest-high-level-client</artifactId>
+        <version>${opensearch.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.opensearch.client</groupId>
+        <artifactId>opensearch-rest-client</artifactId>
+        <version>${opensearch.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.opensearch</groupId>
+        <artifactId>opensearch-common</artifactId>
+        <version>${opensearch.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.opensearch</groupId>
+        <artifactId>opensearch-core</artifactId>
+        <version>${opensearch.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.opensearch</groupId>
+        <artifactId>opensearch-x-content</artifactId>
         <version>${opensearch.version}</version>
       </dependency>
       <dependency>
@@ -788,6 +834,11 @@
       </dependency>
       <dependency>
         <groupId>org.jboss.resteasy</groupId>
+        <artifactId>resteasy-client-api</artifactId>
+        <version>${resteasy.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.resteasy</groupId>
         <artifactId>resteasy-jackson2-provider</artifactId>
         <version>${resteasy.version}</version>
       </dependency>
@@ -817,6 +868,11 @@
       <dependency>
         <groupId>io.dropwizard</groupId>
         <artifactId>dropwizard-core</artifactId>
+        <version>${dropwizard.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.dropwizard</groupId>
+        <artifactId>dropwizard-util</artifactId>
         <version>${dropwizard.version}</version>
       </dependency>
       <dependency>
@@ -1002,12 +1058,22 @@
       </dependency>
       <dependency>
         <groupId>org.apache.lucene</groupId>
+        <artifactId>lucene-join</artifactId>
+        <version>${transitive.lucene.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.lucene</groupId>
         <artifactId>lucene-queryparser</artifactId>
         <version>${transitive.lucene.version}</version>
       </dependency>
       <dependency>
         <groupId>org.glassfish.hk2</groupId>
         <artifactId>hk2-locator</artifactId>
+        <version>${transitive.hk2-locator.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.glassfish.hk2</groupId>
+        <artifactId>hk2-api</artifactId>
         <version>${transitive.hk2-locator.version}</version>
       </dependency>
       <dependency>
