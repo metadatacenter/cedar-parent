@@ -200,7 +200,6 @@
     <transitive.byte-buddy.version>1.18.17-jdk5</transitive.byte-buddy.version>
     <transitive.commons-compress.version>1.28.0</transitive.commons-compress.version>
     <transitive.angus-activation.version>2.0.3</transitive.angus-activation.version>
-    <transitive.jandex.version>2.4.5.Final</transitive.jandex.version>
     <transitive.asm.version>9.11.1</transitive.asm.version>
     <!-- Bouncy Castle reaches every server through the Keycloak adapter's crypto module, which names
          1.74, and org.json reaches it through Jedis, which names 20240303. Both of those releases
@@ -286,6 +285,16 @@
         <groupId>org.glassfish.jersey</groupId>
         <artifactId>jersey-bom</artifactId>
         <version>${org.glassfish.jersey.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <!-- Upgrade every Metrics artifact together. Managing only metrics-annotation and
+           metrics-healthchecks left the other ten on the 4.2.39 that Dropwizard names, so every
+           server ran two Metrics releases. The BOM and its parent manage Metrics artifacts only. -->
+      <dependency>
+        <groupId>io.dropwizard.metrics</groupId>
+        <artifactId>metrics-bom</artifactId>
+        <version>${dropwizard.metrics.version}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -821,16 +830,6 @@
         <version>${dropwizard.version}</version>
       </dependency>
       <dependency>
-        <groupId>io.dropwizard.metrics</groupId>
-        <artifactId>metrics-annotation</artifactId>
-        <version>${dropwizard.metrics.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>io.dropwizard.metrics</groupId>
-        <artifactId>metrics-healthchecks</artifactId>
-        <version>${dropwizard.metrics.version}</version>
-      </dependency>
-      <dependency>
         <groupId>io.dropwizard</groupId>
         <artifactId>dropwizard-client</artifactId>
         <version>${dropwizard.version}</version>
@@ -1082,11 +1081,6 @@
         <version>${transitive.angus-activation.version}</version>
       </dependency>
       <dependency>
-        <groupId>org.jboss</groupId>
-        <artifactId>jandex</artifactId>
-        <version>${transitive.jandex.version}</version>
-      </dependency>
-      <dependency>
         <groupId>org.ow2.asm</groupId>
         <artifactId>asm</artifactId>
         <version>${transitive.asm.version}</version>
@@ -1164,6 +1158,26 @@
                   </includes>
                   <searchTransitive>true</searchTransitive>
                   <message>All Jersey modules must use ${org.glassfish.jersey.version}, as managed by the cedar-parent Jersey BOM. Remove individual version overrides.</message>
+                </bannedDependencies>
+              </rules>
+            </configuration>
+          </execution>
+          <execution>
+            <id>enforce-metrics-alignment</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <bannedDependencies>
+                  <excludes>
+                    <exclude>io.dropwizard.metrics:*</exclude>
+                  </excludes>
+                  <includes>
+                    <include>io.dropwizard.metrics:*:[${dropwizard.metrics.version}]</include>
+                  </includes>
+                  <searchTransitive>true</searchTransitive>
+                  <message>All Metrics artifacts must use ${dropwizard.metrics.version}, as managed by the cedar-parent Metrics BOM. Remove individual version overrides.</message>
                 </bannedDependencies>
               </rules>
             </configuration>
@@ -1635,7 +1649,6 @@
         <transitive.commons-logging.version>1.2</transitive.commons-logging.version>
         <transitive.jakarta-activation-api.version>2.1.2</transitive.jakarta-activation-api.version>
         <transitive.angus-activation.version>2.0.1</transitive.angus-activation.version>
-        <transitive.jandex.version>3.1.2</transitive.jandex.version>
         <transitive.bouncycastle.version>1.74</transitive.bouncycastle.version>
       </properties>
       <dependencyManagement>
@@ -1661,6 +1674,34 @@
               <exclusion>
                 <groupId>com.google.guava</groupId>
                 <artifactId>listenablefuture</artifactId>
+              </exclusion>
+            </exclusions>
+          </dependency>
+        </dependencies>
+      </dependencyManagement>
+    </profile>
+    <!-- RESTEasy needs Jandex only to scan for server resources, and CEDAR applications run
+         RESTEasy only as the Keycloak admin client's transport. Hibernate needs io.smallrye:jandex
+         3.x, which holds the same org.jboss.jandex classes, so with both present a shaded jar mixed
+         the classes of org.jboss:jandex 2.4.5 with those of 3.2.0. A Keycloak provider module is
+         left to the Keycloak platform, which supplies RESTEasy and Jandex at its own versions. -->
+    <profile>
+      <id>cedar-application</id>
+      <activation>
+        <file>
+          <missing>src/main/resources/META-INF/services/org.keycloak.events.EventListenerProviderFactory</missing>
+        </file>
+      </activation>
+      <dependencyManagement>
+        <dependencies>
+          <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-core</artifactId>
+            <version>${resteasy.version}</version>
+            <exclusions>
+              <exclusion>
+                <groupId>org.jboss</groupId>
+                <artifactId>jandex</artifactId>
               </exclusion>
             </exclusions>
           </dependency>
