@@ -136,6 +136,13 @@
     <!-- How long Surefire and Failsafe wait for a test JVM's shutdown hooks before halting it.
          Embedded Neo4j, MariaDB and MongoDB stop in those hooks, and JaCoCo writes its data in one. -->
     <cedar.test.forkExitTimeoutSeconds>180</cedar.test.forkExitTimeoutSeconds>
+    <!-- How many test JVMs Surefire runs at once for one module. Each JVM runs its classes one
+         after another, so a test class shares configuration, services and embedded stores only with
+         the classes in its own JVM, and every JVM starts its stores on ports the operating system
+         assigns; any count is safe. One is the default because the full build already tests up to
+         sixteen modules at once: at 0.25C it took 270 seconds against 220 at one (2026-11-24). A
+         module tested on its own gains from more, as in -Dcedar.test.forkCount=4. -->
+    <cedar.test.forkCount>1</cedar.test.forkCount>
     <!-- The settings every test JVM takes, Surefire's and Failsafe's alike. Each plugin's
          configuration below lists the same system properties and environment variables, with
          these values, so an integration test that boots an application meets the same test
@@ -1486,9 +1493,12 @@
                  data dump on a loaded machine, and the module then fails its coverage check with a
                  ratio of 0.00. -->
             <forkedProcessExitTimeoutInSeconds>${cedar.test.forkExitTimeoutSeconds}</forkedProcessExitTimeoutInSeconds>
+            <forkCount>${cedar.test.forkCount}</forkCount>
+            <reuseForks>true</reuseForks>
             <systemPropertyVariables>
-              <!-- cedar-test-support-library contributes a JUnit extension that clears its
-                   process-global environment override after every test class. -->
+              <!-- cedar-test-support-library contributes a JUnit extension that restores its
+                   test baseline, in place of the previous class's environment override, after
+                   every test class. -->
               <junit.jupiter.extensions.autodetection.enabled>true</junit.jupiter.extensions.autodetection.enabled>
               <!-- Backend-free server tests have no application-log Redis. Queue behavior is
                    covered separately against embedded Redis; avoid one network timeout for every
